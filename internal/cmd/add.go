@@ -13,20 +13,25 @@ import (
 
 // addCmd represents the add command.
 var addCmd = &cobra.Command{
-	Use:   "add <component-type> [name]",
+	Use:   "add <type> [subtype] <name>",
 	Short: "Add a new component to an existing project",
 	Long: `Add new components to an existing Clause project.
 
 Component types:
-  frontend    Add frontend components (pages, components, utilities)
-  backend     Add backend components (routes, models, services)
+  frontend    Add frontend components
+  backend     Add backend components
   governance  Add governance rules and AI context
+
+Frontend subtypes: component (default), page, hook, utility, context
+Backend subtypes: service (default), route, model, schema, utility, middleware
 
 Examples:
   clause add frontend component Button
+  clause add frontend page Home
   clause add backend route users
+  clause add backend model User
   clause add governance rule no-any-type`,
-	Args: cobra.MinimumNArgs(1),
+	Args: cobra.MinimumNArgs(2),
 	RunE: runAdd,
 }
 
@@ -55,10 +60,21 @@ func runAdd(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("not in a Clause project: %w", err)
 	}
 
+	// Parse arguments: add <type> [subtype] <name>
+	// Examples:
+	//   add frontend component Button    -> type=frontend, subtype=component, name=Button
+	//   add backend route users          -> type=backend, subtype=route, name=users
+	//   add frontend Button              -> type=frontend, name=Button (subtype defaults based on type)
 	componentType := args[0]
-	var name string
-	if len(args) > 1 {
+	var subtype, name string
+
+	if len(args) == 2 {
+		// add <type> <name> - second arg is the name
 		name = args[1]
+	} else if len(args) >= 3 {
+		// add <type> <subtype> <name> - second arg is subtype, third is name
+		subtype = args[1]
+		name = args[2]
 	}
 
 	// Check if governance is enabled
@@ -79,9 +95,9 @@ func runAdd(cmd *cobra.Command, args []string) error {
 	// Handle different component types
 	switch componentType {
 	case "frontend":
-		return addFrontendComponent(gov, name, printer)
+		return addFrontendComponent(gov, subtype, name, printer)
 	case "backend":
-		return addBackendComponent(gov, name, printer)
+		return addBackendComponent(gov, subtype, name, printer)
 	case "governance":
 		return addGovernanceRule(gov, name, printer)
 	case "component":
@@ -92,9 +108,14 @@ func runAdd(cmd *cobra.Command, args []string) error {
 	}
 }
 
-func addFrontendComponent(gov *governance.Governance, name string, printer *output.Printer) error {
+func addFrontendComponent(gov *governance.Governance, subtype, name string, printer *output.Printer) error {
 	if name == "" {
 		return fmt.Errorf("component name is required")
+	}
+
+	// Default subtype to "component" if not specified
+	if subtype == "" {
+		subtype = "component"
 	}
 
 	comp := governance.Component{
@@ -107,15 +128,32 @@ func addFrontendComponent(gov *governance.Governance, name string, printer *outp
 		TechStack:   []string{"react", "typescript", "tailwind"},
 	}
 
+	// Set default path based on subtype
 	if comp.Path == "" {
-		comp.Path = fmt.Sprintf("src/components/%s", name)
+		switch subtype {
+		case "page":
+			comp.Path = fmt.Sprintf("src/pages/%s", name)
+		case "hook":
+			comp.Path = fmt.Sprintf("src/hooks/%s", name)
+		case "util", "utility":
+			comp.Path = fmt.Sprintf("src/utils/%s", name)
+		case "context":
+			comp.Path = fmt.Sprintf("src/contexts/%s", name)
+		default:
+			comp.Path = fmt.Sprintf("src/components/%s", name)
+		}
+	}
+
+	// Add subtype to tags
+	if len(addTags) == 0 {
+		comp.Tags = []string{subtype}
 	}
 
 	if err := gov.RegisterComponent(comp); err != nil {
 		return err
 	}
 
-	printer.PrintSuccess("Registered frontend component: %s", name)
+	printer.PrintSuccess("Registered frontend %s: %s", subtype, name)
 	printer.PrintDim("  Path: %s", comp.Path)
 	if len(comp.Dependencies) > 0 {
 		printer.PrintDim("  Dependencies: %v", comp.Dependencies)
@@ -124,9 +162,14 @@ func addFrontendComponent(gov *governance.Governance, name string, printer *outp
 	return nil
 }
 
-func addBackendComponent(gov *governance.Governance, name string, printer *output.Printer) error {
+func addBackendComponent(gov *governance.Governance, subtype, name string, printer *output.Printer) error {
 	if name == "" {
 		return fmt.Errorf("component name is required")
+	}
+
+	// Default subtype to "service" if not specified
+	if subtype == "" {
+		subtype = "service"
 	}
 
 	comp := governance.Component{
@@ -139,15 +182,34 @@ func addBackendComponent(gov *governance.Governance, name string, printer *outpu
 		TechStack:   []string{"python", "fastapi", "sqlalchemy"},
 	}
 
+	// Set default path based on subtype
 	if comp.Path == "" {
-		comp.Path = fmt.Sprintf("backend/services/%s", name)
+		switch subtype {
+		case "route", "endpoint":
+			comp.Path = fmt.Sprintf("backend/routes/%s", name)
+		case "model":
+			comp.Path = fmt.Sprintf("backend/models/%s", name)
+		case "schema":
+			comp.Path = fmt.Sprintf("backend/schemas/%s", name)
+		case "util", "utility":
+			comp.Path = fmt.Sprintf("backend/utils/%s", name)
+		case "middleware":
+			comp.Path = fmt.Sprintf("backend/middleware/%s", name)
+		default:
+			comp.Path = fmt.Sprintf("backend/services/%s", name)
+		}
+	}
+
+	// Add subtype to tags
+	if len(addTags) == 0 {
+		comp.Tags = []string{subtype}
 	}
 
 	if err := gov.RegisterComponent(comp); err != nil {
 		return err
 	}
 
-	printer.PrintSuccess("Registered backend component: %s", name)
+	printer.PrintSuccess("Registered backend %s: %s", subtype, name)
 	printer.PrintDim("  Path: %s", comp.Path)
 	if len(comp.Dependencies) > 0 {
 		printer.PrintDim("  Dependencies: %v", comp.Dependencies)

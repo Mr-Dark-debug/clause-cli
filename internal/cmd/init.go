@@ -50,7 +50,7 @@ func init() {
 	rootCmd.AddCommand(initCmd)
 
 	initCmd.Flags().BoolVarP(&initNonInteractive, "non-interactive", "n", false, "non-interactive mode (use defaults)")
-	initCmd.Flags().StringVarP(&initPreset, "preset", "p", "", "use a preset configuration (web-app, api, full-stack, saas)")
+	initCmd.Flags().StringVarP(&initPreset, "preset", "p", "", "use a preset configuration (minimal, standard, saas, api-only, frontend-only, enterprise)")
 	initCmd.Flags().BoolVar(&initDryRun, "dry-run", false, "show what would be created without creating files")
 	initCmd.Flags().StringVar(&initPath, "path", "", "project creation path (default: current directory)")
 }

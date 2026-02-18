@@ -256,19 +256,38 @@ func (g *Generator) createCIConfig(projectPath string) error {
 
 // createGovernance creates governance files.
 func (g *Generator) createGovernance(projectPath string) error {
+	// Create ai_prompt_guidelines directory
+	guidelinesDir := filepath.Join(projectPath, "ai_prompt_guidelines")
+	if err := g.createDirectory(guidelinesDir); err != nil {
+		return err
+	}
+
 	// Create Brainstorm.md if enabled
 	if g.Config.Governance.BrainstormMd {
 		brainstorm := g.generateBrainstormMd()
-		if err := g.writeFile(filepath.Join(projectPath, "Brainstorm.md"), brainstorm); err != nil {
+		if err := g.writeFile(filepath.Join(guidelinesDir, "brainstorm.md"), brainstorm); err != nil {
 			return err
 		}
 	}
 
-	// Create .clause/prompt-guidelines.md if enabled
+	// Create system_prompt.md if enabled (via PromptGuidelines flag)
 	if g.Config.Governance.PromptGuidelines {
-		clauseDir := filepath.Join(projectPath, ".clause")
-		guidelines := g.generatePromptGuidelines()
-		if err := g.writeFile(filepath.Join(clauseDir, "prompt-guidelines.md"), guidelines); err != nil {
+		systemPrompt := g.generateSystemPromptMd()
+		if err := g.writeFile(filepath.Join(guidelinesDir, "system_prompt.md"), systemPrompt); err != nil {
+			return err
+		}
+	}
+
+	// Create architecture.md (standard governance file)
+	architecture := g.generateArchitectureMd()
+	if err := g.writeFile(filepath.Join(guidelinesDir, "architecture.md"), architecture); err != nil {
+		return err
+	}
+
+	// Create component_registry.json if enabled
+	if g.Config.Governance.ComponentRegistry {
+		registry := g.generateComponentRegistryJson()
+		if err := g.writeFile(filepath.Join(guidelinesDir, "component_registry.json"), registry); err != nil {
 			return err
 		}
 	}
@@ -539,6 +558,57 @@ Welcome to the brainstorming workspace for **%s**.
 
 -
 `, g.Config.Metadata.Name)
+}
+
+func (g *Generator) generateSystemPromptMd() string {
+	return fmt.Sprintf(`# System Prompt
+
+You are an AI assistant working on the **%s** project.
+
+## Project Context
+%s
+
+## Technology Stack
+- Frontend: %s
+- Backend: %s
+- Database: %s
+
+## Coding Standards
+1. Follow the component structure defined in component_registry.json
+2. Implement strict type checking
+3. Write comprehensive tests
+4. Use the architecture defined in architecture.md
+`, g.Config.Metadata.Name, g.Config.Metadata.Description, g.Config.Frontend.Framework, g.Config.Backend.Framework, g.Config.Backend.Database.Primary)
+}
+
+func (g *Generator) generateArchitectureMd() string {
+	return fmt.Sprintf(`# Project Architecture
+
+## Overview
+%s
+
+## Frontend
+- Framework: %s
+- Application Structure: %s
+
+## Backend
+- Framework: %s
+- Database: %s
+- API Style: %s
+
+## Infrastructure
+- Deployment: %s
+- CI/CD: %s
+`, g.Config.Metadata.Description, g.Config.Frontend.Framework, g.Config.Frontend.Directory, g.Config.Backend.Framework, g.Config.Backend.Database.Primary, g.Config.Backend.API.Style, g.Config.Infrastructure.Hosting, g.Config.Infrastructure.CI)
+}
+
+func (g *Generator) generateComponentRegistryJson() string {
+	return `{
+  "components": [],
+  "layouts": [],
+  "pages": []
+}
+`
 }
 
 func (g *Generator) generatePromptGuidelines() string {

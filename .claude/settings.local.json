@@ -5,7 +5,14 @@
       "Bash(go mod tidy:*)",
       "Bash(./bin/clause.exe:*)",
       "Bash(dir:*)",
-      "Bash(../bin/clause.exe:*)"
+      "Bash(../bin/clause.exe:*)",
+      "Bash(go env:*)",
+      "Bash(go install:*)",
+      "Bash(where clause)",
+      "Bash(clause version)",
+      "Bash(clause init:*)",
+      "Bash(clause:*)",
+      "Bash(make:*)"
     ]
   }
 }
