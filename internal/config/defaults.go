@@ -711,3 +711,16 @@ func getDevelopmentDefault(parts []string) (interface{}, error) {
 		return nil, fmt.Errorf("unknown development field: %s", parts[0])
 	}
 }
+
+// LoadPreset creates a new ProjectConfig with the specified preset applied.
+func LoadPreset(name string) (*ProjectConfig, error) {
+	preset, err := GetPreset(name)
+	if err != nil {
+		return nil, err
+	}
+
+	config := NewProjectConfig()
+	preset.Apply(config)
+
+	return config, nil
+}

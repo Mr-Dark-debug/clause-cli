@@ -432,3 +432,22 @@ func (p *PulseEffect) View() string {
 	}
 	return styles.ColorFunc(p.color2)(p.text)
 }
+
+// ApplyFade applies a fade effect to content based on alpha value (0.0-1.0).
+// This creates a dimming effect where 0.0 is invisible and 1.0 is fully visible.
+func ApplyFade(content string, alpha float64) string {
+	if alpha >= 1.0 {
+		return content
+	}
+	if alpha <= 0.0 {
+		return ""
+	}
+
+	// Simple implementation: apply dim effect
+	// In a real implementation, this would manipulate ANSI codes
+	// For now, we just return the content as-is if alpha is above threshold
+	if alpha < 0.3 {
+		return strings.Repeat(" ", len(strings.Split(content, "\n")[0]))
+	}
+	return content
+}

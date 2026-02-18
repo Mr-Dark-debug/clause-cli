@@ -276,22 +276,22 @@ func (w *Wizard) handleNavigation(msg tea.KeyMsg) tea.Cmd {
 	switch msg.String() {
 	case "enter", "right", "l":
 		if currentScreen.CanGoNext() && currentScreen.IsComplete() {
-			return w.nextScreen
+			return func() tea.Msg { return NextScreenMsg{} }
 		}
 
 	case "backspace", "left", "h":
 		if currentScreen.CanGoBack() {
-			return w.prevScreen
+			return func() tea.Msg { return PrevScreenMsg{} }
 		}
 
 	case "ctrl+n":
 		if currentScreen.CanGoNext() {
-			return w.nextScreen
+			return func() tea.Msg { return NextScreenMsg{} }
 		}
 
 	case "ctrl+p":
 		if currentScreen.CanGoBack() {
-			return w.prevScreen
+			return func() tea.Msg { return PrevScreenMsg{} }
 		}
 	}
 

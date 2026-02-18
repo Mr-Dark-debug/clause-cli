@@ -2,10 +2,8 @@
 package wizard
 
 import (
-	tea "github.com/charmbracelet/bubbletea"
 	"github.com/clause-cli/clause/internal/config"
 	"github.com/clause-cli/clause/internal/wizard/screens"
-	"github.com/clause-cli/clause/pkg/styles"
 )
 
 // Screen is an alias to screens.Screen for convenience
