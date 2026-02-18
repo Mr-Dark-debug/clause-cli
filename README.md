@@ -29,6 +29,14 @@
 
 ---
 
+<img width="1321" height="1013" alt="image" src="https://github.com/user-attachments/assets/1a0daf49-b009-4b2f-85ae-ab7fa150aac6" />
+
+---
+
+<img width="1838" height="894" alt="image" src="https://github.com/user-attachments/assets/737e6551-2352-46e4-8dec-8a1e8acdc55e" />
+
+---
+
 ## Why Clause?
 
 Modern AI coding assistants are powerful, but their power is undirected. They can write virtually any code, but without proper guidance, that code may violate project standards, introduce inconsistencies, or create technical debt.
