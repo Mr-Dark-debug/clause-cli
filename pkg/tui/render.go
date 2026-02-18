@@ -371,13 +371,19 @@ func (r *Renderer) CommandsGrid(cmd *cobra.Command) string {
 	var sections []string
 	order := []string{"PROJECT", "CONFIGURATION", "UTILITY"}
 
+	// Calculate divider width with bounds checking
+	dividerWidth := r.width - 10
+	if dividerWidth <= 0 {
+		dividerWidth = 60 // Default width
+	}
+
 	for _, name := range order {
 		cmds := groups[name]
 		header := r.theme.Typography.Header.Copy().
 			Foreground(lipgloss.Color(r.theme.Colors.TextMuted)).
 			Render(name)
-		
-		divider := r.theme.Typography.Muted.Render(strings.Repeat("─", r.width-10))
+
+		divider := r.theme.Typography.Muted.Render(strings.Repeat("─", dividerWidth))
 		
 		var cmdLines []string
 		for _, c := range cmds {
@@ -450,7 +456,12 @@ func (r *Renderer) FlagsSection(cmd *cobra.Command) string {
 
 // Footer renders a professional footer with links.
 func (r *Renderer) Footer(version string) string {
-	divider := r.theme.Typography.Muted.Render(strings.Repeat("─", r.width-4))
+	// Calculate divider width with bounds checking
+	dividerWidth := r.width - 4
+	if dividerWidth <= 0 {
+		dividerWidth = 76 // Default width
+	}
+	divider := r.theme.Typography.Muted.Render(strings.Repeat("─", dividerWidth))
 	
 	links := []string{
 		"📚 Docs: " + r.theme.Typography.Body.Copy().Underline(true).Foreground(lipgloss.Color(r.theme.Colors.Info)).Render("clause.dev"),
