@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <!-- Main gradient -->
+    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7C3AED"/>
+      <stop offset="50%" style="stop-color:#8B5CF6"/>
+      <stop offset="100%" style="stop-color:#A78BFA"/>
+    </linearGradient>
+    
+    <!-- Accent gradient -->
+    <linearGradient id="logoAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EC4899"/>
+      <stop offset="100%" style="stop-color:#F472B6"/>
+    </linearGradient>
+    
+    <!-- Background gradient -->
+    <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A1A2E"/>
+      <stop offset="100%" style="stop-color:#0F0F1A"/>
+    </linearGradient>
+    
+    <!-- Glow effect -->
+    <filter id="logoGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Rounded background -->
+  <rect width="256" height="256" rx="48" fill="url(#logoBg)"/>
+  
+  <!-- Subtle inner glow -->
+  <rect x="8" y="8" width="240" height="240" rx="42" fill="none" stroke="#7C3AED" stroke-width="1" opacity="0.2"/>
+  
+  <!-- Logo mark - centered -->
+  <g transform="translate(128, 128)" filter="url(#logoGlow)">
+    <!-- Left bracket -->
+    <path d="M -60 -50 Q -85 0 -60 50" stroke="url(#logoGrad)" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.5"/>
+    
+    <!-- Main C shape -->
+    <path d="M 30 -45 
+             Q -35 -45 -45 0 
+             Q -35 45 30 45" 
+          stroke="url(#logoGrad)" stroke-width="16" fill="none" stroke-linecap="round"/>
+    
+    <!-- Inner accent curve -->
+    <path d="M 10 -25 
+             Q -15 -25 -20 0 
+             Q -15 25 10 25" 
+          stroke="url(#logoAccent)" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.7"/>
+    
+    <!-- Code dots -->
+    <circle cx="-5" cy="-12" r="5" fill="#C4B5FD"/>
+    <circle cx="-5" cy="0" r="5" fill="#C4B5FD"/>
+    <circle cx="-5" cy="12" r="5" fill="#C4B5FD"/>
+    
+    <!-- Right bracket -->
+    <path d="M 60 -50 Q 85 0 60 50" stroke="url(#logoGrad)" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.5"/>
+  </g>
+</svg>

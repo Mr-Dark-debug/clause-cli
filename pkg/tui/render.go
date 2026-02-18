@@ -543,7 +543,7 @@ func (r *Renderer) WelcomeScreen(cmd *cobra.Command, version string) string {
 	flags := r.FlagsSection(cmd)
 	footer := r.Footer(version)
 
-	return lipgloss.JoinVertical(
+	ui := lipgloss.JoinVertical(
 		lipgloss.Center,
 		banner,
 		"",
@@ -557,6 +557,12 @@ func (r *Renderer) WelcomeScreen(cmd *cobra.Command, version string) string {
 		"",
 		footer,
 	)
+
+	if r.width > 0 {
+		return lipgloss.PlaceHorizontal(r.width, lipgloss.Center, ui)
+	}
+
+	return ui
 }
 
 // Center centers content in available space.

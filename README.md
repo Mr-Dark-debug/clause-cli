@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="clause-cli-banner.svg" alt="Clause CLI Banner">
+</p>
+
 <h1 align="center">Clause CLI</h1>
 
 <p align="center">

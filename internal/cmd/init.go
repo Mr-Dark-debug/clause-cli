@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
 	"github.com/clause-cli/clause/internal/config"
 	"github.com/clause-cli/clause/internal/generator"
 	"github.com/clause-cli/clause/internal/governance"
@@ -207,17 +208,24 @@ func generateProject(cfg *config.ProjectConfig, projectPath string, printer *out
 }
 
 func printBanner(printer *output.Printer, theme *styles.Theme) {
+	width, _, err := styles.GetTerminalSize()
+	if err != nil || width <= 0 {
+		width = 80
+	}
+
+	banner := `   ██████╗██╗      █████╗ ██╗   ██╗███████╗███████╗
+  ██╔════╝██║     ██╔══██╗██║   ██║██╔════╝██╔════╝
+  ██║     ██║     ███████║██║   ██║███████╗█████╗
+  ██║     ██║     ██╔══██║██║   ██║╚════██║██╔══╝
+  ╚██████╗███████╗██║  ██║╚██████╔╝███████║███████╗
+   ╚═════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝`
+
+	tagline := "Framework for Organized, Reproducible, and Guided Engineering"
+
 	printer.Println()
-	banner := `
-   ██████╗██╗      █████╗ ██╗   ██╗██████╗ ███████╗
-  ██╔════╝██║     ██╔══██╗██║   ██║██╔══██╗██╔════╝
-  ██║     ██║     ███████║██║   ██║██║  ██║█████╗
-  ██║     ██║     ██╔══██║██║   ██║██║  ██║██╔══╝
-  ╚██████╗███████╗██║  ██║╚██████╔╝██████╔╝███████╗
-   ╚═════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝
-`
-	printer.PrintPrimary(banner)
-	printer.PrintMuted("  AI-Native Project Scaffolding")
+	printer.PrintPrimary(lipgloss.PlaceHorizontal(width, lipgloss.Center, banner))
+	printer.Println()
+	printer.PrintMuted(lipgloss.PlaceHorizontal(width, lipgloss.Center, tagline))
 	printer.Println()
 }
 

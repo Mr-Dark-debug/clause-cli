@@ -13,15 +13,16 @@ import (
 
 // Dashboard is the main interactive menu for Clause.
 type Dashboard struct {
-	renderer   *tui.Renderer
-	rootCmd    *cobra.Command
-	version    string
-	cursor     int
-	width      int
-	height     int
-	choices    []MenuChoice
-	quitting   bool
-	animFrame  int
+	renderer    *tui.Renderer
+	rootCmd     *cobra.Command
+	version     string
+	cursor      int
+	width       int
+	height      int
+	choices     []MenuChoice
+	quitting    bool
+	selectedCmd string
+	showingHelp bool
 }
 
 // MenuChoice represents a selectable item in the dashboard.
@@ -67,6 +68,12 @@ func (d *Dashboard) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		d.renderer.SetSize(m.Width, m.Height)
 
 	case tea.KeyMsg:
+		// If showing help, any key goes back to menu
+		if d.showingHelp {
+			d.showingHelp = false
+			return d, nil
+		}
+
 		switch m.String() {
 		case "up", "k":
 			if d.cursor > 0 {
@@ -78,20 +85,24 @@ func (d *Dashboard) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			}
 		case "enter":
 			choice := d.choices[d.cursor]
-			if choice.command == "exit" {
+			d.selectedCmd = choice.command
+
+			switch choice.command {
+			case "exit":
+				d.quitting = true
+				return d, tea.Quit
+			case "init":
+				// Transition to wizard
+				w := New()
+				return w, w.Init()
+			case "help":
+				d.showingHelp = true
+				return d, nil
+			default:
+				// For other commands, show info and quit
 				d.quitting = true
 				return d, tea.Quit
 			}
-
-			// For "Initialize", we can transition directly to the wizard
-			if choice.command == "init" {
-				w := New()
-				return w, w.Init()
-			}
-
-			// For others, we quit and explain how to run
-			d.quitting = true
-			return d, tea.Quit
 		case "q", "ctrl+c", "esc":
 			d.quitting = true
 			return d, tea.Quit
@@ -103,19 +114,16 @@ func (d *Dashboard) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 // View renders the interactive dashboard.
 func (d *Dashboard) View() string {
 	if d.quitting {
-		if d.cursor < len(d.choices) && d.choices[d.cursor].command != "exit" {
-			return d.renderExitMessage()
-		}
-		return d.renderGoodbye()
+		return d.renderExitMessage()
 	}
 
-	_ = d.renderer.Theme() // Theme is used in render methods
+	if d.showingHelp {
+		return d.renderHelpScreen()
+	}
 
 	// Build the UI components
 	banner := d.renderBanner()
-	descCard := d.renderDescriptionCard()
 	menuCard := d.renderMenuCard()
-	footer := d.renderFooter()
 	helpBar := d.renderHelpBar()
 
 	// Assemble the full UI
@@ -123,12 +131,9 @@ func (d *Dashboard) View() string {
 		lipgloss.Center,
 		banner,
 		"",
-		descCard,
-		"",
 		menuCard,
 		"",
 		helpBar,
-		footer,
 	)
 
 	// Center the UI in the terminal
@@ -186,61 +191,6 @@ func (d *Dashboard) renderBanner() string {
 		Margin(0, 2)
 
 	return bannerStyle.Render(content)
-}
-
-// renderDescriptionCard renders the feature description card.
-func (d *Dashboard) renderDescriptionCard() string {
-	theme := d.renderer.Theme()
-
-	description := "Clause generates complete project scaffolding with built-in AI governance, context files, and best practices for AI assistants."
-
-	features := []struct {
-		icon string
-		text string
-	}{
-		{"📁", "Complete project structure generation"},
-		{"🤖", "AI governance guidelines included"},
-		{"📝", "Context files for AI assistants"},
-		{"⚡", "Support for Next.js, FastAPI, Go, and more"},
-	}
-
-	var featureLines []string
-	for _, f := range features {
-		iconStyle := lipgloss.NewStyle().Foreground(lipgloss.Color(theme.Colors.Primary)).PaddingRight(1)
-		textStyle := lipgloss.NewStyle().Foreground(lipgloss.Color(theme.Colors.Text))
-		featureLines = append(featureLines,
-			lipgloss.JoinHorizontal(lipgloss.Top,
-				iconStyle.Render(f.icon),
-				textStyle.Render(f.text),
-			),
-		)
-	}
-
-	// Title
-	titleStyle := lipgloss.NewStyle().
-		Bold(true).
-		Foreground(lipgloss.Color(theme.Colors.Primary)).
-		PaddingBottom(1)
-
-	// Card style
-	cardStyle := lipgloss.NewStyle().
-		Border(lipgloss.RoundedBorder()).
-		BorderForeground(lipgloss.Color(theme.Colors.Border)).
-		Padding(1, 2).
-		Width(min(d.width-8, 80))
-
-	content := lipgloss.JoinVertical(
-		lipgloss.Left,
-		lipgloss.NewStyle().Foreground(lipgloss.Color(theme.Colors.Text)).Render(description),
-		"",
-		strings.Join(featureLines, "\n"),
-	)
-
-	return lipgloss.JoinVertical(
-		lipgloss.Left,
-		titleStyle.Render("✨ Create AI-Ready Projects"),
-		cardStyle.Render(content),
-	)
 }
 
 // renderMenuCard renders the interactive menu.
@@ -414,44 +364,31 @@ func (d *Dashboard) renderHelpBar() string {
 	return lipgloss.JoinHorizontal(lipgloss.Center, items...)
 }
 
-// renderFooter renders the footer with version and links.
-func (d *Dashboard) renderFooter() string {
-	theme := d.renderer.Theme()
-
-	dividerStyle := lipgloss.NewStyle().
-		Foreground(lipgloss.Color(theme.Colors.BorderMuted))
-
-	linkStyle := lipgloss.NewStyle().
-		Foreground(lipgloss.Color(theme.Colors.Info)).
-		Underline(true)
-
-	versionStyle := lipgloss.NewStyle().
-		Foreground(lipgloss.Color(theme.Colors.TextMuted))
-
-	divider := dividerStyle.Render(strings.Repeat("─", min(d.width-4, 76)))
-
-	links := []string{
-		"📚 " + linkStyle.Render("docs.clause.dev"),
-		"💻 " + linkStyle.Render("github.com/clause-cli/clause"),
-		versionStyle.Render("v" + d.version),
-	}
-
-	content := lipgloss.JoinHorizontal(
-		lipgloss.Center,
-		strings.Join(links, "  │  "),
-	)
-
-	return lipgloss.JoinVertical(
-		lipgloss.Center,
-		divider,
-		content,
-	)
-}
-
 // renderExitMessage renders the exit message when a command is selected.
 func (d *Dashboard) renderExitMessage() string {
 	theme := d.renderer.Theme()
-	choice := d.choices[d.cursor]
+
+	// If selected exit, show goodbye
+	if d.selectedCmd == "exit" {
+		style := lipgloss.NewStyle().
+			Foreground(lipgloss.Color(theme.Colors.TextMuted)).
+			Italic(true).
+			Padding(1, 2)
+		return "\n" + style.Render("👋 See you later! Run 'clause' anytime to get started.") + "\n"
+	}
+
+	// Find the selected choice
+	var choice MenuChoice
+	for _, c := range d.choices {
+		if c.command == d.selectedCmd {
+			choice = c
+			break
+		}
+	}
+
+	if choice.command == "" {
+		return "\n👋 Goodbye!\n"
+	}
 
 	// Success box
 	boxStyle := lipgloss.NewStyle().
@@ -481,23 +418,68 @@ func (d *Dashboard) renderExitMessage() string {
 		"",
 		"Run the following command:",
 		"",
-		cmdStyle.Render("clause "+choice.command),
-		descStyle.Render("Or explore it in the interactive wizard soon!"),
+		cmdStyle.Render("  clause "+choice.command+"  "),
+		descStyle.Render("Run this command in your terminal to execute."),
 	)
 
 	return "\n" + boxStyle.Render(content) + "\n"
 }
 
-// renderGoodbye renders the goodbye message.
-func (d *Dashboard) renderGoodbye() string {
+// renderHelpScreen renders the help screen.
+func (d *Dashboard) renderHelpScreen() string {
 	theme := d.renderer.Theme()
 
-	style := lipgloss.NewStyle().
-		Foreground(lipgloss.Color(theme.Colors.TextMuted)).
-		Italic(true).
-		Padding(1, 2)
+	titleStyle := lipgloss.NewStyle().
+		Bold(true).
+		Foreground(lipgloss.Color(theme.Colors.Primary)).
+		PaddingBottom(1)
 
-	return "\n" + style.Render("👋 See you later! Run 'clause' anytime to get started.") + "\n"
+	headerStyle := lipgloss.NewStyle().
+		Bold(true).
+		Foreground(lipgloss.Color(theme.Colors.TextMuted)).
+		PaddingTop(1)
+
+	cmdStyle := lipgloss.NewStyle().
+		Foreground(lipgloss.Color(theme.Colors.Primary)).
+		Bold(true).
+		Width(20)
+
+	descStyle := lipgloss.NewStyle().
+		Foreground(lipgloss.Color(theme.Colors.Text))
+
+	content := lipgloss.JoinVertical(
+		lipgloss.Left,
+		titleStyle.Render("📚 Help - Clause CLI Reference"),
+		"",
+		"Clause is a cross-platform CLI tool for creating AI-ready project structures.",
+		"",
+		headerStyle.Render("COMMANDS"),
+		"",
+		lipgloss.JoinHorizontal(lipgloss.Top, cmdStyle.Render("init"), descStyle.Render("Initialize a new AI-ready project")),
+		lipgloss.JoinHorizontal(lipgloss.Top, cmdStyle.Render("add"), descStyle.Render("Add components to existing project")),
+		lipgloss.JoinHorizontal(lipgloss.Top, cmdStyle.Render("validate"), descStyle.Render("Check governance compliance")),
+		lipgloss.JoinHorizontal(lipgloss.Top, cmdStyle.Render("config"), descStyle.Render("Manage Clause settings")),
+		lipgloss.JoinHorizontal(lipgloss.Top, cmdStyle.Render("update"), descStyle.Render("Update to latest version")),
+		"",
+		headerStyle.Render("FLAGS"),
+		"",
+		lipgloss.JoinHorizontal(lipgloss.Top, cmdStyle.Render("--config"), descStyle.Render("Use specific config file")),
+		lipgloss.JoinHorizontal(lipgloss.Top, cmdStyle.Render("--no-color"), descStyle.Render("Disable colored output")),
+		lipgloss.JoinHorizontal(lipgloss.Top, cmdStyle.Render("-v, --verbose"), descStyle.Render("Enable verbose output")),
+		lipgloss.JoinHorizontal(lipgloss.Top, cmdStyle.Render("-q, --quiet"), descStyle.Render("Suppress non-essential output")),
+		"",
+		"Press any key to go back...",
+	)
+
+	boxStyle := lipgloss.NewStyle().
+		Border(lipgloss.RoundedBorder()).
+		BorderForeground(lipgloss.Color(theme.Colors.Border)).
+		Padding(1, 2).
+		Width(70)
+
+	return lipgloss.NewStyle().
+		Align(lipgloss.Center, lipgloss.Center).
+		Render(boxStyle.Render(content))
 }
 
 // StartDashboard launches the interactive dashboard.
