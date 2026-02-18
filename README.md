@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="website/assets/images/logo/forge-icon.svg" alt="Clause Logo" width="120" />
-</p>
-
 <h1 align="center">Clause CLI</h1>
 
 <p align="center">
@@ -11,14 +7,6 @@
 <p align="center">
   The AI-native project scaffolding tool that guides your AI coding assistant
   to produce consistent, maintainable, architecturally sound code.
-</p>
-
-<p align="center">
-  <a href="#-features">Features</a> •
-  <a href="#-installation">Installation</a> •
-  <a href="#-quick-start">Quick Start</a> •
-  <a href="#-cli-reference">CLI Reference</a> •
-  <a href="#-contributing">Contributing</a>
 </p>
 
 <p align="center">
