@@ -119,7 +119,7 @@ func (d *Dashboard) View() string {
 	helpBar := d.renderHelpBar()
 
 	// Assemble the full UI
-	return lipgloss.JoinVertical(
+	ui := lipgloss.JoinVertical(
 		lipgloss.Center,
 		banner,
 		"",
@@ -130,6 +130,13 @@ func (d *Dashboard) View() string {
 		helpBar,
 		footer,
 	)
+
+	// Center the UI in the terminal
+	if d.width > 0 && d.height > 0 {
+		return lipgloss.Place(d.width, d.height, lipgloss.Center, lipgloss.Center, ui)
+	}
+
+	return ui
 }
 
 // renderBanner renders the ASCII art banner with gradient effect.
