@@ -123,17 +123,22 @@ func (d *Dashboard) View() string {
 
 	// Build the UI components
 	banner := d.renderBanner()
+	descCard := d.renderDescriptionCard()
 	menuCard := d.renderMenuCard()
 	helpBar := d.renderHelpBar()
+	footer := d.renderFooter()
 
 	// Assemble the full UI
 	ui := lipgloss.JoinVertical(
 		lipgloss.Center,
 		banner,
 		"",
+		descCard,
+		"",
 		menuCard,
 		"",
 		helpBar,
+		footer,
 	)
 
 	// Center the UI in the terminal
@@ -150,8 +155,8 @@ func (d *Dashboard) renderBanner() string {
 
 	logo := `   ██████╗██╗      █████╗ ██╗   ██╗███████╗███████╗
   ██╔════╝██║     ██╔══██╗██║   ██║██╔════╝██╔════╝
-  ██║     ██║     ███████║██║   ██║███████╗█████╗  
-  ██║     ██║     ██╔══██║██║   ██║╚════██║██╔══╝  
+  ██║     ██║     ███████║██║   ██║███████╗█████╗
+  ██║     ██║     ██╔══██║██║   ██║╚════██║██╔══╝
   ╚██████╗███████╗██║  ██║╚██████╔╝███████║███████╗
    ╚═════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝`
 
@@ -191,6 +196,65 @@ func (d *Dashboard) renderBanner() string {
 		Margin(0, 2)
 
 	return bannerStyle.Render(content)
+}
+
+// renderDescriptionCard renders the feature description card.
+func (d *Dashboard) renderDescriptionCard() string {
+	theme := d.renderer.Theme()
+
+	description := "Clause generates complete project scaffolding with built-in AI governance, context files, and best practices for AI assistants."
+
+	features := []struct {
+		icon string
+		text string
+	}{
+		{"📁", "Complete project structure generation"},
+		{"🤖", "AI governance guidelines included"},
+		{"📝", "Context files for AI assistants"},
+		{"⚡", "Support for Next.js, FastAPI, Go, and more"},
+	}
+
+	var featureLines []string
+	for _, f := range features {
+		iconStyle := lipgloss.NewStyle().Foreground(lipgloss.Color(theme.Colors.Primary)).PaddingRight(1)
+		textStyle := lipgloss.NewStyle().Foreground(lipgloss.Color(theme.Colors.Text))
+		featureLines = append(featureLines,
+			lipgloss.JoinHorizontal(lipgloss.Top,
+				iconStyle.Render(f.icon),
+				textStyle.Render(f.text),
+			),
+		)
+	}
+
+	// Title
+	titleStyle := lipgloss.NewStyle().
+		Bold(true).
+		Foreground(lipgloss.Color(theme.Colors.Primary)).
+		PaddingBottom(1)
+
+	// Card style
+	cardWidth := 70
+	if d.width > 20 {
+		cardWidth = min(d.width-10, 75)
+	}
+	cardStyle := lipgloss.NewStyle().
+		Border(lipgloss.RoundedBorder()).
+		BorderForeground(lipgloss.Color(theme.Colors.Border)).
+		Padding(1, 2).
+		Width(cardWidth)
+
+	content := lipgloss.JoinVertical(
+		lipgloss.Left,
+		lipgloss.NewStyle().Foreground(lipgloss.Color(theme.Colors.Text)).Render(description),
+		"",
+		strings.Join(featureLines, "\n"),
+	)
+
+	return lipgloss.JoinVertical(
+		lipgloss.Left,
+		titleStyle.Render("✨ Create AI-Ready Projects"),
+		cardStyle.Render(content),
+	)
 }
 
 // renderMenuCard renders the interactive menu.
@@ -233,10 +297,15 @@ func (d *Dashboard) renderMenuCard() string {
 			menuItems = append(menuItems, d.renderMenuItem(choice))
 		}
 
+		dividerWidth := 50
+		if d.width > 20 {
+			dividerWidth = min(d.width-25, 55)
+		}
+
 		section := lipgloss.JoinVertical(
 			lipgloss.Left,
 			headerStyle.Render("  "+strings.ToUpper(catName)),
-			dividerStyle.Render("  "+strings.Repeat("─", min(d.width-20, 60))),
+			dividerStyle.Render("  "+strings.Repeat("─", dividerWidth)),
 			strings.Join(menuItems, "\n"),
 		)
 		sections = append(sections, section)
@@ -249,11 +318,15 @@ func (d *Dashboard) renderMenuCard() string {
 		PaddingBottom(1)
 
 	// Card style
+	cardWidth := 65
+	if d.width > 20 {
+		cardWidth = min(d.width-10, 70)
+	}
 	cardStyle := lipgloss.NewStyle().
 		Border(lipgloss.RoundedBorder()).
 		BorderForeground(lipgloss.Color(theme.Colors.Border)).
 		Padding(1, 0).
-		Width(min(d.width-8, 80))
+		Width(cardWidth)
 
 	content := strings.Join(sections, "\n\n")
 
@@ -316,9 +389,13 @@ func (d *Dashboard) renderMenuItem(choice MenuChoice) string {
 
 	if isSelected {
 		// Add subtle background highlight
+		highlightWidth := 55
+		if d.width > 20 {
+			highlightWidth = min(d.width-15, 60)
+		}
 		highlightStyle := lipgloss.NewStyle().
 			Background(lipgloss.Color(theme.Colors.BackgroundHover)).
-			Width(min(d.width-12, 76)).
+			Width(highlightWidth).
 			Padding(0, 1)
 		return "  " + highlightStyle.Render(itemContent)
 	}
@@ -364,17 +441,38 @@ func (d *Dashboard) renderHelpBar() string {
 	return lipgloss.JoinHorizontal(lipgloss.Center, items...)
 }
 
+// renderFooter renders the footer with version and links.
+func (d *Dashboard) renderFooter() string {
+	theme := d.renderer.Theme()
+
+	linkStyle := lipgloss.NewStyle().
+		Foreground(lipgloss.Color(theme.Colors.Info)).
+		Underline(true)
+
+	versionStyle := lipgloss.NewStyle().
+		Foreground(lipgloss.Color(theme.Colors.TextMuted))
+
+	links := []string{
+		"📚 " + linkStyle.Render("docs.clause.dev"),
+		"💻 " + linkStyle.Render("github.com/clause-cli/clause"),
+		versionStyle.Render("v" + d.version),
+	}
+
+	content := strings.Join(links, "  │  ")
+
+	return lipgloss.NewStyle().
+		Foreground(lipgloss.Color(theme.Colors.TextMuted)).
+		Padding(1, 0).
+		Render(content)
+}
+
 // renderExitMessage renders the exit message when a command is selected.
 func (d *Dashboard) renderExitMessage() string {
 	theme := d.renderer.Theme()
 
 	// If selected exit, show goodbye
 	if d.selectedCmd == "exit" {
-		style := lipgloss.NewStyle().
-			Foreground(lipgloss.Color(theme.Colors.TextMuted)).
-			Italic(true).
-			Padding(1, 2)
-		return "\n" + style.Render("👋 See you later! Run 'clause' anytime to get started.") + "\n"
+		return d.renderGoodbye()
 	}
 
 	// Find the selected choice
@@ -387,7 +485,7 @@ func (d *Dashboard) renderExitMessage() string {
 	}
 
 	if choice.command == "" {
-		return "\n👋 Goodbye!\n"
+		return d.renderGoodbye()
 	}
 
 	// Success box
@@ -423,6 +521,18 @@ func (d *Dashboard) renderExitMessage() string {
 	)
 
 	return "\n" + boxStyle.Render(content) + "\n"
+}
+
+// renderGoodbye renders the goodbye message.
+func (d *Dashboard) renderGoodbye() string {
+	theme := d.renderer.Theme()
+
+	style := lipgloss.NewStyle().
+		Foreground(lipgloss.Color(theme.Colors.TextMuted)).
+		Italic(true).
+		Padding(1, 2)
+
+	return "\n" + style.Render("👋 See you later! Run 'clause' anytime to get started.") + "\n"
 }
 
 // renderHelpScreen renders the help screen.
