@@ -11,7 +11,7 @@ before:
 
 builds:
   - id: clause
-    main: ./cmd/Clause
+    main: ./cmd/clause
     binary: clause
     env:
       - CGO_ENABLED=0

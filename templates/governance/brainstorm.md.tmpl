@@ -1,0 +1,66 @@
+# Brainstorm: {{.Project.Name}}
+
+{{.Project.Description}}
+
+Welcome to the brainstorming workspace for this project.
+
+## Ideas
+
+*Use this space to explore ideas and concepts.*
+
+-
+
+## Questions
+
+*What questions do you need to answer?*
+
+-
+
+## Research
+
+*Links and notes from research.*
+
+-
+
+## Decisions
+
+*Key decisions and their rationale.*
+
+| Decision | Rationale | Alternatives Considered |
+|----------|-----------|------------------------|
+|          |           |                        |
+
+## Tasks
+
+*Things to do.*
+
+- [ ]
+
+## Notes
+
+*Free-form notes and thoughts.*
+
+---
+
+## AI Collaboration Notes
+
+*Notes for working with AI assistants on this project.*
+
+### Context Reminders
+
+- Technology stack: {{if .Frontend.Enabled}}Frontend: {{.Frontend.Framework}}{{end}}{{if .Backend.Enabled}}, Backend: {{.Backend.Framework}} ({{.Backend.Language}}){{end}}
+- Key patterns: {{if .Frontend.Enabled}}Component-based architecture{{end}}{{if .Backend.Enabled}}, Repository pattern{{end}}
+
+### Common Prompts
+
+*Useful prompts to use with AI assistants:*
+
+1. "Review this code for our project's patterns and conventions"
+2. "Suggest tests for this component/function"
+3. "Help me understand the architecture of [component]"
+4. "Refactor this to follow our naming conventions"
+5. "What documentation should I add here?"
+
+---
+
+*Last updated: {{.Now.Format "2006-01-02"}}*

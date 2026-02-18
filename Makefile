@@ -15,7 +15,8 @@ GOMOD=$(GOCMD) mod
 # Build flags
 VERSION?=$(shell git describe --tags --always --dirty 2>/dev/null || echo "dev")
 BUILD_TIME=$(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
-LDFLAGS=-ldflags "-s -w -X github.com/clause-cli/clause/internal/cmd.version=$(VERSION) -X github.com/clause-cli/clause/internal/cmd.buildTime=$(BUILD_TIME)"
+COMMIT=$(shell git rev-parse --short HEAD 2>/dev/null || echo "unknown")
+LDFLAGS=-ldflags "-s -w -X github.com/clause-cli/clause/internal/cmd.version=$(VERSION) -X github.com/clause-cli/clause/internal/cmd.buildTime=$(BUILD_TIME) -X github.com/clause-cli/clause/internal/cmd.commit=$(COMMIT)"
 
 # Main build target
 all: clean deps build
@@ -23,19 +24,20 @@ all: clean deps build
 # Build for current platform
 build:
 	@echo "Building $(BINARY_NAME)..."
-	$(GOBUILD) $(LDFLAGS) -o bin/$(BINARY_NAME) ./cmd/Clause
+	@mkdir -p bin
+	$(GOBUILD) $(LDFLAGS) -o bin/$(BINARY_NAME) ./cmd/clause
 	@echo "Build complete: bin/$(BINARY_NAME)"
 
 # Build for all platforms
 build-all:
 	@echo "Building for all platforms..."
 	@mkdir -p bin
-	GOOS=darwin GOARCH=amd64 $(GOBUILD) $(LDFLAGS) -o bin/$(BINARY_NAME)-darwin-amd64 ./cmd/Clause
-	GOOS=darwin GOARCH=arm64 $(GOBUILD) $(LDFLAGS) -o bin/$(BINARY_NAME)-darwin-arm64 ./cmd/Clause
-	GOOS=linux GOARCH=amd64 $(GOBUILD) $(LDFLAGS) -o bin/$(BINARY_NAME)-linux-amd64 ./cmd/Clause
-	GOOS=linux GOARCH=arm64 $(GOBUILD) $(LDFLAGS) -o bin/$(BINARY_NAME)-linux-arm64 ./cmd/Clause
-	GOOS=windows GOARCH=amd64 $(GOBUILD) $(LDFLAGS) -o bin/$(BINARY_NAME)-windows-amd64.exe ./cmd/Clause
-	GOOS=windows GOARCH=arm64 $(GOBUILD) $(LDFLAGS) -o bin/$(BINARY_NAME)-windows-arm64.exe ./cmd/Clause
+	GOOS=darwin GOARCH=amd64 $(GOBUILD) $(LDFLAGS) -o bin/$(BINARY_NAME)-darwin-amd64 ./cmd/clause
+	GOOS=darwin GOARCH=arm64 $(GOBUILD) $(LDFLAGS) -o bin/$(BINARY_NAME)-darwin-arm64 ./cmd/clause
+	GOOS=linux GOARCH=amd64 $(GOBUILD) $(LDFLAGS) -o bin/$(BINARY_NAME)-linux-amd64 ./cmd/clause
+	GOOS=linux GOARCH=arm64 $(GOBUILD) $(LDFLAGS) -o bin/$(BINARY_NAME)-linux-arm64 ./cmd/clause
+	GOOS=windows GOARCH=amd64 $(GOBUILD) $(LDFLAGS) -o bin/$(BINARY_NAME)-windows-amd64.exe ./cmd/clause
+	GOOS=windows GOARCH=arm64 $(GOBUILD) $(LDFLAGS) -o bin/$(BINARY_NAME)-windows-arm64.exe ./cmd/clause
 	@echo "All builds complete in bin/"
 
 # Run tests

@@ -1,0 +1,158 @@
+# AI Context
+# This file provides context for AI assistants working on this project.
+
+project_name: "{{.Project.Name}}"
+description: "{{.Project.Description}}"
+{{- if .Project.Version}}
+version: "{{.Project.Version}}"
+{{- end}}
+
+# Technology Stack
+tech_stack:
+{{- if .Frontend.Enabled}}
+  # Frontend
+  - name: "{{.Frontend.Framework}}"
+    category: "frontend-framework"
+{{- if .Frontend.TypeScript}}
+  - name: "TypeScript"
+    category: "language"
+{{- end}}
+{{- if .Frontend.Styling}}
+  - name: "{{.Frontend.Styling}}"
+    category: "styling"
+{{- end}}
+{{- if .Frontend.TestFramework}}
+  - name: "{{.Frontend.TestFramework}}"
+    category: "testing"
+{{- end}}
+{{- end}}
+{{- if .Backend.Enabled}}
+  # Backend
+  - name: "{{.Backend.Framework}}"
+    category: "backend-framework"
+  - name: "{{.Backend.Language}}"
+    category: "language"
+{{- if .Backend.Database.Primary}}
+  - name: "{{.Backend.Database.Primary}}"
+    category: "database"
+{{- end}}
+{{- if .Backend.Database.ORM}}
+  - name: "{{.Backend.Database.ORM}}"
+    category: "orm"
+{{- end}}
+{{- end}}
+{{- if .Infra.Docker}}
+  - name: "Docker"
+    category: "infrastructure"
+{{- end}}
+{{- if .Infra.DockerCompose}}
+  - name: "Docker Compose"
+    category: "infrastructure"
+{{- end}}
+{{- if .Infra.CI}}
+  - name: "{{.Infra.CI}}"
+    category: "ci"
+{{- end}}
+
+# Architecture
+architecture:
+  style: "{{if and .Frontend.Enabled .Backend.Enabled}}full-stack{{else if .Frontend.Enabled}}frontend{{else if .Backend.Enabled}}backend{{end}}"
+{{- if .Frontend.Enabled}}
+  frontend: "{{.Frontend.Framework}}"
+{{- end}}
+{{- if .Backend.Enabled}}
+  backend: "{{.Backend.Framework}} ({{.Backend.Language}})"
+{{- if .Backend.Database.Primary}}
+  database: "{{.Backend.Database.Primary}}"
+{{- end}}
+{{- end}}
+  layers:
+{{- if .Frontend.Enabled}}
+    - "components"
+    - "pages"
+    - "hooks"
+    - "utils"
+{{- end}}
+{{- if .Backend.Enabled}}
+    - "routes"
+    - "services"
+    - "models"
+    - "utils"
+{{- end}}
+
+# Design Patterns
+patterns:
+{{- if .Frontend.Enabled}}
+  - "component-based-architecture"
+  - "custom-hooks"
+  - "composition-over-inheritance"
+{{- end}}
+{{- if .Backend.Enabled}}
+  - "repository-pattern"
+  - "service-layer"
+  - "dependency-injection"
+{{- end}}
+  - "error-boundaries"
+  - "optimistic-ui"
+
+# Best Practices
+best_practices:
+  - "Write clear, self-documenting code"
+  - "Follow existing code patterns"
+  - "Keep functions small and focused (max 50 lines)"
+  - "Handle errors gracefully"
+  - "Write tests for new features"
+  - "Update documentation when APIs change"
+  - "Validate inputs at system boundaries"
+  - "Use TypeScript types everywhere"
+
+# Key Files
+key_files:
+  - path: ".clause/config.yaml"
+    purpose: "Project configuration"
+  - path: ".clause/context.yaml"
+    purpose: "AI context (this file)"
+{{- if .Govern.PromptGuidelines}}
+  - path: ".clause/prompt-guidelines.md"
+    purpose: "AI prompt guidelines"
+{{- end}}
+{{- if .Frontend.Enabled}}
+  - path: "src/"
+    purpose: "Frontend source code"
+{{- end}}
+{{- if .Backend.Enabled}}
+  - path: "backend/"
+    purpose: "Backend source code"
+{{- end}}
+
+# Registered Components
+components: []
+
+# Conventions
+conventions:
+  - category: "naming"
+    rule: "Use PascalCase for components and types"
+    examples:
+      - "UserProfile.tsx"
+      - "interface UserService"
+  - category: "naming"
+    rule: "Use camelCase for functions and variables"
+    examples:
+      - "getUserById"
+      - "formatDate"
+  - category: "structure"
+    rule: "Keep related files together"
+    examples:
+      - "components/UserProfile/index.tsx"
+      - "components/UserProfile/styles.ts"
+  - category: "testing"
+    rule: "Write tests alongside source files"
+    examples:
+      - "UserProfile.test.tsx"
+
+# Known Issues
+known_issues: []
+
+# Metadata
+created_at: "{{.Now.Format "2006-01-02T15:04:05Z07:00"}}"
+updated_at: "{{.Now.Format "2006-01-02T15:04:05Z07:00"}}"
