@@ -3,11 +3,10 @@ package wizard
 
 import (
 	"github.com/clause-cli/clause/internal/config"
-	"github.com/clause-cli/clause/internal/wizard/screens"
 )
 
 // Screen is an alias to screens.Screen for convenience
-type Screen = screens.Screen
+// Screen alias removed to avoid recursive type issues
 
 // WizardState represents the current state of the wizard.
 type WizardState struct {

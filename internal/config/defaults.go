@@ -10,16 +10,16 @@ import (
 var DefaultValues = &defaults{
 	// Frontend defaults
 	Frontend: frontendDefaults{
-		Framework:       "react",
+		Framework:        "react",
 		FrameworkVersion: "18",
-		TypeScript:      true,
-		Styling:         "tailwind",
-		PackageManager:  "npm",
-		BuildTool:       "vite",
-		TestFramework:   "vitest",
-		Linter:          "eslint",
-		Formatter:       "prettier",
-		Directory:       "src",
+		TypeScript:       true,
+		Styling:          "tailwind",
+		PackageManager:   "npm",
+		BuildTool:        "vite",
+		TestFramework:    "vitest",
+		Linter:           "eslint",
+		Formatter:        "prettier",
+		Directory:        "src",
 	},
 
 	// Backend defaults
@@ -40,26 +40,26 @@ var DefaultValues = &defaults{
 			SessionDuration: 24,
 		},
 		API: apiDefaults{
-			Style:        "rest",
-			Versioning:   "url",
+			Style:         "rest",
+			Versioning:    "url",
 			Documentation: true,
 		},
 	},
 
 	// Infrastructure defaults
 	Infrastructure: infrastructureDefaults{
-		Docker:         true,
-		DockerCompose:  true,
-		Kubernetes:     false,
-		CI:             "github-actions",
-		Hosting:        "vercel",
-		CDN:            true,
+		Docker:        true,
+		DockerCompose: true,
+		Kubernetes:    false,
+		CI:            "github-actions",
+		Hosting:       "vercel",
+		CDN:           true,
 		Monitoring: monitoringDefaults{
 			Enabled:       true,
 			ErrorTracking: true,
 			Logging: loggingDefaults{
-				Level:   "info",
-				Format:  "json",
+				Level:  "info",
+				Format: "json",
 			},
 		},
 	},
@@ -99,24 +99,24 @@ var DefaultValues = &defaults{
 
 // defaults structure
 type defaults struct {
-	Frontend      frontendDefaults
-	Backend       backendDefaults
+	Frontend       frontendDefaults
+	Backend        backendDefaults
 	Infrastructure infrastructureDefaults
-	Governance    governanceDefaults
-	Development   developmentDefaults
+	Governance     governanceDefaults
+	Development    developmentDefaults
 }
 
 type frontendDefaults struct {
-	Framework       string
+	Framework        string
 	FrameworkVersion string
-	TypeScript      bool
-	Styling         string
-	PackageManager  string
-	BuildTool       string
-	TestFramework   string
-	Linter          string
-	Formatter       string
-	Directory       string
+	TypeScript       bool
+	Styling          string
+	PackageManager   string
+	BuildTool        string
+	TestFramework    string
+	Linter           string
+	Formatter        string
+	Directory        string
 }
 
 type backendDefaults struct {
@@ -149,13 +149,13 @@ type apiDefaults struct {
 }
 
 type infrastructureDefaults struct {
-	Docker         bool
-	DockerCompose  bool
-	Kubernetes     bool
-	CI             string
-	Hosting        string
-	CDN            bool
-	Monitoring     monitoringDefaults
+	Docker        bool
+	DockerCompose bool
+	Kubernetes    bool
+	CI            string
+	Hosting       string
+	CDN           bool
+	Monitoring    monitoringDefaults
 }
 
 type monitoringDefaults struct {
@@ -373,7 +373,7 @@ func applyMinimalPreset(c *ProjectConfig) {
 		ORM:     "sqlalchemy",
 	}
 	c.Backend.API = APIConfig{
-		Style:        "rest",
+		Style:         "rest",
 		Documentation: false,
 	}
 	c.Backend.Features = BackendFeatures{
@@ -539,8 +539,8 @@ func applyEnterprisePreset(c *ProjectConfig) {
 	}
 
 	c.Infrastructure.Monitoring.Logging = LoggingConfig{
-		Level:   "warn",
-		Format:  "json",
+		Level:    "warn",
+		Format:   "json",
 		Provider: "datadog",
 	}
 

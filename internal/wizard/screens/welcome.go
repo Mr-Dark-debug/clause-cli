@@ -135,6 +135,7 @@ func (s *WelcomeScreen) applyPreset() tea.Cmd {
 		}
 
 		if presetName != "" {
+			// Load the preset configuration
 			if preset, err := config.LoadPreset(presetName); err == nil {
 				s.config.Metadata = preset.Metadata
 				s.config.Frontend = preset.Frontend

@@ -1,0 +1,314 @@
+# Governance Rules Configuration
+# Define rules that AI assistants should follow when working on this project.
+
+version: "1.0"
+
+# General Rules
+general:
+  # Strict mode enforces all rules as errors instead of warnings
+  strict_mode: false
+
+  # Maximum complexity limits
+  limits:
+    max_function_lines: 50
+    max_file_lines: 300
+    max_parameters: 4
+    max_nesting_depth: 3
+    max_cyclomatic_complexity: 10
+
+  # Required elements
+  required:
+    type_annotations: true
+    docstrings: true
+    error_handling: true
+    input_validation: true
+
+# Code Style Rules
+code_style:
+  # Import organization
+  imports:
+    sort_order: "alphabetical"
+    group_separation: true
+    remove_unused: true
+
+  # Formatting
+  formatting:
+    indent_style: "tab"
+    indent_size: 4
+    max_line_length: 100
+    trailing_comma: true
+    semicolons: false
+
+  # Comments
+  comments:
+    require_docstrings: true
+    jsdoc_style: true
+    explain_complexity: true
+    no_obvious_comments: true
+
+{{- if .Frontend.Enabled }}
+
+# Frontend-Specific Rules
+frontend:
+  components:
+    # Component structure requirements
+    require_prop_types: true
+    require_default_props: false
+    prefer_functional_components: true
+    prefer_hooks: true
+
+    # File organization
+    colocate_styles: true
+    colocate_tests: true
+    colocate_types: true
+
+    # Naming
+    pascal_case_components: true
+    descriptive_prop_names: true
+
+  state_management:
+    # State handling preferences
+    prefer_immutable_updates: true
+    avoid_prop_drilling: true
+    use_context_sparingly: true
+
+  hooks:
+    # Hook rules
+    rules_of_hooks: true
+    exhaustive_deps: true
+    prefer_custom_hooks: true
+
+  accessibility:
+    # A11y requirements
+    require_alt_text: true
+    require_aria_labels: true
+    keyboard_navigation: true
+    color_contrast_ratio: 4.5
+{{- end }}
+
+{{- if .Backend.Enabled }}
+
+# Backend-Specific Rules
+backend:
+{{- if eq .Backend.Language "python" }}
+
+  python:
+    # Style
+    style_guide: "pep8"
+    max_line_length: 100
+    type_hints: "required"
+
+    # Imports
+    absolute_imports: true
+    future_annotations: true
+
+    # Async
+    prefer_async: true
+    async_functions_marked: true
+
+    # Testing
+    test_framework: "pytest"
+    require_test_coverage: true
+    min_coverage_percent: 80
+
+{{- else if eq .Backend.Language "go" }}
+
+  go:
+    # Style
+    style_guide: "effective_go"
+    simplify_code: true
+
+    # Error handling
+    explicit_errors: true
+    no_panic_production: true
+    wrap_errors: true
+
+    # Concurrency
+    context_first_param: true
+    proper_goroutine_cleanup: true
+
+    # Testing
+    test_framework: "testing"
+    table_driven_tests: true
+    require_test_coverage: true
+
+{{- else if or (eq .Backend.Language "node") (eq .Backend.Language "typescript") }}
+
+  nodejs:
+    # Style
+    style_guide: "standard"
+    module_system: "esm"
+
+    # Async
+    prefer_async_await: true
+    no_callback_hell: true
+
+    # Security
+    no_eval: true
+    no_inner_html: true
+    helmet_headers: true
+
+    # Testing
+    test_framework: "vitest"
+    require_test_coverage: true
+    min_coverage_percent: 80
+{{- end }}
+
+  api:
+    # API design rules
+    restful_naming: true
+    versioning: "url"
+    require_authentication: true
+    require_rate_limiting: true
+
+    # Response format
+    consistent_response_structure: true
+    error_response_format:
+      code: "string"
+      message: "string"
+      details: "object?"
+
+    # Documentation
+    require_openapi_spec: true
+    require_examples: true
+
+  database:
+    # Database rules
+    parameterized_queries: true
+    require_transactions: true
+    migration_files: true
+
+    # Naming
+    table_naming: "snake_case"
+    column_naming: "snake_case"
+    index_naming: "idx_{table}_{columns}"
+{{- end }}
+
+# Security Rules
+security:
+  # Authentication
+  authentication:
+    require_for_protected_routes: true
+    token_expiration: "24h"
+    refresh_tokens: true
+
+  # Authorization
+  authorization:
+    require_role_checks: true
+    resource_ownership_checks: true
+
+  # Input validation
+  input_validation:
+    validate_all_inputs: true
+    sanitize_html: true
+    validate_file_uploads: true
+    max_request_size: "10mb"
+
+  # Secrets
+  secrets:
+    no_hardcoded_secrets: true
+    use_environment_variables: true
+    secret_scanning: true
+
+  # Headers
+  headers:
+    content_security_policy: true
+    x_frame_options: "DENY"
+    x_content_type_options: "nosniff"
+    strict_transport_security: true
+
+# Performance Rules
+performance:
+  # Frontend
+  frontend:
+    lazy_loading: true
+    code_splitting: true
+    image_optimization: true
+    bundle_size_limit: "500kb"
+
+  # Backend
+  backend:
+    connection_pooling: true
+    query_optimization: true
+    caching: true
+    pagination_required: true
+    default_page_size: 20
+    max_page_size: 100
+
+# Testing Rules
+testing:
+  requirements:
+    unit_tests: true
+    integration_tests: true
+    e2e_tests: false
+    minimum_coverage: 80
+
+  test_structure:
+    aaa_pattern: true
+    descriptive_test_names: true
+    one_assertion_per_test: false
+
+  mocking:
+    prefer_interfaces: true
+    mock_external_services: true
+    no_database_in_unit_tests: true
+
+# Documentation Rules
+documentation:
+  readme:
+    require_installation: true
+    require_usage_examples: true
+    require_api_docs: true
+
+  code:
+    require_docstrings: true
+    jsdoc_for_functions: true
+    explain_complex_logic: true
+
+  api:
+    require_openapi: true
+    require_examples: true
+    require_error_docs: true
+
+  changelog:
+    format: "keep_a_changelog"
+    require_entries: true
+
+# AI-Specific Rules
+ai_assistant:
+  # Context requirements
+  context:
+    read_existing_code_first: true
+    understand_patterns_before_changes: true
+    check_component_registry: true
+
+  # Code generation
+  generation:
+    follow_project_patterns: true
+    include_error_handling: true
+    include_type_annotations: true
+    include_tests: true
+    update_documentation: true
+
+  # Restrictions
+  restrictions:
+    no_external_libraries_without_approval: false
+    no_breaking_changes_without_notice: true
+    no_security_shortcuts: true
+
+  # Communication
+  communication:
+    explain_changes: true
+    highlight_potential_issues: true
+    suggest_improvements: true
+
+# Custom Rules
+# Add project-specific rules here
+custom:
+  # Example custom rules
+  # rules:
+  #   - name: "no-console-log"
+  #     description: "Prevent console.log in production code"
+  #     severity: "warning"
+  #     pattern: "console\\.log\\("
+  #     exclude: ["**/*.test.ts", "**/scripts/**"]

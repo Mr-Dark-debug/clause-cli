@@ -1,0 +1,76 @@
+# AI Context Configuration
+# This file provides structured context for AI assistants
+
+project:
+  name: { { .ProjectName } }
+  description: { { .ProjectDescription } }
+  version: 0.1.0
+  created: { { .GeneratedAt } }
+
+stack:
+  frontend:
+    framework: { { .FrontendFramework } }
+    styling: { { .StylingApproach } }
+    state: { { .StateManager } }
+  backend:
+    framework: { { .BackendFramework } }
+    database: { { .Database } }
+    auth: { { .AuthMethod } }
+  infrastructure:
+    containerization: { { .Containerization } }
+    cicd: { { .CICD } }
+
+conventions:
+  language: { { .PrimaryLanguage } }
+  testing: { { .TestingFramework } }
+  linting: { { .Linter } }
+  formatting: { { .Formatter } }
+
+governance:
+  strictness: { { .GovernanceStrictness } }
+  documentation: { { .DocumentationLevel } }
+
+paths:
+  frontend: ./frontend
+  backend: ./backend
+  shared: ./shared
+  tests: ./tests
+  docs: ./docs
+
+rules:
+  # AI behavior rules
+  max_file_lines: 200
+  require_docs: true
+  require_tests: true
+  require_types: true
+
+  # Technology restrictions
+  allow_new_dependencies: ask # always | never | ask
+  allow_framework_changes: ask
+  allow_db_changes: ask
+
+  # Documentation requirements
+  doc_functions: always # always | public | complex | never
+  doc_classes: always
+  doc_components: always
+  doc_endpoints: always
+
+quick_context:
+  # Summary for AI context window optimization
+  summary: |
+    {{.ProjectName}} is a {{.ProjectType}} built with {{.FrontendFramework}} 
+    frontend and {{.BackendFramework}} backend. It uses {{.Database}} for 
+    persistence and follows clean architecture principles.
+
+  key_patterns:
+    - Layer-based architecture with dependency inversion
+    - Repository pattern for data access
+    - Service layer for business logic
+    - Component-based frontend with hooks
+
+  important_files:
+    - ai_prompt_guidelines/system_prompt.md # AI behavior rules
+    - ai_prompt_guidelines/architecture.md # Architecture constraints
+    - ai_prompt_guidelines/technologies.md # Allowed technologies
+    - ai_prompt_guidelines/brainstorm.md # Working memory
+    - ai_prompt_guidelines/registry.json # Component registry

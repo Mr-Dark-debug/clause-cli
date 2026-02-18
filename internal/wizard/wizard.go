@@ -20,7 +20,7 @@ type Wizard struct {
 	preset   string
 
 	// State
-	screenInstances []Screen
+	screenInstances []screens.Screen
 	current         int
 	width           int
 	height          int
@@ -116,7 +116,7 @@ func NewWithPreset(preset string) (*Wizard, error) {
 // addScreens adds all wizard screens in order.
 func (w *Wizard) addScreens() {
 	// Order: Welcome -> Project Info -> Frontend -> Backend -> Infrastructure -> Governance -> Summary
-	w.screenInstances = []Screen{
+	w.screenInstances = []screens.Screen{
 		screens.NewWelcomeScreen(),
 		screens.NewProjectScreen(),
 		screens.NewFrontendScreen(),
@@ -432,7 +432,7 @@ func (w *Wizard) Config() *config.ProjectConfig {
 }
 
 // CurrentScreen returns the current screen.
-func (w *Wizard) CurrentScreen() Screen {
+func (w *Wizard) CurrentScreen() screens.Screen {
 	if w.current < len(w.screenInstances) {
 		return w.screenInstances[w.current]
 	}

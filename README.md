@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="docs/assets/logo.png" alt="Clause Logo" width="200">
-</p>
-
 <h1 align="center">Clause CLI</h1>
 
 <p align="center">
@@ -10,14 +6,6 @@
 
 <p align="center">
   AI-Native Project Scaffolding for Modern Development Teams
-</p>
-
-<p align="center">
-  <a href="#installation">Installation</a> •
-  <a href="#quick-start">Quick Start</a> •
-  <a href="#features">Features</a> •
-  <a href="#documentation">Documentation</a> •
-  <a href="#contributing">Contributing</a>
 </p>
 
 <p align="center">

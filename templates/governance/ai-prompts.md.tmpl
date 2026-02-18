@@ -1,0 +1,607 @@
+# AI Prompts Library
+
+> Ready-to-use prompts for AI assistants working on this project.
+
+---
+
+## Quick Reference
+
+| Task | Prompt |
+|------|--------|
+| [Start a new feature](#starting-a-new-feature) | "I need to add a new feature..." |
+| [Fix a bug](#fixing-a-bug) | "I found a bug in..." |
+| [Code review](#code-review-request) | "Please review this code..." |
+| [Refactor code](#refactoring) | "Help me refactor..." |
+| [Write tests](#writing-tests) | "Write tests for..." |
+| [Debug issue](#debugging) | "I'm getting an error..." |
+
+---
+
+## Starting a New Feature
+
+### Basic Prompt
+
+```markdown
+I need to add a new feature to {{.Project.Name}}.
+
+## Feature Description
+[Brief description of what the feature should do]
+
+## Requirements
+- [List specific requirements]
+- [Include acceptance criteria]
+
+## Files to Modify/Create
+- [List relevant files]
+
+## Constraints
+- Must follow existing patterns in the codebase
+- Must include error handling
+- Must include tests
+- Must update documentation
+
+Please:
+1. Read .clause/prompt-guidelines.md for coding standards
+2. Read .clause/context.yaml for project context
+3. Examine similar existing features for patterns
+4. Implement the feature following project conventions
+```
+
+### Example Prompt
+
+```markdown
+I need to add a user profile editing feature to {{.Project.Name}}.
+
+## Feature Description
+Allow users to update their profile information including name, bio, and avatar.
+
+## Requirements
+- Form validation with real-time feedback
+- Image upload with cropping
+- Optimistic UI updates
+- Error handling for network failures
+- Loading states for async operations
+
+## Files to Modify/Create
+- src/components/Profile/ProfileEditor.tsx
+- src/components/Profile/AvatarUploader.tsx
+- src/services/userService.ts (update method)
+- backend/app/api/users.py (PATCH endpoint)
+- backend/app/schemas/user.py
+
+## Constraints
+- Must follow existing patterns in the codebase
+- Must include error handling
+- Must include tests (unit and integration)
+- Must update API documentation
+- Images must be resized to max 500x500
+
+Please read the existing UserProfile component for styling patterns.
+```
+
+---
+
+## Fixing a Bug
+
+### Basic Prompt
+
+```markdown
+I found a bug in {{.Project.Name}}.
+
+## Bug Description
+[What's happening vs what should happen]
+
+## Steps to Reproduce
+1. [First step]
+2. [Second step]
+3. [Observed behavior]
+
+## Error Messages
+```
+[Paste any error messages or stack traces]
+```
+
+## Environment
+- Browser/OS: [e.g., Chrome 120, Windows 11]
+- Version: [e.g., v1.2.0]
+
+## Additional Context
+[Relevant code snippets or screenshots]
+
+Please help me identify the root cause and suggest a fix.
+```
+
+### Example Prompt
+
+```markdown
+I found a bug in the user authentication flow.
+
+## Bug Description
+Users are being logged out unexpectedly after ~5 minutes instead of 24 hours.
+
+## Steps to Reproduce
+1. Log in to the application
+2. Wait approximately 5 minutes
+3. Make any API request
+4. Observe 401 Unauthorized error
+
+## Error Messages
+```
+{
+  "error": {
+    "code": "TOKEN_EXPIRED",
+    "message": "JWT token has expired"
+  }
+}
+```
+
+## Environment
+- Browser: Chrome 120
+- Backend: FastAPI
+- Auth: JWT with refresh tokens
+
+## Additional Context
+Token expiration is set to 24 hours in config but seems to expire earlier.
+Check: backend/app/services/auth_service.py
+
+Please help identify why tokens are expiring early.
+```
+
+---
+
+## Code Review Request
+
+### Basic Prompt
+
+```markdown
+Please review this code for {{.Project.Name}}.
+
+## Code to Review
+```[language]
+[Paste your code here]
+```
+
+## Review Focus Areas
+- [ ] Follows project naming conventions
+- [ ] Proper error handling
+- [ ] Type safety
+- [ ] Performance considerations
+- [ ] Security vulnerabilities
+- [ ] Test coverage
+- [ ] Documentation
+
+## Context
+[Why this code was written, what problem it solves]
+
+Please identify any issues and suggest improvements.
+```
+
+### Example Prompt
+
+```markdown
+Please review this payment processing code for {{.Project.Name}}.
+
+## Code to Review
+```typescript
+async function processPayment(amount: number, cardDetails: any) {
+  const response = await fetch('/api/payments', {
+    method: 'POST',
+    body: JSON.stringify({ amount, cardDetails })
+  });
+  return response.json();
+}
+```
+
+## Review Focus Areas
+- [ ] Security vulnerabilities (handling payment data)
+- [ ] Error handling
+- [ ] Type safety
+- [ ] PCI compliance considerations
+
+## Context
+This function is called when a user submits the checkout form.
+We need to ensure payment data is handled securely.
+
+Please identify any security issues and suggest improvements.
+```
+
+---
+
+## Refactoring
+
+### Basic Prompt
+
+```markdown
+I need to refactor this code in {{.Project.Name}}.
+
+## Current Code
+```[language]
+[Paste current code]
+```
+
+## Refactoring Goals
+- [Specific improvements you want]
+- [Patterns to apply]
+
+## Constraints
+- Must maintain backward compatibility
+- Must not break existing tests
+- Should improve [performance/readability/maintainability]
+
+Please suggest refactored code that follows project patterns.
+```
+
+### Example Prompt
+
+```markdown
+I need to refactor this data fetching logic in {{.Project.Name}}.
+
+## Current Code
+```typescript
+// In UserProfile.tsx
+const [user, setUser] = useState(null);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState(null);
+
+useEffect(() => {
+  fetch('/api/users/me')
+    .then(res => res.json())
+    .then(data => setUser(data))
+    .catch(err => setError(err))
+    .finally(() => setLoading(false));
+}, []);
+```
+
+## Refactoring Goals
+- Extract into a custom hook
+- Add proper TypeScript types
+- Add caching with React Query
+- Add automatic refetch on window focus
+
+## Constraints
+- Must maintain the same component API
+- Must not break existing tests
+- Should improve error handling
+
+Please suggest refactored code following the project's hook patterns.
+```
+
+---
+
+## Writing Tests
+
+### Basic Prompt
+
+```markdown
+Please write tests for this code in {{.Project.Name}}.
+
+## Code to Test
+```[language]
+[Paste code to test]
+```
+
+## Test Requirements
+- Unit tests for all public functions
+- Edge cases to cover
+- Mock external dependencies
+- Minimum 80% code coverage
+
+## Test Framework
+{{.Frontend.TestFramework}} / {{if eq .Backend.Language "python"}}pytest{{else}}testing{{end}}
+
+Please write comprehensive tests following the project's testing patterns.
+```
+
+### Example Prompt
+
+```markdown
+Please write tests for this discount calculator in {{.Project.Name}}.
+
+## Code to Test
+```typescript
+export function calculateDiscount(
+  price: number,
+  discountPercent: number,
+  minPrice: number = 0
+): number {
+  if (price < 0) throw new Error('Price cannot be negative');
+  if (discountPercent < 0 || discountPercent > 100) {
+    throw new Error('Discount must be between 0 and 100');
+  }
+
+  const discount = price * (discountPercent / 100);
+  const finalPrice = price - discount;
+
+  return Math.max(finalPrice, minPrice);
+}
+```
+
+## Test Requirements
+- Test normal discount calculation
+- Test edge cases (0%, 100% discount)
+- Test error cases (negative price, invalid discount)
+- Test minPrice boundary
+- Test floating point precision
+
+## Test Framework
+Vitest with @testing-library
+
+Please write comprehensive tests following the AAA pattern.
+```
+
+---
+
+## Debugging
+
+### Basic Prompt
+
+```markdown
+I'm encountering an issue in {{.Project.Name}} and need help debugging.
+
+## Problem
+[Describe the problem]
+
+## What I've Tried
+1. [First attempt]
+2. [Second attempt]
+
+## Code Context
+```[language]
+[Relevant code snippets]
+```
+
+## Environment
+- OS: [Your OS]
+- Node/Python/Go version: [Version]
+- Package versions: [Relevant packages]
+
+## Logs/Error Output
+```
+[Paste any relevant logs]
+```
+
+Please help me identify the root cause and solution.
+```
+
+### Example Prompt
+
+```markdown
+I'm getting a CORS error when making API requests from the frontend.
+
+## Problem
+Frontend at localhost:3000 cannot make requests to backend at localhost:8000.
+Error: "Access to fetch at 'http://localhost:8000/api/users' from origin 'http://localhost:3000' has been blocked by CORS policy"
+
+## What I've Tried
+1. Added CORS middleware to FastAPI
+2. Set allow_origins to ["*"]
+3. Restarted both servers
+
+## Code Context
+```python
+# backend/main.py
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+```
+
+## Environment
+- Frontend: Vite dev server on port 3000
+- Backend: FastAPI on port 8000
+- Browser: Chrome 120
+
+## Logs/Error Output
+```
+Access to fetch at 'http://localhost:8000/api/users' from origin 'http://localhost:3000'
+has been blocked by CORS policy: Response to preflight request doesn't pass access control
+check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+```
+
+Please help identify why CORS is still failing.
+```
+
+---
+
+## Architecture Decisions
+
+### Basic Prompt
+
+```markdown
+I need to make an architectural decision for {{.Project.Name}}.
+
+## Decision Needed
+[What architectural choice do you need to make?]
+
+## Options Being Considered
+1. **Option A**: [Description]
+   - Pros: [List]
+   - Cons: [List]
+
+2. **Option B**: [Description]
+   - Pros: [List]
+   - Cons: [List]
+
+## Requirements
+- [Must-have requirements]
+- [Constraints]
+
+## Current Context
+[Current architecture, related components]
+
+Please provide a recommendation with rationale.
+```
+
+---
+
+## Performance Optimization
+
+### Basic Prompt
+
+```markdown
+I need to optimize performance in {{.Project.Name}}.
+
+## Performance Issue
+[Describe the performance problem]
+
+## Current Implementation
+```[language]
+[Paste slow code]
+```
+
+## Requirements
+- Target performance: [e.g., < 100ms response time]
+- Constraints: [Memory, compatibility, etc.]
+
+## Profiling Data
+```
+[Paste any profiling measurements]
+```
+
+Please suggest optimizations while maintaining code quality.
+```
+
+---
+
+## Documentation Generation
+
+### Basic Prompt
+
+```markdown
+Please help document this code in {{.Project.Name}}.
+
+## Code to Document
+```[language]
+[Paste code that needs documentation]
+```
+
+## Documentation Type
+- [ ] JSDoc/TSDoc comments
+- [ ] README section
+- [ ] API documentation
+- [ ] Type documentation
+
+## Target Audience
+[Who will read this documentation?]
+
+Please generate documentation following project standards.
+```
+
+---
+
+## Context Loading Prompt
+
+Use this at the start of any AI session:
+
+```markdown
+Before we begin, please load the context for {{.Project.Name}}:
+
+1. Read .clause/config.yaml for project configuration
+2. Read .clause/context.yaml for AI context
+3. Read .clause/prompt-guidelines.md for coding standards
+4. Read .clause/rules.yaml for governance rules
+5. Read .clause/registry.yaml for component registry (if exists)
+
+Then confirm you understand:
+- Project technology stack
+- Naming conventions
+- Required patterns
+- Testing requirements
+- Documentation standards
+```
+
+---
+
+## Project-Specific Prompts
+
+{{- if .Frontend.Enabled }}
+
+### Frontend Component Creation
+
+```markdown
+Create a new React component for {{.Project.Name}}.
+
+## Component Name
+[ComponentName]
+
+## Purpose
+[What this component should do]
+
+## Props
+```typescript
+interface [ComponentName]Props {
+  // Define props here
+}
+```
+
+## Requirements
+- TypeScript with strict typing
+- Follow project component structure
+- Use {{.Frontend.Styling}} for styling
+- Include loading and error states
+- Be accessible (WCAG 2.1 AA)
+
+Please create:
+1. Component file
+2. Types file
+3. Styles file
+4. Test file
+5. Export from index
+
+Reference src/components/Button for the pattern to follow.
+```
+{{- end }}
+
+{{- if .Backend.Enabled }}
+
+### API Endpoint Creation
+
+```markdown
+Create a new API endpoint for {{.Project.Name}}.
+
+## Endpoint
+[METHOD] /api/[path]
+
+## Purpose
+[What this endpoint should do]
+
+## Request
+```typescript
+interface Request {
+  // Define request body/params
+}
+```
+
+## Response
+```typescript
+interface Response {
+  // Define response shape
+}
+```
+
+## Requirements
+- Authentication required
+- Input validation
+- Error handling
+- OpenAPI documentation
+- Unit tests
+
+Please create:
+1. Route handler
+2. Request/response schemas
+3. Service method
+4. Repository method (if needed)
+5. Tests
+
+Reference backend/app/api/users.py for the pattern to follow.
+```
+{{- end }}
+
+---
+
+*Last updated: {{.Now.Format "2006-01-02"}}*

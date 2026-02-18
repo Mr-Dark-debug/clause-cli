@@ -1,0 +1,30 @@
+{
+    "$schema": "https://clause.dev/schemas/registry.json",
+    "version": "1.0.0",
+    "project": "{{.ProjectName}}",
+    "lastUpdated": "{{.GeneratedAt}}",
+    "components": {
+        "frontend": {
+            "ui": [],
+            "forms": [],
+            "layouts": [],
+            "features": []
+        },
+        "backend": {
+            "routes": [],
+            "services": [],
+            "models": [],
+            "middleware": []
+        },
+        "shared": {
+            "types": [],
+            "utils": [],
+            "constants": []
+        }
+    },
+    "dependencies": {},
+    "metadata": {
+        "generatedBy": "Clause CLI v{{.ClauseVersion}}",
+        "template": "{{.TemplateName}}"
+    }
+}

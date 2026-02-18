@@ -1,149 +1,830 @@
-# AI Prompt Guidelines
+# AI Prompt Guidelines for {{.Project.Name}}
 
-This document provides guidelines for working with AI assistants on this project.
+> This document provides comprehensive guidelines for AI assistants working on this project.
 
-## Project Context
+---
 
-- **Name**: {{.Project.Name}}
-- **Description**: {{.Project.Description}}
+## Table of Contents
+
+1. [Project Overview](#project-overview)
+2. [Technology Stack](#technology-stack)
+3. [Architecture](#architecture)
+4. [Coding Standards](#coding-standards)
+5. [Naming Conventions](#naming-conventions)
+6. [Design Patterns](#design-patterns)
+7. [Testing Guidelines](#testing-guidelines)
+8. [Error Handling](#error-handling)
+9. [Security Guidelines](#security-guidelines)
+10. [Performance Guidelines](#performance-guidelines)
+11. [Documentation Standards](#documentation-standards)
+12. [AI-Specific Instructions](#ai-specific-instructions)
+13. [Code Review Checklist](#code-review-checklist)
+
+---
+
+## Project Overview
+
+| Property | Value |
+|----------|-------|
+| **Name** | {{.Project.Name}} |
+| **Description** | {{.Project.Description}} |
 {{- if .Project.Version}}
-- **Version**: {{.Project.Version}}
+| **Version** | {{.Project.Version}} |
 {{- end}}
 {{- if .Project.Author}}
-- **Author**: {{.Project.Author}}
+| **Author** | {{.Project.Author}} |
 {{- end}}
+{{- if .Project.License}}
+| **License** | {{.Project.License}} |
+{{- end}}
+
+### Project Goals
+
+- Build a maintainable, scalable codebase
+- Ensure consistent code quality across all contributions
+- Enable seamless AI-assisted development
+- Document architectural decisions
+
+---
 
 ## Technology Stack
 
 {{- if .Frontend.Enabled}}
+
 ### Frontend
 
-- **Framework**: {{.Frontend.Framework}}
-{{- if .Frontend.TypeScript}}
-- **Language**: TypeScript
-{{- end}}
-{{- if .Frontend.Styling}}
-- **Styling**: {{.Frontend.Styling}}
-{{- end}}
-{{- if .Frontend.TestFramework}}
-- **Testing**: {{.Frontend.TestFramework}}
-{{- end}}
-{{- if .Frontend.PackageManager}}
-- **Package Manager**: {{.Frontend.PackageManager}}
-{{- end}}
+| Component | Technology |
+|-----------|------------|
+| **Framework** | {{.Frontend.Framework}} |
+| **Language** | {{if .Frontend.TypeScript}}TypeScript{{else}}JavaScript{{end}} |
+| **Styling** | {{.Frontend.Styling}} |
+| **Build Tool** | {{.Frontend.BuildTool}} |
+| **Package Manager** | {{.Frontend.PackageManager}} |
+| **Testing** | {{.Frontend.TestFramework}} |
+| **Linter** | {{.Frontend.Linter}} |
+| **Formatter** | {{.Frontend.Formatter}} |
+
+#### Key Dependencies
+
+```json
+{
+  "{{.Frontend.Framework}}": "^18.0.0",
+  "{{.Frontend.Styling}}": "^3.0.0"
+}
+```
 {{- end}}
 
 {{- if .Backend.Enabled}}
+
 ### Backend
 
-- **Framework**: {{.Backend.Framework}}
-{{- if .Backend.Language}}
-- **Language**: {{.Backend.Language}}
-{{- end}}
-{{- if .Backend.Database.Primary}}
-- **Database**: {{.Backend.Database.Primary}}
-{{- end}}
-{{- if .Backend.Database.ORM}}
-- **ORM**: {{.Backend.Database.ORM}}
+| Component | Technology |
+|-----------|------------|
+| **Language** | {{.Backend.Language}} |
+| **Framework** | {{.Backend.Framework}} |
+| **Database** | {{.Backend.Database.Primary}} |
+| **ORM** | {{.Backend.Database.ORM}} |
+| **API Style** | {{.Backend.API.Style}} |
+
+{{- if eq .Backend.Language "python"}}
+
+#### Python Standards
+
+- Python version: {{.Backend.LanguageVersion}}
+- Use type hints for all function signatures
+- Follow PEP 8 style guide
+- Use Pydantic for data validation
+- Use async/await for I/O operations
+{{- else if eq .Backend.Language "go"}}
+
+#### Go Standards
+
+- Go version: 1.21+
+- Use gofmt for formatting
+- Follow Effective Go guidelines
+- Use context for cancellation
+- Handle errors explicitly (no panic in production)
+{{- else if or (eq .Backend.Language "node") (eq .Backend.Language "typescript")}}
+
+#### Node.js/TypeScript Standards
+
+- Node version: 18+
+- Use ES modules (ESM)
+- Implement proper error boundaries
+- Use async/await over callbacks
 {{- end}}
 {{- end}}
 
-## Code Style
+---
 
-- Follow the existing code patterns in the project
-- Keep functions small and focused (max 50 lines)
-- Write clear, descriptive variable names
-- Add comments for complex logic
-- Use consistent formatting
-- Prefer composition over inheritance
+## Architecture
+
+### System Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                        Client Layer                         │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐        │
+│  │   Browser   │  │   Mobile    │  │    CLI      │        │
+│  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘        │
+└─────────┼────────────────┼────────────────┼────────────────┘
+          │                │                │
+          ▼                ▼                ▼
+┌─────────────────────────────────────────────────────────────┐
+│                        API Gateway                          │
+└─────────────────────────────────────────────────────────────┘
+          │
+          ▼
+┌─────────────────────────────────────────────────────────────┐
+│                      Backend Services                       │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐        │
+│  │  Auth Svc   │  │  User Svc   │  │  Data Svc   │        │
+│  └─────────────┘  └─────────────┘  └─────────────┘        │
+└─────────────────────────────────────────────────────────────┘
+          │
+          ▼
+┌─────────────────────────────────────────────────────────────┐
+│                       Data Layer                            │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐        │
+│  │ PostgreSQL  │  │    Redis    │  │    S3       │        │
+│  └─────────────┘  └─────────────┘  └─────────────┘        │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Directory Structure
+
+```
+project-root/
+├── .clause/              # AI governance files
+├── src/                  # Frontend source
+│   ├── components/       # Reusable UI components
+│   ├── pages/           # Page/route components
+│   ├── hooks/           # Custom hooks
+│   ├── services/        # API service layer
+│   ├── stores/          # State management
+│   ├── utils/           # Utility functions
+│   └── types/           # TypeScript types
+├── backend/             # Backend source
+│   ├── app/
+│   │   ├── api/         # API routes
+│   │   ├── models/      # Data models
+│   │   ├── services/    # Business logic
+│   │   ├── repositories/# Data access
+│   │   └── schemas/     # Request/response schemas
+│   └── tests/           # Backend tests
+├── infrastructure/      # Infrastructure code
+└── docs/               # Documentation
+```
+
+---
+
+## Coding Standards
+
+### General Principles
+
+1. **DRY (Don't Repeat Yourself)**: Extract common logic into reusable functions
+2. **KISS (Keep It Simple, Stupid)**: Prefer simple, readable solutions
+3. **YAGNI (You Aren't Gonna Need It)**: Don't add features prematurely
+4. **Single Responsibility**: Each function/class does one thing well
+5. **Composition Over Inheritance**: Prefer composing objects over class inheritance
+
+### Code Quality Rules
+
+```yaml
+rules:
+  max_function_length: 50
+  max_file_length: 300
+  max_parameters: 4
+  max_nesting_depth: 3
+
+  cyclomatic_complexity: 10
+
+  require_type_hints: true
+  require_docstrings: true
+  require_error_handling: true
+```
+
+### Function Guidelines
+
+**Good Function Example:**
+```typescript
+/**
+ * Calculates the total price including tax and discounts.
+ *
+ * @param basePrice - The base price before adjustments
+ * @param taxRate - The tax rate as a decimal (e.g., 0.1 for 10%)
+ * @param discountPercent - Optional discount percentage
+ * @returns The final price after all adjustments
+ * @throws {InvalidPriceError} If basePrice is negative
+ */
+function calculateTotalPrice(
+  basePrice: number,
+  taxRate: number,
+  discountPercent: number = 0
+): number {
+  if (basePrice < 0) {
+    throw new InvalidPriceError('Base price cannot be negative');
+  }
+
+  const discount = basePrice * (discountPercent / 100);
+  const taxableAmount = basePrice - discount;
+  const tax = taxableAmount * taxRate;
+
+  return Math.round((taxableAmount + tax) * 100) / 100;
+}
+```
+
+**Bad Function Example:**
+```typescript
+// DON'T DO THIS
+function calc(p, t, d) {
+  return (p - (p * d / 100)) * (1 + t);
+}
+```
+
+---
 
 ## Naming Conventions
 
 {{- if .Frontend.Enabled}}
-### Frontend
 
-- **Components**: PascalCase (e.g., `UserProfile.tsx`)
-- **Utilities**: camelCase (e.g., `formatDate.ts`)
-- **Styles**: Use consistent class naming with Tailwind
-- **Tests**: Mirror source structure with `.test.ts` suffix
+### Frontend Naming
+
+| Type | Convention | Example |
+|------|------------|---------|
+| Components | PascalCase | `UserProfile.tsx` |
+| Hooks | camelCase with `use` prefix | `useAuth.ts` |
+| Utilities | camelCase | `formatDate.ts` |
+| Constants | SCREAMING_SNAKE_CASE | `API_ENDPOINTS.ts` |
+| Types/Interfaces | PascalCase | `UserTypes.ts` |
+| Test files | Source name + `.test` | `UserProfile.test.tsx` |
+| Styles | Component name + `.styles` | `UserProfile.styles.ts` |
+
+#### Component File Structure
+
+```
+ComponentName/
+├── index.ts              # Public exports
+├── ComponentName.tsx     # Main component
+├── ComponentName.styles.ts # Styled components/Tailwind classes
+├── ComponentName.test.tsx # Tests
+├── ComponentName.types.ts # TypeScript types
+└── ComponentName.hooks.ts # Component-specific hooks (optional)
+```
 {{- end}}
 
 {{- if .Backend.Enabled}}
-### Backend
+
+### Backend Naming
 
 {{- if eq .Backend.Language "python"}}
-- **Files**: snake_case (e.g., `user_service.py`)
-- **Classes**: PascalCase
-- **Functions**: snake_case
-- **Constants**: SCREAMING_SNAKE_CASE
+
+| Type | Convention | Example |
+|------|------------|---------|
+| Modules | snake_case | `user_service.py` |
+| Classes | PascalCase | `UserService` |
+| Functions | snake_case | `get_user_by_id` |
+| Variables | snake_case | `user_count` |
+| Constants | SCREAMING_SNAKE_CASE | `MAX_RETRY_COUNT` |
+| Private members | _leading_underscore | `_internal_cache` |
+
+#### Python File Organization
+
+```python
+# 1. Module docstring
+"""
+User service module for handling user-related operations.
+"""
+
+# 2. Imports (grouped and sorted)
+# Standard library
+from typing import Optional, List
+
+# Third-party
+from sqlalchemy.orm import Session
+
+# Local
+from ..models import User
+from ..repositories import UserRepository
+
+# 3. Constants
+MAX_LOGIN_ATTEMPTS = 5
+
+# 4. Classes and functions
+class UserService:
+    """Service for user operations."""
+
+    def __init__(self, repository: UserRepository) -> None:
+        self._repository = repository
+
+    async def get_user(self, user_id: int) -> Optional[User]:
+        """Retrieve a user by ID."""
+        return await self._repository.find_by_id(user_id)
+```
 {{- else if eq .Backend.Language "go"}}
-- **Packages**: lowercase single word
-- **Types**: PascalCase (exported)
-- **Functions**: PascalCase (exported), camelCase (private)
-- **Constants**: PascalCase or camelCase
-{{- else}}
-- **Files**: camelCase (e.g., `userService.js`)
-- **Classes**: PascalCase
-- **Functions**: camelCase
-- **Constants**: SCREAMING_SNAKE_CASE
+
+| Type | Convention | Example |
+|------|------------|---------|
+| Packages | lowercase | `userservice` |
+| Exported types | PascalCase | `UserService` |
+| Unexported types | camelCase | `userService` |
+| Interfaces | -er suffix | `UserStore` |
+| Constants | PascalCase or camelCase | `MaxRetries` |
+| Errors | ErrPrefix | `ErrUserNotFound` |
+
+#### Go File Organization
+
+```go
+// Package userservice provides user-related operations.
+package userservice
+
+import (
+    "context"
+    "errors"
+)
+
+// Errors
+var (
+    ErrUserNotFound = errors.New("user not found")
+)
+
+// Constants
+const MaxRetries = 3
+
+// UserService handles user operations.
+type UserService struct {
+    repo UserRepository
+}
+
+// NewUserService creates a new UserService.
+func NewUserService(repo UserRepository) *UserService {
+    return &UserService{repo: repo}
+}
+
+// GetByID retrieves a user by ID.
+func (s *UserService) GetByID(ctx context.Context, id int64) (*User, error) {
+    return s.repo.FindByID(ctx, id)
+}
+```
 {{- end}}
 {{- end}}
-
-## Best Practices
-
-1. **Always validate inputs** at system boundaries
-2. **Handle errors gracefully** with meaningful messages
-3. **Write tests** for new features
-4. **Update documentation** when APIs change
-5. **Follow the principle of least surprise**
-6. **Keep dependencies minimal** and up-to-date
-7. **Use TypeScript types** wherever possible
-8. **Prefer immutable data structures**
-
-## Common Patterns
-
-{{- if .Frontend.Enabled}}
-### Frontend Patterns
-
-- Use custom hooks for data fetching
-- Implement error boundaries for robust error handling
-- Use React Query or SWR for server state
-- Implement optimistic UI updates where appropriate
-{{- end}}
-
-{{- if .Backend.Enabled}}
-### Backend Patterns
-
-- Repository pattern for data access
-- Service layer for business logic
-- DTOs for API contracts
-- Middleware for cross-cutting concerns
-{{- end}}
-
-## When Asking for Help
-
-1. Provide context about what you're trying to achieve
-2. Share relevant code snippets
-3. Describe any errors you're seeing
-4. Explain what you've already tried
-5. Mention any relevant constraints or requirements
-
-## Component Guidelines
-
-{{- if .Govern.ComponentRegistry}}
-- Register new components in `.clause/registry.yaml`
-- Document component dependencies
-- Keep component interfaces stable
-- Write component-level tests
-{{- end}}
-
-## Documentation Standards
-
-- **README**: Project overview and setup instructions
-- **API docs**: OpenAPI/Swagger for REST APIs
-- **Code comments**: Explain "why", not "what"
-- **Changelog**: Document all changes
 
 ---
 
-*Generated by Clause CLI - AI-Native Project Scaffolding*
+## Design Patterns
+
+{{- if .Frontend.Enabled}}
+
+### Frontend Patterns
+
+#### 1. Container/Presenter Pattern
+
+```typescript
+// Container (smart component)
+export function UserProfileContainer() {
+  const { user, isLoading, error } = useUser();
+
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <ErrorMessage error={error} />;
+
+  return <UserProfileView user={user} />;
+}
+
+// Presenter (dumb component)
+interface UserProfileViewProps {
+  user: User;
+}
+
+export function UserProfileView({ user }: UserProfileViewProps) {
+  return (
+    <div className="user-profile">
+      <Avatar src={user.avatarUrl} />
+      <UserInfo name={user.name} email={user.email} />
+    </div>
+  );
+}
+```
+
+#### 2. Custom Hook Pattern
+
+```typescript
+export function useUser() {
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const data = await userService.getCurrentUser();
+        setUser(data);
+      } catch (err) {
+        setError(err as Error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchUser();
+  }, []);
+
+  return { user, isLoading, error, refetch: fetchUser };
+}
+```
+
+#### 3. Compound Component Pattern
+
+```typescript
+<Card>
+  <Card.Header>Title</Card.Header>
+  <Card.Body>Content here</Card.Body>
+  <Card.Footer>Actions</Card.Footer>
+</Card>
+```
+{{- end}}
+
+{{- if .Backend.Enabled}}
+
+### Backend Patterns
+
+#### 1. Repository Pattern
+
+```typescript
+interface UserRepository {
+  findById(id: string): Promise<User | null>;
+  findAll(filters: UserFilters): Promise<User[]>;
+  save(user: User): Promise<User>;
+  delete(id: string): Promise<void>;
+}
+
+class PostgresUserRepository implements UserRepository {
+  constructor(private db: Database) {}
+
+  async findById(id: string): Promise<User | null> {
+    const row = await this.db.query(
+      'SELECT * FROM users WHERE id = $1',
+      [id]
+    );
+    return row ? this.toDomain(row) : null;
+  }
+
+  // ... other methods
+}
+```
+
+#### 2. Service Layer Pattern
+
+```typescript
+class UserService {
+  constructor(
+    private userRepo: UserRepository,
+    private emailService: EmailService,
+    private cache: CacheService
+  ) {}
+
+  async getUser(id: string): Promise<User> {
+    // Check cache first
+    const cached = await this.cache.get(`user:${id}`);
+    if (cached) return cached;
+
+    // Fetch from repository
+    const user = await this.userRepo.findById(id);
+    if (!user) throw new UserNotFoundError(id);
+
+    // Cache the result
+    await this.cache.set(`user:${id}`, user, { ttl: 300 });
+
+    return user;
+  }
+}
+```
+
+#### 3. Unit of Work Pattern
+
+```typescript
+class UnitOfWork {
+  private transaction: Transaction;
+
+  constructor(private db: Database) {}
+
+  async begin(): Promise<void> {
+    this.transaction = await this.db.beginTransaction();
+  }
+
+  get users(): UserRepository {
+    return new TransactionalUserRepository(this.transaction);
+  }
+
+  async commit(): Promise<void> {
+    await this.transaction.commit();
+  }
+
+  async rollback(): Promise<void> {
+    await this.transaction.rollback();
+  }
+}
+```
+{{- end}}
+
+---
+
+## Testing Guidelines
+
+### Test Structure (AAA Pattern)
+
+```typescript
+describe('UserService', () => {
+  describe('getUser', () => {
+    it('should return user when found', async () => {
+      // Arrange
+      const mockUser = { id: '1', name: 'John' };
+      const mockRepo = { findById: jest.fn().mockResolvedValue(mockUser) };
+      const service = new UserService(mockRepo);
+
+      // Act
+      const result = await service.getUser('1');
+
+      // Assert
+      expect(result).toEqual(mockUser);
+      expect(mockRepo.findById).toHaveBeenCalledWith('1');
+    });
+
+    it('should throw UserNotFoundError when user not found', async () => {
+      // Arrange
+      const mockRepo = { findById: jest.fn().mockResolvedValue(null) };
+      const service = new UserService(mockRepo);
+
+      // Act & Assert
+      await expect(service.getUser('999'))
+        .rejects
+        .toThrow(UserNotFoundError);
+    });
+  });
+});
+```
+
+### Test Coverage Requirements
+
+| Type | Minimum Coverage |
+|------|------------------|
+| Lines | 80% |
+| Functions | 80% |
+| Branches | 75% |
+| Statements | 80% |
+
+### Test Categories
+
+1. **Unit Tests**: Test individual functions/methods
+2. **Integration Tests**: Test component interactions
+3. **E2E Tests**: Test complete user flows
+4. **Snapshot Tests**: For UI components (when appropriate)
+
+---
+
+## Error Handling
+
+### Error Types
+
+```typescript
+// Base application error
+class AppError extends Error {
+  constructor(
+    message: string,
+    public code: string,
+    public statusCode: number = 500,
+    public details?: Record<string, unknown>
+  ) {
+    super(message);
+    this.name = 'AppError';
+  }
+}
+
+// Specific errors
+class ValidationError extends AppError {
+  constructor(message: string, details?: Record<string, unknown>) {
+    super(message, 'VALIDATION_ERROR', 400, details);
+  }
+}
+
+class NotFoundError extends AppError {
+  constructor(resource: string, id: string) {
+    super(`${resource} with id ${id} not found`, 'NOT_FOUND', 404);
+  }
+}
+
+class AuthenticationError extends AppError {
+  constructor(message: string = 'Authentication required') {
+    super(message, 'AUTHENTICATION_ERROR', 401);
+  }
+}
+```
+
+### Error Handling Pattern
+
+```typescript
+async function handleRequest<T>(
+  handler: () => Promise<T>
+): Promise<Response<T>> {
+  try {
+    const data = await handler();
+    return { success: true, data };
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      logger.warn('Validation error', { error });
+      return { success: false, error: error.toJSON() };
+    }
+    if (error instanceof AppError) {
+      logger.error('Application error', { error });
+      return { success: false, error: error.toJSON() };
+    }
+    // Unknown error
+    logger.error('Unexpected error', { error });
+    return {
+      success: false,
+      error: {
+        code: 'INTERNAL_ERROR',
+        message: 'An unexpected error occurred'
+      }
+    };
+  }
+}
+```
+
+---
+
+## Security Guidelines
+
+### Input Validation
+
+**Always validate and sanitize user input:**
+
+```typescript
+import { z } from 'zod';
+
+const CreateUserSchema = z.object({
+  email: z.string().email().max(255),
+  name: z.string().min(1).max(100).regex(/^[\w\s-]+$/),
+  age: z.number().int().min(0).max(150).optional()
+});
+
+type CreateUserInput = z.infer<typeof CreateUserSchema>;
+
+function validateCreateUser(input: unknown): CreateUserInput {
+  return CreateUserSchema.parse(input);
+}
+```
+
+### Security Checklist
+
+- [ ] All inputs are validated and sanitized
+- [ ] SQL queries use parameterized statements
+- [ ] Authentication is required for protected routes
+- [ ] Authorization checks are performed
+- [ ] Sensitive data is encrypted at rest
+- [ ] API responses don't expose internal details
+- [ ] Rate limiting is implemented
+- [ ] CORS is properly configured
+- [ ] Security headers are set
+- [ ] Dependencies are regularly audited
+
+---
+
+## Performance Guidelines
+
+### Frontend Performance
+
+- Use code splitting and lazy loading
+- Implement proper memoization
+- Optimize images and assets
+- Minimize bundle size
+- Use virtual scrolling for long lists
+
+### Backend Performance
+
+- Use connection pooling
+- Implement caching strategies
+- Optimize database queries
+- Use async operations
+- Implement pagination
+
+---
+
+## Documentation Standards
+
+### Code Comments
+
+**Good Comments:**
+```typescript
+// Calculate compound interest using the formula: A = P(1 + r/n)^(nt)
+// where P = principal, r = rate, n = compounds per period, t = time
+function calculateCompoundInterest(principal: number, rate: number, periods: number, time: number): number {
+  // ...
+}
+
+/**
+ * Processes a payment through the payment gateway.
+ *
+ * @param payment - The payment details to process
+ * @returns The processed payment result with transaction ID
+ * @throws {PaymentDeclinedError} If the payment is declined
+ * @throws {PaymentGatewayError} If the gateway is unavailable
+ *
+ * @example
+ * ```ts
+ * const result = await processPayment({
+ *   amount: 99.99,
+ *   currency: 'USD',
+ *   method: 'card'
+ * });
+ * ```
+ */
+async function processPayment(payment: PaymentInput): Promise<PaymentResult> {
+  // ...
+}
+```
+
+**Bad Comments:**
+```typescript
+// Increment i
+i++;
+
+// Check if user is valid
+if (user.isValid()) { ... }
+```
+
+---
+
+## AI-Specific Instructions
+
+### When Generating Code
+
+1. **Read existing code first**: Understand the patterns and style used
+2. **Follow the naming conventions**: Use the tables above
+3. **Include error handling**: Never return raw errors to users
+4. **Add type annotations**: All functions should have types
+5. **Write tests**: Include test cases for new code
+6. **Update documentation**: If you add features, update docs
+
+### Context to Provide
+
+When asking for help, provide:
+
+```markdown
+## Context
+- Working on: [feature/bug]
+- File(s) affected: [paths]
+- Related components: [list]
+
+## Current State
+[Describe what exists now]
+
+## Desired State
+[Describe what you want]
+
+## Constraints
+- [Any limitations or requirements]
+```
+
+### Example Prompts
+
+**Good Prompt:**
+```
+I need to add a new API endpoint to fetch user orders.
+
+Context:
+- Working on: Order history feature
+- File: backend/app/api/orders.py
+- Related: UserService, OrderRepository
+
+Current state: No orders endpoint exists
+Desired state: GET /api/users/:id/orders endpoint
+
+Requirements:
+- Paginated results (20 per page)
+- Include order items and status
+- Auth required
+- Follow existing API patterns in the codebase
+
+Please read backend/app/api/users.py for the existing patterns.
+```
+
+---
+
+## Code Review Checklist
+
+Before submitting code, verify:
+
+- [ ] Code follows naming conventions
+- [ ] Functions are under 50 lines
+- [ ] Error handling is implemented
+- [ ] Types are properly defined
+- [ ] Tests are written and passing
+- [ ] Documentation is updated
+- [ ] No hardcoded secrets or credentials
+- [ ] Security best practices followed
+- [ ] Performance considerations addressed
+- [ ] Code is self-documenting
+
+---
+
+*This document is auto-generated by Clause CLI. Last updated: {{.Now.Format "2006-01-02"}}*

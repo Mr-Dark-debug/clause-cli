@@ -186,7 +186,7 @@ func isValidProjectName(name string) bool {
 	if len(name) == 0 || len(name) > 100 {
 		return false
 	}
-	// Must start with letter, contain only lowercase letters, numbers, and hyphens
+	// Must start with letter, contain only lowercase letters, numbers, and hyphens (uses helper from utils)
 	return utils.MatchesRegex(name, `^[a-z][a-z0-9-]*$`)
 }
 
