@@ -1,4 +1,4 @@
-# 🚀 FORGE: AI-Native Project Scaffolding System
+# 🚀 Clause: AI-Native Project Scaffolding System
 ## Comprehensive Product Blueprint & Strategic Architecture Document
 
 ---
@@ -32,31 +32,31 @@ The current generation of project scaffolding tools—Yeoman, Create React App, 
 
 This gap manifests in several concrete ways that developers experience daily. AI assistants frequently suggest code that violates project architecture because they have no persistent memory of architectural decisions. They introduce dependencies that conflict with existing technology choices because they lack visibility into the project's technology stack constraints. They generate code that is difficult to maintain because they have no understanding of the project's documentation standards or code review requirements. Perhaps most frustratingly, they break existing functionality during refactoring because they cannot maintain a complete mental model of the codebase's interdependencies.
 
-## 1.2 The Solution: FORGE
+## 1.2 The Solution: Clause
 
-FORGE (Framework for Organized, Reproducible, and Guided Engineering) represents a paradigm shift in how development projects are initialized and structured. It is not merely a scaffolding tool but rather a comprehensive AI-operable project environment generator. The fundamental insight behind FORGE is that modern projects require two distinct but interconnected scaffolding layers: the traditional code structure that humans interact with, and an AI governance layer that guides how AI assistants understand, modify, and extend that code structure.
+Clause (Framework for Organized, Reproducible, and Guided Engineering) represents a paradigm shift in how development projects are initialized and structured. It is not merely a scaffolding tool but rather a comprehensive AI-operable project environment generator. The fundamental insight behind Clause is that modern projects require two distinct but interconnected scaffolding layers: the traditional code structure that humans interact with, and an AI governance layer that guides how AI assistants understand, modify, and extend that code structure.
 
-When a developer runs `forge init`, they are not simply creating folders and files. They are establishing a complete developmental ecosystem that includes structured prompts defining how AI should behave within this specific project context, architectural guardrails preventing technology drift and unauthorized dependency introduction, documentation templates ensuring consistent code documentation standards, reusable component registries tracking what has been built and how it can be reused, brainstorming and self-reflection mechanisms allowing AI to work through complex problems autonomously, and brand and theme guidelines ensuring consistent visual and interaction patterns.
+When a developer runs `Clause init`, they are not simply creating folders and files. They are establishing a complete developmental ecosystem that includes structured prompts defining how AI should behave within this specific project context, architectural guardrails preventing technology drift and unauthorized dependency introduction, documentation templates ensuring consistent code documentation standards, reusable component registries tracking what has been built and how it can be reused, brainstorming and self-reflection mechanisms allowing AI to work through complex problems autonomously, and brand and theme guidelines ensuring consistent visual and interaction patterns.
 
-The FORGE system addresses the fundamental tension between AI capability and AI constraint. Modern AI coding assistants are incredibly powerful, but their power is undirected. They can write virtually any code, but without proper guidance, that code may violate project standards, introduce inconsistencies, or create technical debt. FORGE provides the direction that transforms raw AI capability into disciplined, project-aligned engineering output.
+The Clause system addresses the fundamental tension between AI capability and AI constraint. Modern AI coding assistants are incredibly powerful, but their power is undirected. They can write virtually any code, but without proper guidance, that code may violate project standards, introduce inconsistencies, or create technical debt. Clause provides the direction that transforms raw AI capability into disciplined, project-aligned engineering output.
 
 ## 1.3 Vision Statement
 
-FORGE aims to become the foundational layer upon which all AI-assisted development occurs. Just as Docker transformed how we think about deployment environments by making them reproducible and portable, FORGE transforms how we think about development environments by making them AI-compatible and behaviorally consistent. The vision is that within five years, running `forge init` before beginning any new project becomes as automatic and essential as initializing a Git repository.
+Clause aims to become the foundational layer upon which all AI-assisted development occurs. Just as Docker transformed how we think about deployment environments by making them reproducible and portable, Clause transforms how we think about development environments by making them AI-compatible and behaviorally consistent. The vision is that within five years, running `Clause init` before beginning any new project becomes as automatic and essential as initializing a Git repository.
 
-The broader strategic vision positions FORGE as the standard interface between human developers and AI coding assistants. By establishing FORGE as the mechanism through which AI understands project constraints, we create a powerful network effect. The more projects use FORGE, the more valuable FORGE becomes, as AI assistants trained on FORGE-structured projects can operate more effectively across the entire FORGE ecosystem.
+The broader strategic vision positions Clause as the standard interface between human developers and AI coding assistants. By establishing Clause as the mechanism through which AI understands project constraints, we create a powerful network effect. The more projects use Clause, the more valuable Clause becomes, as AI assistants trained on Clause-structured projects can operate more effectively across the entire Clause ecosystem.
 
 ## 1.4 Key Differentiators from Existing Solutions
 
-The first major differentiator is AI-Native Design. While existing scaffolding tools were designed for human developers and retrofitted for AI compatibility, FORGE is designed from the ground up with AI interaction as a primary use case. Every generated file, every folder structure, and every configuration is optimized for both human readability and AI comprehension.
+The first major differentiator is AI-Native Design. While existing scaffolding tools were designed for human developers and retrofitted for AI compatibility, Clause is designed from the ground up with AI interaction as a primary use case. Every generated file, every folder structure, and every configuration is optimized for both human readability and AI comprehension.
 
-The second differentiator is Behavioral Governance. FORGE does not just create structures; it creates rules. The AI prompt guidelines folder establishes explicit behavioral constraints that AI assistants must follow, preventing common failure modes like technology drift, documentation neglect, and architectural violation.
+The second differentiator is Behavioral Governance. Clause does not just create structures; it creates rules. The AI prompt guidelines folder establishes explicit behavioral constraints that AI assistants must follow, preventing common failure modes like technology drift, documentation neglect, and architectural violation.
 
-The third differentiator is the Brainstorm.md Self-Reflection System. FORGE introduces a novel mechanism for AI autonomous problem-solving. The Brainstorm.md file serves as an external working memory where AI can reason through complex problems, document uncertainties, and iterate toward solutions without requiring constant human input.
+The third differentiator is the Brainstorm.md Self-Reflection System. Clause introduces a novel mechanism for AI autonomous problem-solving. The Brainstorm.md file serves as an external working memory where AI can reason through complex problems, document uncertainties, and iterate toward solutions without requiring constant human input.
 
-The fourth differentiator is the Component Registry. FORGE maintains a living registry of all created components, their purposes, dependencies, and reuse guidelines. This registry serves as a persistent memory that prevents duplicate work and encourages architectural consistency.
+The fourth differentiator is the Component Registry. Clause maintains a living registry of all created components, their purposes, dependencies, and reuse guidelines. This registry serves as a persistent memory that prevents duplicate work and encourages architectural consistency.
 
-The fifth differentiator is Cross-Platform, Cross-Language Support. Unlike framework-specific tools like Create React App or Angular CLI, FORGE is technology-agnostic. The interactive configuration wizard allows developers to specify their exact technology stack, and FORGE generates appropriate structures for any combination of frontend, backend, and infrastructure choices.
+The fifth differentiator is Cross-Platform, Cross-Language Support. Unlike framework-specific tools like Create React App or Angular CLI, Clause is technology-agnostic. The interactive configuration wizard allows developers to specify their exact technology stack, and Clause generates appropriate structures for any combination of frontend, backend, and infrastructure choices.
 
 ---
 
@@ -64,13 +64,13 @@ The fifth differentiator is Cross-Platform, Cross-Language Support. Unlike frame
 
 ## 2.1 The AI Coding Assistant Market: Explosive Growth Trajectory
 
-The market context for FORGE is defined by explosive growth in AI-assisted development tools. According to Markets and Markets research, the AI assistants market is projected to expand from USD 3.35 billion in 2025 to USD 21.11 billion by 2030, representing a compound annual growth rate that reflects fundamental shifts in how software is developed. Mordor Intelligence reports that the AI Code Tools market specifically stands at USD 7.37 billion in 2025 and is forecast to reach USD 23.97 billion by 2030, advancing at a remarkable 26.60% CAGR.
+The market context for Clause is defined by explosive growth in AI-assisted development tools. According to Markets and Markets research, the AI assistants market is projected to expand from USD 3.35 billion in 2025 to USD 21.11 billion by 2030, representing a compound annual growth rate that reflects fundamental shifts in how software is developed. Mordor Intelligence reports that the AI Code Tools market specifically stands at USD 7.37 billion in 2025 and is forecast to reach USD 23.97 billion by 2030, advancing at a remarkable 26.60% CAGR.
 
-Perhaps most relevant to FORGE's positioning, Technavio forecasts that the generative AI in coding market will increase by USD 10.22 billion between 2024 and 2029, with a CAGR of 32.7%. This growth is not merely quantitative but qualitative—AI coding tools are evolving from simple autocomplete features to sophisticated agents capable of understanding project context, making architectural decisions, and executing complex refactoring operations.
+Perhaps most relevant to Clause's positioning, Technavio forecasts that the generative AI in coding market will increase by USD 10.22 billion between 2024 and 2029, with a CAGR of 32.7%. This growth is not merely quantitative but qualitative—AI coding tools are evolving from simple autocomplete features to sophisticated agents capable of understanding project context, making architectural decisions, and executing complex refactoring operations.
 
-Congruence Market Insights provides another perspective, valuing the AI Coding Startup Platforms market at USD 6,117.2 million in 2025 with projections reaching USD 34,635.8 million by 2033. This specific segment—platforms that enable AI-assisted development—is precisely where FORGE positions itself as a foundational infrastructure layer.
+Congruence Market Insights provides another perspective, valuing the AI Coding Startup Platforms market at USD 6,117.2 million in 2025 with projections reaching USD 34,635.8 million by 2033. This specific segment—platforms that enable AI-assisted development—is precisely where Clause positions itself as a foundational infrastructure layer.
 
-The implications for FORGE are clear: we are entering an era where AI-assisted development is not a luxury but an expectation. Every developer will use AI tools; the question is whether those tools will operate with disciplined constraints or unguided capability. FORGE positions itself as the essential governance layer for this AI-native development future.
+The implications for Clause are clear: we are entering an era where AI-assisted development is not a luxury but an expectation. Every developer will use AI tools; the question is whether those tools will operate with disciplined constraints or unguided capability. Clause positions itself as the essential governance layer for this AI-native development future.
 
 ## 2.2 CLI Scaffolding Tools: Evolution and Limitations
 
@@ -82,7 +82,7 @@ Yeoman's architectural philosophy centers on generator composition and extensibi
 
 However, Yeoman's strengths have become limitations in the modern development landscape. The generator ecosystem, while vast, suffers from inconsistent quality and maintenance patterns. Many generators are outdated, supporting framework versions that are multiple major releases behind current standards. The JavaScript-centric architecture, while appropriate for Yeoman's web development focus, creates friction for polyglot development teams working across multiple languages.
 
-Most critically for FORGE's positioning, Yeoman has no concept of AI governance. Generators create static file structures but provide no mechanism for guiding AI assistant behavior within those structures. A Yeoman-generated project is as susceptible to AI architectural violations as any ad-hoc project structure.
+Most critically for Clause's positioning, Yeoman has no concept of AI governance. Generators create static file structures but provide no mechanism for guiding AI assistant behavior within those structures. A Yeoman-generated project is as susceptible to AI architectural violations as any ad-hoc project structure.
 
 ### 2.2.2 Vite and create-vite: Speed Over Structure
 
@@ -90,19 +90,19 @@ Vite represents the modern generation of frontend tooling, prioritizing developm
 
 Vite's architectural philosophy embraces minimalism. The generated project structure contains only essential files, with the assumption that developers will extend and customize based on their specific needs. This approach aligns with modern preferences for convention over configuration, but it places the burden of architectural decisions entirely on the developer.
 
-The limitation from FORGE's perspective is that Vite's minimal scaffolding provides no guidance for AI assistants. When an AI coding agent encounters a Vite-generated project, it has no structured information about architectural constraints, coding standards, or acceptable technology choices. The AI must infer all constraints from existing code patterns, which may be incomplete or inconsistent.
+The limitation from Clause's perspective is that Vite's minimal scaffolding provides no guidance for AI assistants. When an AI coding agent encounters a Vite-generated project, it has no structured information about architectural constraints, coding standards, or acceptable technology choices. The AI must infer all constraints from existing code patterns, which may be incomplete or inconsistent.
 
-Additionally, Vite is fundamentally frontend-focused. While it supports multiple frontend frameworks, it has no opinion about backend structure, database schemas, or infrastructure configuration. FORGE addresses full-stack development in a unified manner, recognizing that modern applications rarely consist of frontend code alone.
+Additionally, Vite is fundamentally frontend-focused. While it supports multiple frontend frameworks, it has no opinion about backend structure, database schemas, or infrastructure configuration. Clause addresses full-stack development in a unified manner, recognizing that modern applications rarely consist of frontend code alone.
 
 ### 2.2.3 Nx: Monorepo Sophistication with Missing AI Layer
 
 Nx has evolved into a sophisticated build intelligence platform combining build systems, CI orchestration, and AI integration. Originally focused on monorepo management, Nx now positions itself as a comprehensive development platform for enterprise-scale applications.
 
-Nx's architectural philosophy centers on computation caching, distributed task execution, and code generation through generators. The generator system allows teams to define custom code generation templates that enforce organizational standards. This approach addresses many consistency challenges that FORGE also targets.
+Nx's architectural philosophy centers on computation caching, distributed task execution, and code generation through generators. The generator system allows teams to define custom code generation templates that enforce organizational standards. This approach addresses many consistency challenges that Clause also targets.
 
 However, Nx's AI integration focuses primarily on code generation acceleration rather than behavioral governance. The Nx AI features help developers generate code faster but do not establish the persistent constraints that govern how AI assistants should operate within a project. An Nx workspace may have consistent generated code patterns, but AI assistants are not constrained to follow those patterns in subsequent modifications.
 
-Nx also carries significant complexity overhead. The learning curve for effective Nx usage is substantial, and the platform's opinionated approach may not suit all development teams. FORGE aims for a lighter-weight intervention that can complement rather than replace existing toolchains.
+Nx also carries significant complexity overhead. The learning curve for effective Nx usage is substantial, and the platform's opinionated approach may not suit all development teams. Clause aims for a lighter-weight intervention that can complement rather than replace existing toolchains.
 
 ### 2.2.4 Create React App: The Deprecated Standard
 
@@ -110,15 +110,15 @@ Create React App (CRA) serves as a cautionary tale in the scaffolding tool ecosy
 
 By 2024, CRA had effectively been replaced by Vite as the recommended React scaffolding tool. FreeCodeCamp explicitly advises that "Vite is ideal for making client-rendered React applications" and that CRA is no longer the standard. This transition illustrates a critical risk in the scaffolding tool ecosystem: tools that fail to evolve with the development landscape risk becoming obsolete regardless of their initial adoption.
 
-For FORGE, the CRA example underscores the importance of continuous evolution and adaptation. The FORGE architecture must be designed for extensibility and evolution, with clear mechanisms for incorporating new technologies, frameworks, and development practices as they emerge.
+For Clause, the CRA example underscores the importance of continuous evolution and adaptation. The Clause architecture must be designed for extensibility and evolution, with clear mechanisms for incorporating new technologies, frameworks, and development practices as they emerge.
 
 ### 2.2.5 Turborepo: Build Optimization Without AI Governance
 
 Turborepo addresses monorepo build optimization through intelligent caching and task orchestration. As a high-performance build system for JavaScript and TypeScript monorepos, Turborepo automatically determines the dependency graph between packages and optimizes build execution accordingly.
 
-Turborepo's value proposition centers on build performance rather than project initialization. It assumes that projects already exist with established structures, and focuses on making those projects build faster. This positioning is complementary to FORGE rather than competitive.
+Turborepo's value proposition centers on build performance rather than project initialization. It assumes that projects already exist with established structures, and focuses on making those projects build faster. This positioning is complementary to Clause rather than competitive.
 
-The integration opportunity exists for FORGE-generated projects to include Turborepo configuration for monorepo scenarios. FORGE could generate optimized Turborepo configurations as part of its scaffolding, providing immediate build performance benefits along with AI governance structures.
+The integration opportunity exists for Clause-generated projects to include Turborepo configuration for monorepo scenarios. Clause could generate optimized Turborepo configurations as part of its scaffolding, providing immediate build performance benefits along with AI governance structures.
 
 ### 2.2.6 Cookiecutter: Python-Centric Template System
 
@@ -128,29 +128,29 @@ Cookiecutter's strength lies in its simplicity and template-focused approach. De
 
 However, Cookiecutter's Python-centric architecture creates friction for polyglot development. While templates can theoretically generate any file structure, the tool's assumptions and conventions align with Python development patterns. Cross-language projects may find Cookiecutter's templating insufficient for framework-specific requirements.
 
-Like Yeoman, Cookiecutter has no native concept of AI governance. Generated projects are static structures without behavioral constraints for AI assistants. FORGE addresses this gap directly by making AI governance a first-class concern from project initialization.
+Like Yeoman, Cookiecutter has no native concept of AI governance. Generated projects are static structures without behavioral constraints for AI assistants. Clause addresses this gap directly by making AI governance a first-class concern from project initialization.
 
 ## 2.3 AI Developer Tools: The Emerging Competitive Landscape
 
 ### 2.3.1 Cursor: IDE-Native AI with Rule System
 
-Cursor represents the most direct competitive pressure on FORGE's AI governance proposition. As an AI-native fork of VS Code, Cursor provides integrated AI assistance through features like code generation, refactoring, and debugging. Critically, Cursor has introduced a rules system that allows developers to define project-specific AI behaviors.
+Cursor represents the most direct competitive pressure on Clause's AI governance proposition. As an AI-native fork of VS Code, Cursor provides integrated AI assistance through features like code generation, refactoring, and debugging. Critically, Cursor has introduced a rules system that allows developers to define project-specific AI behaviors.
 
 The Cursor rules system operates through .cursor/rules directories containing markdown files with behavioral instructions. These rules can be scoped using path patterns, invoked manually, or included based on relevance. The system provides a mechanism for constraining AI behavior within specific contexts.
 
-Cursor's rules system validates FORGE's core premise: developers need mechanisms to govern AI assistant behavior. However, Cursor's approach is IDE-specific. Rules defined for Cursor do not transfer to other AI assistants like GitHub Copilot, Windsurf, or Claude Code. This fragmentation creates an opportunity for FORGE to provide a universal governance layer that works across all AI tools.
+Cursor's rules system validates Clause's core premise: developers need mechanisms to govern AI assistant behavior. However, Cursor's approach is IDE-specific. Rules defined for Cursor do not transfer to other AI assistants like GitHub Copilot, Windsurf, or Claude Code. This fragmentation creates an opportunity for Clause to provide a universal governance layer that works across all AI tools.
 
-The awesome-cursorrules GitHub repository demonstrates community demand for structured AI governance, containing numerous example rule configurations that developers have found valuable. These configurations often address concerns similar to FORGE's governance targets: preventing specific library usage, enforcing documentation standards, and maintaining architectural patterns.
+The awesome-cursorrules GitHub repository demonstrates community demand for structured AI governance, containing numerous example rule configurations that developers have found valuable. These configurations often address concerns similar to Clause's governance targets: preventing specific library usage, enforcing documentation standards, and maintaining architectural patterns.
 
 ### 2.3.2 Claude Code: Terminal-Native AI Agent
 
 Claude Code represents Anthropic's entry into the terminal-native AI coding assistant space. Operating directly in the terminal, Claude Code can explore codebases, answer questions, make code changes, and execute CLI commands. The tool exemplifies the agent-oriented approach to AI coding assistance.
 
-Claude Code's architecture enables deep codebase understanding through file system exploration and command execution. The AI can read terminal logs, understand linting errors, and handle entire GitHub workflows from issue analysis to PR submission. This capability depth creates both opportunities and risks for FORGE.
+Claude Code's architecture enables deep codebase understanding through file system exploration and command execution. The AI can read terminal logs, understand linting errors, and handle entire GitHub workflows from issue analysis to PR submission. This capability depth creates both opportunities and risks for Clause.
 
-The opportunity lies in FORGE's potential to guide Claude Code's deep capabilities toward project-aligned outcomes. A FORGE-generated project with comprehensive AI prompt guidelines could dramatically improve Claude Code's effectiveness by providing explicit constraints and architectural context.
+The opportunity lies in Clause's potential to guide Claude Code's deep capabilities toward project-aligned outcomes. A Clause-generated project with comprehensive AI prompt guidelines could dramatically improve Claude Code's effectiveness by providing explicit constraints and architectural context.
 
-The risk is that Claude Code may not automatically consume FORGE's governance files. If Claude Code does not natively understand FORGE's ai_prompt_guidelines structure, FORGE must provide mechanisms to inject its governance rules into Claude Code's context window.
+The risk is that Claude Code may not automatically consume Clause's governance files. If Claude Code does not natively understand Clause's ai_prompt_guidelines structure, Clause must provide mechanisms to inject its governance rules into Claude Code's context window.
 
 ### 2.3.3 GitHub Copilot: Enterprise Context Engineering
 
@@ -158,31 +158,31 @@ GitHub Copilot has evolved from simple code completion to a multi-agent developm
 
 Copilot's context engineering approach draws from multiple sources: the active editor content, related files in the workspace, and increasingly, custom instructions defined by developers. The context engineering guide for VS Code demonstrates mechanisms for curating project-wide context, creating implementation plans, and generating implementation code through structured AI interactions.
 
-Copilot's limitation from FORGE's perspective is its lack of persistent behavioral governance. Custom instructions can guide specific interactions, but there is no mechanism for establishing permanent constraints that govern all AI operations within a project. Each Copilot interaction essentially starts fresh, without cumulative learning about project-specific requirements.
+Copilot's limitation from Clause's perspective is its lack of persistent behavioral governance. Custom instructions can guide specific interactions, but there is no mechanism for establishing permanent constraints that govern all AI operations within a project. Each Copilot interaction essentially starts fresh, without cumulative learning about project-specific requirements.
 
 ### 2.3.4 Aider: Git-Integrated Pair Programming
 
 Aider operates as a terminal-based AI pair programming tool with deep Git integration. Unlike IDE-based assistants, Aider works directly with local Git repositories, understanding the codebase through file system analysis and maintaining a clear commit history of AI-generated changes.
 
-Aider's architecture is model-agnostic, supporting multiple LLM providers including OpenAI, Anthropic, and local models through Ollama. This flexibility positions Aider as a particularly relevant integration target for FORGE, as FORGE's governance mechanisms must work across model providers.
+Aider's architecture is model-agnostic, supporting multiple LLM providers including OpenAI, Anthropic, and local models through Ollama. This flexibility positions Aider as a particularly relevant integration target for Clause, as Clause's governance mechanisms must work across model providers.
 
-The Git-integrated approach provides natural context boundaries—Aider focuses on files that are tracked or staged in Git, providing implicit scoping for AI operations. However, this approach also means Aider lacks explicit governance mechanisms. FORGE could enhance Aider's effectiveness by providing structured governance files that Aider's file system analysis would naturally discover.
+The Git-integrated approach provides natural context boundaries—Aider focuses on files that are tracked or staged in Git, providing implicit scoping for AI operations. However, this approach also means Aider lacks explicit governance mechanisms. Clause could enhance Aider's effectiveness by providing structured governance files that Aider's file system analysis would naturally discover.
 
 ### 2.3.5 Windsurf: Context-Aware AI IDE
 
 Windsurf by Codeium positions itself as an AI-native IDE with sophisticated context awareness features. The RAG-based context engine indexes the codebase for intelligent suggestions, while features like context pinning allow developers to explicitly specify relevant information for the AI's consideration.
 
-Windsurf's Cascade AI system represents an agentic approach to code modification, capable of understanding entire codebases and making coordinated changes across multiple files. This deep capability creates significant value for FORGE integration, as governance mechanisms could dramatically improve Cascade's project alignment.
+Windsurf's Cascade AI system represents an agentic approach to code modification, capable of understanding entire codebases and making coordinated changes across multiple files. This deep capability creates significant value for Clause integration, as governance mechanisms could dramatically improve Cascade's project alignment.
 
-The context pinning feature partially addresses FORGE's governance concerns by allowing developers to persist known relevant information. However, context pinning requires manual configuration for each project and does not establish permanent behavioral rules. FORGE could provide pre-configured context pins as part of project scaffolding.
+The context pinning feature partially addresses Clause's governance concerns by allowing developers to persist known relevant information. However, context pinning requires manual configuration for each project and does not establish permanent behavioral rules. Clause could provide pre-configured context pins as part of project scaffolding.
 
 ### 2.3.6 Continue.dev: Open Source AI Assistant
 
 Continue.dev represents the open-source alternative in the AI coding assistant space. Licensed under Apache 2.0, Continue enables developers to create, customize, and share AI code assistants with full control over model selection and deployment.
 
-Continue's architecture supports IDE extensions for VS Code and JetBrains, CLI agents, and cloud-based agents that run on pull requests. The open architecture ensures no lock-in to particular models or deployment strategies, aligning with FORGE's philosophy of universal applicability.
+Continue's architecture supports IDE extensions for VS Code and JetBrains, CLI agents, and cloud-based agents that run on pull requests. The open architecture ensures no lock-in to particular models or deployment strategies, aligning with Clause's philosophy of universal applicability.
 
-The explicit support for customization makes Continue a natural integration target for FORGE. FORGE could generate Continue configuration files that establish governance rules as part of project scaffolding, providing immediate value for teams using Continue as their AI assistant.
+The explicit support for customization makes Continue a natural integration target for Clause. Clause could generate Continue configuration files that establish governance rules as part of project scaffolding, providing immediate value for teams using Continue as their AI assistant.
 
 ## 2.4 Bolt.new and v0: AI-Powered Full-Stack Generation
 
@@ -190,9 +190,9 @@ The explicit support for customization makes Continue a natural integration targ
 
 Bolt.new by StackBlitz represents a paradigm shift in AI-powered development, allowing developers to prompt, run, edit, and deploy full-stack applications directly from the browser without local setup. The platform reached remarkable traction, reportedly achieving $40M ARR within six months of launch.
 
-Bolt.new's architecture runs entirely in the browser through WebContainers, providing a complete Node.js environment without server infrastructure. This approach eliminates local environment configuration challenges but also creates isolation from FORGE's governance mechanisms—the generated projects do not benefit from FORGE's structured AI guidance.
+Bolt.new's architecture runs entirely in the browser through WebContainers, providing a complete Node.js environment without server infrastructure. This approach eliminates local environment configuration challenges but also creates isolation from Clause's governance mechanisms—the generated projects do not benefit from Clause's structured AI guidance.
 
-The success of Bolt.new validates the market demand for AI-powered project generation. However, Bolt.new focuses on initial generation rather than ongoing AI governance. Once a project is generated, subsequent AI modifications operate without structured constraints. FORGE could theoretically complement Bolt.new by adding governance structures to Bolt.new-generated projects.
+The success of Bolt.new validates the market demand for AI-powered project generation. However, Bolt.new focuses on initial generation rather than ongoing AI governance. Once a project is generated, subsequent AI modifications operate without structured constraints. Clause could theoretically complement Bolt.new by adding governance structures to Bolt.new-generated projects.
 
 ### 2.4.2 v0 by Vercel: UI-Focused Generation
 
@@ -200,7 +200,7 @@ v0 by Vercel specializes in UI component generation, producing production-ready 
 
 v0's specialization creates both differentiation and limitation. For projects requiring custom UI components, v0 provides significant acceleration. However, v0 has no opinion about backend structure, data architecture, or infrastructure configuration. The generated components must be integrated into broader project architectures.
 
-FORGE's component registry concept could theoretically incorporate v0-generated components, tracking their usage and ensuring consistent styling through brand guideline enforcement. This integration would provide the governance layer that v0's generation-focused approach lacks.
+Clause's component registry concept could theoretically incorporate v0-generated components, tracking their usage and ensuring consistent styling through brand guideline enforcement. This integration would provide the governance layer that v0's generation-focused approach lacks.
 
 ## 2.5 Terminal UI Frameworks: Building Beautiful CLI Experiences
 
@@ -208,19 +208,19 @@ FORGE's component registry concept could theoretically incorporate v0-generated 
 
 The Charmbracelet ecosystem represents the state of the art in Go-based terminal UI development. Bubble Tea provides an Elm Architecture-inspired framework for building interactive terminal applications, while Lip Gloss offers CSS-like styling capabilities for terminal output. The broader ecosystem includes Bubbles (reusable components), Glamour (markdown rendering), and numerous other tools.
 
-Bubble Tea's architecture follows the Model-Update-View pattern, where applications are defined by their state (Model), message handling (Update), and rendering (View). This architecture naturally handles the interactive wizard pattern that FORGE requires for project configuration, while also supporting more complex UI patterns for future features.
+Bubble Tea's architecture follows the Model-Update-View pattern, where applications are defined by their state (Model), message handling (Update), and rendering (View). This architecture naturally handles the interactive wizard pattern that Clause requires for project configuration, while also supporting more complex UI patterns for future features.
 
-The Lip Gloss styling library provides declarative styling with automatic layout calculations, gradient effects, and responsive design capabilities. This enables FORGE to deliver the premium aesthetic experience that modern developers expect from CLI tools, moving beyond the utilitarian interfaces of traditional scaffolding tools.
+The Lip Gloss styling library provides declarative styling with automatic layout calculations, gradient effects, and responsive design capabilities. This enables Clause to deliver the premium aesthetic experience that modern developers expect from CLI tools, moving beyond the utilitarian interfaces of traditional scaffolding tools.
 
-Over 10,000 applications have been built with Bubble Tea according to the GitHub repository, demonstrating the framework's maturity and community adoption. This established ecosystem reduces implementation risk for FORGE's terminal UI components.
+Over 10,000 applications have been built with Bubble Tea according to the GitHub repository, demonstrating the framework's maturity and community adoption. This established ecosystem reduces implementation risk for Clause's terminal UI components.
 
 ### 2.5.2 Cobra: CLI Command Framework
 
 Cobra provides the command-line framework underlying countless Go CLI tools, including Docker, Kubernetes, Hugo, and GitHub CLI. The framework handles command parsing, flag management, help generation, and shell completion, providing the structural foundation upon which interactive UIs can be built.
 
-Cobra's architecture centers on a hierarchical command structure where commands, arguments, and flags are composed into intuitive CLI interfaces. The framework's widespread adoption means developers have existing mental models for Cobra-based tools, reducing the learning curve for FORGE.
+Cobra's architecture centers on a hierarchical command structure where commands, arguments, and flags are composed into intuitive CLI interfaces. The framework's widespread adoption means developers have existing mental models for Cobra-based tools, reducing the learning curve for Clause.
 
-The integration between Cobra and Bubble Tea is well-documented, with numerous examples showing how to embed interactive TUIs within Cobra command handlers. This integration pattern would enable FORGE to provide both traditional flag-based operation and rich interactive experiences through a unified command structure.
+The integration between Cobra and Bubble Tea is well-documented, with numerous examples showing how to embed interactive TUIs within Cobra command handlers. This integration pattern would enable Clause to provide both traditional flag-based operation and rich interactive experiences through a unified command structure.
 
 ---
 
@@ -228,7 +228,7 @@ The integration between Cobra and Bubble Tea is well-documented, with numerous e
 
 ## 3.1 Competitive Positioning Matrix
 
-| Feature | FORGE | Yeoman | Vite | Nx | Cursor Rules | Bolt.new |
+| Feature | Clause | Yeoman | Vite | Nx | Cursor Rules | Bolt.new |
 |---------|-------|--------|------|-----|--------------|----------|
 | AI Governance Layer | ✅ Native | ❌ None | ❌ None | ⚠️ Limited | ✅ IDE-specific | ❌ None |
 | Cross-Language Support | ✅ Full | ⚠️ JS-centric | ⚠️ Frontend only | ⚠️ JS/TS only | ✅ Universal | ⚠️ Web only |
@@ -263,9 +263,9 @@ Yeoman's JavaScript-centric architecture creates friction for polyglot developme
 
 The generator maintenance problem represents a significant weakness. Many generators in the ecosystem are outdated, supporting framework versions that are multiple major releases behind current standards. This maintenance gap means developers cannot always rely on generators to produce modern project structures.
 
-Most critically from FORGE's perspective, Yeoman has no concept of AI governance. Generated projects are static structures that provide no guidance for AI coding assistants. This gap directly aligns with FORGE's core value proposition.
+Most critically from Clause's perspective, Yeoman has no concept of AI governance. Generated projects are static structures that provide no guidance for AI coding assistants. This gap directly aligns with Clause's core value proposition.
 
-**Why Yeoman Doesn't Solve FORGE's Problem**
+**Why Yeoman Doesn't Solve Clause's Problem**
 
 Yeoman was designed for a pre-AI development era. Its architecture assumes that once a project is generated, human developers will make all subsequent modifications. The generator model produces files but does not establish behavioral constraints governing how those files should be modified.
 
@@ -291,11 +291,11 @@ Cursor Rules is fundamentally IDE-specific. Rules defined for Cursor have no eff
 
 The rule application is also implicit rather than explicit. There is no verification that the AI has actually followed defined rules, and no mechanism for enforcing rule compliance beyond the AI's interpretation. Violations may go undetected until code review or production issues.
 
-**Gaps FORGE Can Exploit**
+**Gaps Clause Can Exploit**
 
-FORGE can position itself as the universal governance layer that works across all AI tools, not just a single IDE. By generating governance files that are tool-agnostic, FORGE provides value regardless of which AI assistant a team uses.
+Clause can position itself as the universal governance layer that works across all AI tools, not just a single IDE. By generating governance files that are tool-agnostic, Clause provides value regardless of which AI assistant a team uses.
 
-Additionally, FORGE can provide explicit verification mechanisms that check for rule compliance, rather than relying solely on AI interpretation. This verification layer addresses the enforcement gap that Cursor Rules leaves open.
+Additionally, Clause can provide explicit verification mechanisms that check for rule compliance, rather than relying solely on AI interpretation. This verification layer addresses the enforcement gap that Cursor Rules leaves open.
 
 ### 3.2.3 Nx: Monorepo Sophistication
 
@@ -317,9 +317,9 @@ Nx carries significant complexity overhead. The learning curve is steep, and the
 
 The AI integration features focus on generation acceleration rather than behavioral governance. While Nx can generate code quickly with AI assistance, it does not establish persistent constraints governing how AI should operate within generated code.
 
-**Gaps FORGE Can Exploit**
+**Gaps Clause Can Exploit**
 
-FORGE can complement Nx by adding AI governance layers to Nx workspaces. Rather than competing directly, FORGE could provide governance modules specifically designed for Nx projects, addressing the governance gap that Nx leaves open.
+Clause can complement Nx by adding AI governance layers to Nx workspaces. Rather than competing directly, Clause could provide governance modules specifically designed for Nx projects, addressing the governance gap that Nx leaves open.
 
 ### 3.2.4 Claude Code: Terminal-Native AI
 
@@ -341,17 +341,17 @@ Claude Code lacks explicit governance mechanisms for constraining AI behavior. W
 
 The tool's power also creates risk. Without governance constraints, Claude Code's deep capabilities can introduce unintended changes, violate architectural patterns, or create technical debt through inconsistent modifications.
 
-**Gaps FORGE Can Exploit**
+**Gaps Clause Can Exploit**
 
-FORGE can provide the governance layer that Claude Code lacks. By generating structured governance files that Claude Code naturally discovers during codebase exploration, FORGE can guide Claude Code's powerful capabilities toward project-aligned outcomes.
+Clause can provide the governance layer that Claude Code lacks. By generating structured governance files that Claude Code naturally discovers during codebase exploration, Clause can guide Claude Code's powerful capabilities toward project-aligned outcomes.
 
-The terminal-native nature of both tools creates natural synergy. FORGE's CLI interface could include direct integration with Claude Code, automatically injecting governance context into Claude Code sessions.
+The terminal-native nature of both tools creates natural synergy. Clause's CLI interface could include direct integration with Claude Code, automatically injecting governance context into Claude Code sessions.
 
 ## 3.3 Competitive Strategy Summary
 
 The competitive landscape analysis reveals a clear market gap: no existing solution provides comprehensive AI governance that works across all AI tools and all development environments. Yeoman provides scaffolding without governance. Cursor Rules provides governance but only within Cursor IDE. Nx provides monorepo management without AI governance. Claude Code provides powerful AI assistance without constraint mechanisms.
 
-FORGE's competitive positioning leverages this gap through universal applicability (governance that works with any AI tool), comprehensive scope (frontend, backend, infrastructure in unified scaffolding), and the novel Brainstorm.md self-reflection mechanism that enables autonomous AI problem-solving within defined constraints.
+Clause's competitive positioning leverages this gap through universal applicability (governance that works with any AI tool), comprehensive scope (frontend, backend, infrastructure in unified scaffolding), and the novel Brainstorm.md self-reflection mechanism that enables autonomous AI problem-solving within defined constraints.
 
 ---
 
@@ -359,7 +359,7 @@ FORGE's competitive positioning leverages this gap through universal applicabili
 
 ## 4.1 System Architecture Overview
 
-The FORGE system architecture comprises five primary layers: the Command Interface Layer, the Configuration Engine, the Template Processing System, the File Generation Pipeline, and the AI Governance Framework. Each layer has specific responsibilities and clear interfaces with adjacent layers, enabling modular development and future extensibility.
+The Clause system architecture comprises five primary layers: the Command Interface Layer, the Configuration Engine, the Template Processing System, the File Generation Pipeline, and the AI Governance Framework. Each layer has specific responsibilities and clear interfaces with adjacent layers, enabling modular development and future extensibility.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -412,20 +412,20 @@ The Command Interface Layer builds upon Cobra for command parsing, leveraging it
 **Root Command Structure**
 
 ```
-forge [global flags] <command> [command flags] [arguments]
+Clause [global flags] <command> [command flags] [arguments]
 ```
 
 **Core Commands**
 
-The `forge init` command initializes a new project with interactive configuration. It presents a rich TUI wizard guiding users through frontend, backend, infrastructure, and AI governance configuration. The command accepts optional flags for non-interactive mode, enabling CI/CD integration and automation scenarios.
+The `Clause init` command initializes a new project with interactive configuration. It presents a rich TUI wizard guiding users through frontend, backend, infrastructure, and AI governance configuration. The command accepts optional flags for non-interactive mode, enabling CI/CD integration and automation scenarios.
 
-The `forge add` command adds new components to existing projects, supporting additions of frontend components, backend modules, infrastructure configurations, and AI governance rules. The command integrates with the component registry to maintain consistency across project evolution.
+The `Clause add` command adds new components to existing projects, supporting additions of frontend components, backend modules, infrastructure configurations, and AI governance rules. The command integrates with the component registry to maintain consistency across project evolution.
 
-The `forge update` command updates the FORGE tool itself, checking GitHub releases for new versions and performing atomic self-update. The command supports version pinning for enterprise environments requiring controlled updates.
+The `Clause update` command updates the Clause tool itself, checking GitHub releases for new versions and performing atomic self-update. The command supports version pinning for enterprise environments requiring controlled updates.
 
-The `forge validate` command validates project compliance with FORGE governance rules, checking that all AI modifications conform to established constraints. The command provides detailed reports on violations and suggested corrections.
+The `Clause validate` command validates project compliance with Clause governance rules, checking that all AI modifications conform to established constraints. The command provides detailed reports on violations and suggested corrections.
 
-The `forge config` command manages FORGE configuration, supporting global defaults, project-specific overrides, and team-shared configuration through configuration files.
+The `Clause config` command manages Clause configuration, supporting global defaults, project-specific overrides, and team-shared configuration through configuration files.
 
 ### 4.2.2 Bubble Tea TUI Engine
 
@@ -481,15 +481,15 @@ Configuration is persisted in multiple layers following the principle of cascadi
 
 **Global Configuration**
 
-Global configuration resides in the user's home directory (~/.forge/config.yaml) and provides default values applied to all projects. Global configuration is suitable for developer preferences that should persist across projects.
+Global configuration resides in the user's home directory (~/.Clause/config.yaml) and provides default values applied to all projects. Global configuration is suitable for developer preferences that should persist across projects.
 
 **Project Configuration**
 
-Project configuration resides within the project directory (.forge/config.yaml) and overrides global configuration for project-specific settings. Project configuration is suitable for team-shared settings committed to version control.
+Project configuration resides within the project directory (.Clause/config.yaml) and overrides global configuration for project-specific settings. Project configuration is suitable for team-shared settings committed to version control.
 
 **Environment Configuration**
 
-Environment configuration through environment variables (FORGE_*) provides runtime overrides for CI/CD and containerized environments. Environment configuration has the highest priority and overrides all file-based configuration.
+Environment configuration through environment variables (Clause_*) provides runtime overrides for CI/CD and containerized environments. Environment configuration has the highest priority and overrides all file-based configuration.
 
 ### 4.3.3 Interactive Wizard Engine
 
@@ -515,7 +515,7 @@ Templates are organized in a hierarchical registry supporting multiple template 
 
 **Embedded Templates**
 
-Core templates are embedded in the FORGE binary, ensuring availability without external dependencies. Embedded templates cover the most common project configurations and are versioned with the FORGE release.
+Core templates are embedded in the Clause binary, ensuring availability without external dependencies. Embedded templates cover the most common project configurations and are versioned with the Clause release.
 
 **Remote Templates**
 
@@ -523,11 +523,11 @@ Remote templates are loaded from Git repositories, enabling community contributi
 
 **Local Templates**
 
-Local templates in the project's .forge/templates directory enable project-specific customization. Local templates override embedded and remote templates when present.
+Local templates in the project's .Clause/templates directory enable project-specific customization. Local templates override embedded and remote templates when present.
 
 ### 4.4.2 Template DSL
 
-The template processing uses a domain-specific language combining familiar templating constructs with FORGE-specific capabilities:
+The template processing uses a domain-specific language combining familiar templating constructs with Clause-specific capabilities:
 
 **Variable Substitution**
 
@@ -547,11 +547,11 @@ Special directives enable file operations including file creation, symbolic link
 
 ### 4.4.3 Plugin System Architecture
 
-The plugin system enables extension of FORGE capabilities without modifying core code:
+The plugin system enables extension of Clause capabilities without modifying core code:
 
 **Plugin Interface**
 
-Plugins implement a defined interface including initialization, template contribution, and hook registration. The interface enables plugins to integrate seamlessly with FORGE's processing pipeline.
+Plugins implement a defined interface including initialization, template contribution, and hook registration. The interface enables plugins to integrate seamlessly with Clause's processing pipeline.
 
 **Plugin Discovery**
 
@@ -663,7 +663,7 @@ The registry is stored as a structured file (components.json) within the ai_prom
 
 **Automatic Updates**
 
-The registry is updated automatically when new components are created through FORGE's add command. AI assistants are instructed to update the registry when creating components manually.
+The registry is updated automatically when new components are created through Clause's add command. AI assistants are instructed to update the registry when creating components manually.
 
 **Query Interface**
 
@@ -687,11 +687,11 @@ Context windows represent a finite resource that must be managed efficiently. Di
 
 **Context Window Considerations**
 
-GPT-4 models support up to 128,000 tokens, Claude models support up to 200,000 tokens, and local models may have more limited context windows. FORGE's governance prompts must be efficient enough to leave adequate context for actual development work while providing comprehensive guidance.
+GPT-4 models support up to 128,000 tokens, Claude models support up to 200,000 tokens, and local models may have more limited context windows. Clause's governance prompts must be efficient enough to leave adequate context for actual development work while providing comprehensive guidance.
 
 **Hierarchical Prompt Architecture**
 
-FORGE implements a hierarchical prompt architecture where core governance rules (always applicable) are distinguished from context-specific rules (applied based on file type, feature area, or task type). This hierarchy enables efficient context usage by loading only relevant rules for each operation.
+Clause implements a hierarchical prompt architecture where core governance rules (always applicable) are distinguished from context-specific rules (applied based on file type, feature area, or task type). This hierarchy enables efficient context usage by loading only relevant rules for each operation.
 
 **Compression Strategies**
 
@@ -895,31 +895,31 @@ Compliance trends over time identify systemic issues that may indicate governanc
 
 ## 6.1 Design Philosophy
 
-The FORGE user experience is guided by three core principles: Premium Feel, Progressive Disclosure, and Respect for Developer Workflow.
+The Clause user experience is guided by three core principles: Premium Feel, Progressive Disclosure, and Respect for Developer Workflow.
 
 ### 6.1.1 Premium Feel
 
-Modern developers expect polished experiences from the tools they use daily. FORGE's terminal interface demonstrates that CLI tools can be beautiful, responsive, and delightful without sacrificing the efficiency that makes command-line interfaces valuable.
+Modern developers expect polished experiences from the tools they use daily. Clause's terminal interface demonstrates that CLI tools can be beautiful, responsive, and delightful without sacrificing the efficiency that makes command-line interfaces valuable.
 
 **Visual Design Elements**
 
-FORGE uses Lip Gloss's styling capabilities to create visual hierarchy through typography, color, and spacing. Headers use bold, colored text that stands out from body content. Success states use green tones, warnings use yellow, and errors use red. This consistent color language enables quick visual parsing of output.
+Clause uses Lip Gloss's styling capabilities to create visual hierarchy through typography, color, and spacing. Headers use bold, colored text that stands out from body content. Success states use green tones, warnings use yellow, and errors use red. This consistent color language enables quick visual parsing of output.
 
 **Animation and Motion**
 
-Subtle animations enhance perceived responsiveness. Progress indicators use smooth animations rather than static spinners. Transitions between wizard screens use fade or slide effects. These animations communicate that FORGE is actively working, reducing uncertainty during processing.
+Subtle animations enhance perceived responsiveness. Progress indicators use smooth animations rather than static spinners. Transitions between wizard screens use fade or slide effects. These animations communicate that Clause is actively working, reducing uncertainty during processing.
 
 **Branded Moments**
 
-Key moments in the FORGE experience include branded elements that reinforce identity. The initial launch displays a stylized FORGE logo. Successful project initialization includes a celebratory animation. These moments create emotional connection with the tool.
+Key moments in the Clause experience include branded elements that reinforce identity. The initial launch displays a stylized Clause logo. Successful project initialization includes a celebratory animation. These moments create emotional connection with the tool.
 
 ### 6.1.2 Progressive Disclosure
 
-FORGE presents complexity progressively, revealing advanced options only when needed while keeping common workflows simple:
+Clause presents complexity progressively, revealing advanced options only when needed while keeping common workflows simple:
 
 **Default Paths**
 
-For common project types, FORGE provides quick-start paths that require minimal input. A developer creating a Next.js + FastAPI project can proceed through the wizard with few decisions, relying on sensible defaults.
+For common project types, Clause provides quick-start paths that require minimal input. A developer creating a Next.js + FastAPI project can proceed through the wizard with few decisions, relying on sensible defaults.
 
 **Advanced Options**
 
@@ -931,29 +931,29 @@ Help is available at every point through keyboard shortcuts or clickable hints. 
 
 ### 6.1.3 Respect for Developer Workflow
 
-FORGE integrates with existing developer workflows rather than requiring workflow changes:
+Clause integrates with existing developer workflows rather than requiring workflow changes:
 
 **Non-Interactive Mode**
 
-All FORGE operations support non-interactive execution through flags and configuration files. Non-interactive mode enables CI/CD integration, scripting, and automation.
+All Clause operations support non-interactive execution through flags and configuration files. Non-interactive mode enables CI/CD integration, scripting, and automation.
 
 **Incremental Adoption**
 
-FORGE can be adopted incrementally. Projects can start with minimal governance and add constraints over time. The component registry can be populated retroactively for existing projects.
+Clause can be adopted incrementally. Projects can start with minimal governance and add constraints over time. The component registry can be populated retroactively for existing projects.
 
 **IDE Independence**
 
-FORGE operates independently of any IDE, working equally well with VS Code, JetBrains IDEs, Vim, or any other development environment. This independence ensures FORGE fits into any developer's existing toolchain.
+Clause operates independently of any IDE, working equally well with VS Code, JetBrains IDEs, Vim, or any other development environment. This independence ensures Clause fits into any developer's existing toolchain.
 
 ## 6.2 Interface Design Specifications
 
 ### 6.2.1 Color System
 
-FORGE uses a carefully designed color system that works across terminal capabilities:
+Clause uses a carefully designed color system that works across terminal capabilities:
 
 **Primary Palette**
 
-The primary palette includes FORGE Orange (#FF6B35), used for brand elements and highlights; Deep Navy (#1A1B26), used for backgrounds in dark mode; Pure White (#FFFFFF), used for backgrounds in light mode; and Slate Gray (#4B5563), used for secondary text and borders.
+The primary palette includes Clause Orange (#FF6B35), used for brand elements and highlights; Deep Navy (#1A1B26), used for backgrounds in dark mode; Pure White (#FFFFFF), used for backgrounds in light mode; and Slate Gray (#4B5563), used for secondary text and borders.
 
 **Semantic Colors**
 
@@ -961,11 +961,11 @@ Semantic colors include Success Green (#10B981), Warning Amber (#F59E0B), Error 
 
 **Adaptive System**
 
-The color system adapts to terminal color scheme detection. In terminals with dark backgrounds, FORGE uses its dark color scheme; in terminals with light backgrounds, FORGE adjusts colors for optimal contrast.
+The color system adapts to terminal color scheme detection. In terminals with dark backgrounds, Clause uses its dark color scheme; in terminals with light backgrounds, Clause adjusts colors for optimal contrast.
 
 ### 6.2.2 Typography
 
-Terminal typography is constrained by available fonts, but FORGE maximizes typographic expression:
+Terminal typography is constrained by available fonts, but Clause maximizes typographic expression:
 
 **Hierarchy**
 
@@ -973,11 +973,11 @@ Visual hierarchy is created through font weight (bold vs regular), color (primar
 
 **Monospace Optimization**
 
-All text uses monospace fonts, which are assumed to be available in terminals. FORGE's layouts are optimized for common monospace fonts like JetBrains Mono, Fira Code, and Consolas.
+All text uses monospace fonts, which are assumed to be available in terminals. Clause's layouts are optimized for common monospace fonts like JetBrains Mono, Fira Code, and Consolas.
 
 **Unicode Characters**
 
-Unicode characters are used sparingly for icons and symbols, with fallbacks for terminals with limited Unicode support. The graceful degradation ensures FORGE works in all terminal environments.
+Unicode characters are used sparingly for icons and symbols, with fallbacks for terminals with limited Unicode support. The graceful degradation ensures Clause works in all terminal environments.
 
 ### 6.2.3 Layout System
 
@@ -985,11 +985,11 @@ The layout system adapts to terminal dimensions:
 
 **Grid System**
 
-FORGE uses a conceptual grid system for layout alignment. Elements align to grid columns, creating visual consistency across different screens and terminal sizes.
+Clause uses a conceptual grid system for layout alignment. Elements align to grid columns, creating visual consistency across different screens and terminal sizes.
 
 **Responsive Breakpoints**
 
-Three breakpoints (compact, standard, wide) trigger layout changes. Responsive design ensures FORGE is usable in all terminal sizes, from small terminal windows to full-screen terminal applications.
+Three breakpoints (compact, standard, wide) trigger layout changes. Responsive design ensures Clause is usable in all terminal sizes, from small terminal windows to full-screen terminal applications.
 
 **Spacing Scale**
 
@@ -1003,7 +1003,7 @@ The configuration wizard presents information across multiple focused screens:
 
 **Welcome Screen**
 
-The welcome screen introduces FORGE with branded imagery, explains the initialization process, and offers quick-start options for common project types or custom configuration.
+The welcome screen introduces Clause with branded imagery, explains the initialization process, and offers quick-start options for common project types or custom configuration.
 
 **Project Metadata Screen**
 
@@ -1063,7 +1063,7 @@ Upon completion, summary statistics display the number of files created, directo
 
 ### 6.4.2 Logging Levels
 
-FORGE supports multiple logging levels for different use cases:
+Clause supports multiple logging levels for different use cases:
 
 **Quiet Mode (-q)**
 
@@ -1075,11 +1075,11 @@ Normal mode shows progress information, warnings, and errors. This mode is suita
 
 **Verbose Mode (-v)**
 
-Verbose mode adds detailed information about each operation. This mode is suitable for debugging or understanding FORGE's behavior.
+Verbose mode adds detailed information about each operation. This mode is suitable for debugging or understanding Clause's behavior.
 
 **Debug Mode (-vv)**
 
-Debug mode includes internal processing details useful for FORGE development or troubleshooting complex issues.
+Debug mode includes internal processing details useful for Clause development or troubleshooting complex issues.
 
 ---
 
@@ -1087,27 +1087,27 @@ Debug mode includes internal processing details useful for FORGE development or 
 
 ## 7.1 Name Analysis and Recommendation
 
-### 7.1.1 Primary Recommendation: FORGE
+### 7.1.1 Primary Recommendation: Clause
 
 **Name Rationale**
 
-FORGE captures the essence of the tool's purpose: creating strong, durable, well-structured projects through deliberate craftsmanship. The word evokes associations with metalworking, where raw materials are transformed into refined, purposeful tools through skill and heat. This metaphor aligns with what FORGE does: taking raw project ideas and shaping them into production-ready code structures.
+Clause captures the essence of the tool's purpose: creating strong, durable, well-structured projects through deliberate craftsmanship. The word evokes associations with metalworking, where raw materials are transformed into refined, purposeful tools through skill and heat. This metaphor aligns with what Clause does: taking raw project ideas and shaping them into production-ready code structures.
 
-The name FORGE is short (five letters), memorable, and pronounceable across languages. It works well as both a product name and a CLI command: `forge init`, `forge add`, `forge update`. The command syntax feels natural and intuitive.
+The name Clause is short (five letters), memorable, and pronounceable across languages. It works well as both a product name and a CLI command: `Clause init`, `Clause add`, `Clause update`. The command syntax feels natural and intuitive.
 
 **Domain and Handle Availability**
 
-The exact match domains (forge.dev, forgecli.dev, forge-tool.dev) should be evaluated for availability. The GitHub organization github.com/forge-dev or github.com/forge-cli should be secured. Social media handles (@forgecli, @forgedev) should be claimed across platforms.
+The exact match domains (Clause.dev, Clausecli.dev, Clause-tool.dev) should be evaluated for availability. The GitHub organization github.com/Clause-dev or github.com/Clause-cli should be secured. Social media handles (@Clausecli, @Clausedev) should be claimed across platforms.
 
 **Trademark Considerations**
 
-Trademark search is required to ensure FORGE does not conflict with existing software trademarks. The name is common in English, which may create trademark challenges. Alternative names should be prepared as backup options.
+Trademark search is required to ensure Clause does not conflict with existing software trademarks. The name is common in English, which may create trademark challenges. Alternative names should be prepared as backup options.
 
 ### 7.1.2 Alternative Names
 
 **SCAFFOLD**
 
-SCAFFOLD directly describes the tool's function but lacks the craftsmanship connotation of FORGE. The name is also used by various existing tools, potentially causing confusion.
+SCAFFOLD directly describes the tool's function but lacks the craftsmanship connotation of Clause. The name is also used by various existing tools, potentially causing confusion.
 
 **BLUEPRINT**
 
@@ -1127,7 +1127,7 @@ CRAFT is short and memorable but has verb/noun ambiguity that may cause confusio
 
 **Logo Concept**
 
-The FORGE logo combines a stylized anvil (representing the forge workspace) with a code bracket (representing software development). The combination creates a unique mark that communicates both traditional craftsmanship and modern technology.
+The Clause logo combines a stylized anvil (representing the Clause workspace) with a code bracket (representing software development). The combination creates a unique mark that communicates both traditional craftsmanship and modern technology.
 
 **Logo Variations**
 
@@ -1135,7 +1135,7 @@ Logo variations include a full mark (anvil + bracket + wordmark) for headers and
 
 **Color Usage**
 
-The primary brand color (FORGE Orange #FF6B35) is used for highlights, call-to-action elements, and brand moments. The secondary colors (Navy, White, Slate) provide the foundation for backgrounds, text, and borders.
+The primary brand color (Clause Orange #FF6B35) is used for highlights, call-to-action elements, and brand moments. The secondary colors (Navy, White, Slate) provide the foundation for backgrounds, text, and borders.
 
 ### 7.2.2 Verbal Identity
 
@@ -1145,25 +1145,25 @@ The primary brand color (FORGE Orange #FF6B35) is used for highlights, call-to-a
 
 **Brand Voice**
 
-The FORGE brand voice is confident without being arrogant, technical without being jargon-heavy, and helpful without being condescending. The voice reflects the perspective of an experienced developer sharing best practices with colleagues.
+The Clause brand voice is confident without being arrogant, technical without being jargon-heavy, and helpful without being condescending. The voice reflects the perspective of an experienced developer sharing best practices with colleagues.
 
 **Key Messages**
 
-Key messages for different audiences include: for individual developers, "FORGE helps you build projects that AI understands," for teams, "FORGE ensures consistent architecture across your codebase," and for enterprises, "FORGE provides governance for AI-assisted development at scale."
+Key messages for different audiences include: for individual developers, "Clause helps you build projects that AI understands," for teams, "Clause ensures consistent architecture across your codebase," and for enterprises, "Clause provides governance for AI-assisted development at scale."
 
 ## 7.3 Brand Positioning
 
 ### 7.3.1 Positioning Statement
 
-FORGE is the AI-native project scaffolding tool for developers who want their AI coding assistants to produce consistent, maintainable, architecturally sound code. Unlike traditional scaffolding tools that create static folder structures, FORGE establishes behavioral governance that guides AI assistants toward project-aligned outcomes.
+Clause is the AI-native project scaffolding tool for developers who want their AI coding assistants to produce consistent, maintainable, architecturally sound code. Unlike traditional scaffolding tools that create static folder structures, Clause establishes behavioral governance that guides AI assistants toward project-aligned outcomes.
 
 ### 7.3.2 Competitive Differentiation
 
-FORGE differentiates from Yeoman through AI-native design, from Cursor Rules through universal applicability, from Nx through lighter weight and broader scope, and from Bolt.new through governance focus rather than generation focus.
+Clause differentiates from Yeoman through AI-native design, from Cursor Rules through universal applicability, from Nx through lighter weight and broader scope, and from Bolt.new through governance focus rather than generation focus.
 
 ### 7.3.3 Market Positioning
 
-FORGE positions itself as essential infrastructure for AI-assisted development, complementing rather than replacing existing tools. Developers use FORGE alongside their preferred AI assistant, IDE, and deployment platform, with FORGE providing the governance layer that ties these tools together.
+Clause positions itself as essential infrastructure for AI-assisted development, complementing rather than replacing existing tools. Developers use Clause alongside their preferred AI assistant, IDE, and deployment platform, with Clause providing the governance layer that ties these tools together.
 
 ---
 
@@ -1173,27 +1173,27 @@ FORGE positions itself as essential infrastructure for AI-assisted development, 
 
 ### 8.1.1 Core Product (Open Source)
 
-The core FORGE product is released as open source under a permissive license (MIT or Apache 2.0). The open source release includes all essential scaffolding capabilities, AI governance features, standard templates, and community plugin support.
+The core Clause product is released as open source under a permissive license (MIT or Apache 2.0). The open source release includes all essential scaffolding capabilities, AI governance features, standard templates, and community plugin support.
 
 **Rationale for Open Core**
 
-Open source release maximizes adoption by removing barriers to entry. Developers can try FORGE without cost, integrate it into their workflows, and contribute improvements back to the project. The broad adoption creates network effects that benefit the commercial offerings.
+Open source release maximizes adoption by removing barriers to entry. Developers can try Clause without cost, integrate it into their workflows, and contribute improvements back to the project. The broad adoption creates network effects that benefit the commercial offerings.
 
 **Community Building**
 
-Open source release enables community contribution of templates, plugins, and governance rules. The community extends FORGE's capabilities faster than internal development could achieve alone. Community contributions also validate product-market fit and identify priority features.
+Open source release enables community contribution of templates, plugins, and governance rules. The community extends Clause's capabilities faster than internal development could achieve alone. Community contributions also validate product-market fit and identify priority features.
 
 ### 8.1.2 Commercial Extensions
 
 Commercial extensions provide advanced features for professional and enterprise users:
 
-**FORGE Pro**
+**Clause Pro**
 
-FORGE Pro adds advanced features including team collaboration (shared project templates and governance rules), cloud sync (project configurations synchronized across devices), priority templates (early access to new templates), and advanced governance (compliance verification, audit trails, rule analytics). Pricing: $19/month per developer.
+Clause Pro adds advanced features including team collaboration (shared project templates and governance rules), cloud sync (project configurations synchronized across devices), priority templates (early access to new templates), and advanced governance (compliance verification, audit trails, rule analytics). Pricing: $19/month per developer.
 
-**FORGE Enterprise**
+**Clause Enterprise**
 
-FORGE Enterprise adds enterprise features including SSO integration (SAML, OIDC), audit logging (comprehensive logs for compliance), custom branding (white-label FORGE for organization), dedicated support (priority response, implementation assistance), and on-premise deployment (self-hosted option for air-gapped environments). Pricing: Custom enterprise pricing.
+Clause Enterprise adds enterprise features including SSO integration (SAML, OIDC), audit logging (comprehensive logs for compliance), custom branding (white-label Clause for organization), dedicated support (priority response, implementation assistance), and on-premise deployment (self-hosted option for air-gapped environments). Pricing: Custom enterprise pricing.
 
 ## 8.2 Template Marketplace
 
@@ -1207,7 +1207,7 @@ Creators submit templates through a review process that verifies quality, securi
 
 **Revenue Sharing**
 
-Paid templates generate revenue shared between the creator and FORGE. A standard split (e.g., 70% creator, 30% FORGE) incentivizes quality template creation while supporting FORGE development.
+Paid templates generate revenue shared between the creator and Clause. A standard split (e.g., 70% creator, 30% Clause) incentivizes quality template creation while supporting Clause development.
 
 **Free Templates**
 
@@ -1233,23 +1233,23 @@ Professional services provide implementation support for organizations:
 
 **Implementation Packages**
 
-Implementation packages include FORGE deployment, custom template development, governance rule customization, and team training. Packages are scoped based on organization size and requirements.
+Implementation packages include Clause deployment, custom template development, governance rule customization, and team training. Packages are scoped based on organization size and requirements.
 
 **Consulting**
 
-Consulting engagements provide ongoing advisory support for AI-assisted development practices, architecture governance, and FORGE optimization.
+Consulting engagements provide ongoing advisory support for AI-assisted development practices, architecture governance, and Clause optimization.
 
 ### 8.3.2 Training and Certification
 
-Training programs develop FORGE expertise:
+Training programs develop Clause expertise:
 
 **Developer Training**
 
-Developer training covers FORGE fundamentals, advanced features, template development, and governance rule authoring. Training is available as self-paced courses or instructor-led workshops.
+Developer training covers Clause fundamentals, advanced features, template development, and governance rule authoring. Training is available as self-paced courses or instructor-led workshops.
 
 **Certification**
 
-Certification validates FORGE expertise through examination. Certified FORGE Developers demonstrate proficiency that employers can trust.
+Certification validates Clause expertise through examination. Certified Clause Developers demonstrate proficiency that employers can trust.
 
 ## 8.4 Revenue Projections
 
@@ -1257,13 +1257,13 @@ Certification validates FORGE expertise through examination. Certified FORGE Dev
 
 Year 1 focuses on adoption and community building with minimal revenue expectation. Open source growth metrics (GitHub stars, npm downloads, community engagement) are primary success measures.
 
-Year 2 introduces commercial offerings with revenue targets: FORGE Pro targeting 1,000 subscribers at $19/month ($228K ARR), Template marketplace targeting $100K gross merchandise value, and Professional services targeting $150K revenue.
+Year 2 introduces commercial offerings with revenue targets: Clause Pro targeting 1,000 subscribers at $19/month ($228K ARR), Template marketplace targeting $100K gross merchandise value, and Professional services targeting $150K revenue.
 
 ### 8.4.2 Year 3-5 Projections (Scale Phase)
 
-Year 3 scales commercial offerings with revenue targets: FORGE Pro growing to 5,000 subscribers ($1.14M ARR), FORGE Enterprise launching with 10 enterprise customers ($500K ARR), and Template marketplace growing to $500K GMV.
+Year 3 scales commercial offerings with revenue targets: Clause Pro growing to 5,000 subscribers ($1.14M ARR), Clause Enterprise launching with 10 enterprise customers ($500K ARR), and Template marketplace growing to $500K GMV.
 
-Years 4-5 achieve market leadership with FORGE Pro reaching 15,000 subscribers ($3.4M ARR), FORGE Enterprise reaching 50 customers ($5M ARR), and Template marketplace reaching $2M GMV.
+Years 4-5 achieve market leadership with Clause Pro reaching 15,000 subscribers ($3.4M ARR), Clause Enterprise reaching 50 customers ($5M ARR), and Template marketplace reaching $2M GMV.
 
 ---
 
@@ -1276,7 +1276,7 @@ Years 4-5 achieve market leadership with FORGE Pro reaching 15,000 subscribers (
 The primary installation method for Unix-like systems (macOS, Linux):
 
 ```bash
-curl -fsSL https://forge.dev/install.sh | bash
+curl -fsSL https://Clause.dev/install.sh | bash
 ```
 
 **Installation Script Features**
@@ -1292,19 +1292,19 @@ The installation script is served over HTTPS, the script is signed and verifiabl
 Homebrew installation for macOS and Linux users:
 
 ```bash
-brew install forge-cli/tap/forge
+brew install Clause-cli/tap/Clause
 ```
 
 **Homebrew Tap Maintenance**
 
-A dedicated Homebrew tap (forge-cli/tap) provides the FORGE formula. The formula is updated automatically with each release through GoReleaser integration. The tap includes proper dependencies and post-install configuration.
+A dedicated Homebrew tap (Clause-cli/tap) provides the Clause formula. The formula is updated automatically with each release through GoReleaser integration. The tap includes proper dependencies and post-install configuration.
 
 ### 9.1.3 Winget (Windows)
 
 Windows Package Manager installation for Windows users:
 
 ```bash
-winget install Forge.ForgeCLI
+winget install Clause.ClauseCLI
 ```
 
 **Winget Manifest Maintenance**
@@ -1316,8 +1316,8 @@ Winget manifests are automatically generated and submitted through GoReleaser. T
 Scoop installation for Windows users who prefer Scoop:
 
 ```bash
-scoop bucket add forge-cli https://github.com/forge-cli/scoop-bucket
-scoop install forge
+scoop bucket add Clause-cli https://github.com/Clause-cli/scoop-bucket
+scoop install Clause
 ```
 
 ### 9.1.5 APT (Debian/Ubuntu)
@@ -1325,10 +1325,10 @@ scoop install forge
 APT installation for Debian-based Linux distributions:
 
 ```bash
-curl -fsSL https://forge.dev/apt/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/forge.gpg
-echo "deb [signed-by=/usr/share/keyrings/forge.gpg] https://forge.dev/apt stable main" | sudo tee /etc/apt/sources.list.d/forge.list
+curl -fsSL https://Clause.dev/apt/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/Clause.gpg
+echo "deb [signed-by=/usr/share/keyrings/Clause.gpg] https://Clause.dev/apt stable main" | sudo tee /etc/apt/sources.list.d/Clause.list
 sudo apt update
-sudo apt install forge
+sudo apt install Clause
 ```
 
 ### 9.1.6 Direct Binary Download
@@ -1409,11 +1409,11 @@ Target binary sizes (uncompressed): macOS (12MB), Linux (11MB), and Windows (11M
 
 ### 9.4.1 Update Architecture
 
-FORGE includes a self-update mechanism for seamless version updates:
+Clause includes a self-update mechanism for seamless version updates:
 
 **Version Checking**
 
-The forge update command checks GitHub Releases API for the latest version. Version comparison determines if an update is available.
+The Clause update command checks GitHub Releases API for the latest version. Version comparison determines if an update is available.
 
 **Binary Download**
 
@@ -1467,7 +1467,7 @@ Checksums are provided in multiple formats (SHA256, SHA512) for user verificatio
 
 **Checksum Signing**
 
-Checksum files are signed with the FORGE release key, enabling GPG verification.
+Checksum files are signed with the Clause release key, enabling GPG verification.
 
 ---
 
@@ -1479,17 +1479,17 @@ Checksum files are signed with the FORGE release key, enabling GPG verification.
 
 **Risk Description**
 
-The developer tools market is increasingly crowded, with numerous scaffolding tools, AI assistants, and governance solutions competing for developer attention. The risk is that FORGE fails to achieve adoption despite technical merit.
+The developer tools market is increasingly crowded, with numerous scaffolding tools, AI assistants, and governance solutions competing for developer attention. The risk is that Clause fails to achieve adoption despite technical merit.
 
 **Mitigation Strategy**
 
-Differentiation through unique AI governance capabilities positions FORGE distinctively. Focus on developer experience excellence creates word-of-mouth growth. Integration partnerships with AI tool vendors expand reach.
+Differentiation through unique AI governance capabilities positions Clause distinctively. Focus on developer experience excellence creates word-of-mouth growth. Integration partnerships with AI tool vendors expand reach.
 
 ### 10.1.2 Adoption Friction Risk
 
 **Risk Description**
 
-Developers may resist adding another tool to their workflow, particularly if FORGE is perceived as adding friction without clear value. The risk is that developers try FORGE once but don't adopt it for ongoing use.
+Developers may resist adding another tool to their workflow, particularly if Clause is perceived as adding friction without clear value. The risk is that developers try Clause once but don't adopt it for ongoing use.
 
 **Mitigation Strategy**
 
@@ -1501,7 +1501,7 @@ Design for minimal friction through quick-start options, sensible defaults, and 
 
 **Risk Description**
 
-AI coding assistants are evolving rapidly. Capabilities, context handling, and integration points change frequently. The risk is that FORGE's governance mechanisms become obsolete or incompatible with future AI tools.
+AI coding assistants are evolving rapidly. Capabilities, context handling, and integration points change frequently. The risk is that Clause's governance mechanisms become obsolete or incompatible with future AI tools.
 
 **Mitigation Strategy**
 
@@ -1511,7 +1511,7 @@ Design governance as an abstraction layer that can adapt to different AI tools a
 
 **Risk Description**
 
-FORGE's governance system relies on AI context understanding. Changes in AI model pricing, particularly for large context windows, could affect the economics of FORGE's value proposition.
+Clause's governance system relies on AI context understanding. Changes in AI model pricing, particularly for large context windows, could affect the economics of Clause's value proposition.
 
 **Mitigation Strategy**
 
@@ -1523,21 +1523,21 @@ Design governance for efficiency, minimizing token usage while maintaining effec
 
 **Risk Description**
 
-Major platform vendors (Microsoft/GitHub, Google, Anthropic) could incorporate governance features directly into their AI tools, making FORGE redundant. The risk is that FORGE becomes unnecessary as platforms provide native governance.
+Major platform vendors (Microsoft/GitHub, Google, Anthropic) could incorporate governance features directly into their AI tools, making Clause redundant. The risk is that Clause becomes unnecessary as platforms provide native governance.
 
 **Mitigation Strategy**
 
-Position FORGE as a universal governance layer that works across platforms, providing value even as platforms add proprietary governance. Focus on advanced features beyond what platforms would prioritize. Build community and ecosystem that creates switching costs.
+Position Clause as a universal governance layer that works across platforms, providing value even as platforms add proprietary governance. Focus on advanced features beyond what platforms would prioritize. Build community and ecosystem that creates switching costs.
 
 ### 10.3.2 Open Source Competition Risk
 
 **Risk Description**
 
-The open source nature of FORGE's core could enable competitors to fork and commercialize variants, potentially fragmenting the market or capturing commercial value.
+The open source nature of Clause's core could enable competitors to fork and commercialize variants, potentially fragmenting the market or capturing commercial value.
 
 **Mitigation Strategy**
 
-Use a permissive license that enables adoption while building brand recognition. Focus commercial value in extensions, support, and enterprise features that are difficult to replicate. Build community engagement that creates loyalty to the official FORGE project.
+Use a permissive license that enables adoption while building brand recognition. Focus commercial value in extensions, support, and enterprise features that are difficult to replicate. Build community engagement that creates loyalty to the official Clause project.
 
 ## 10.4 Operational Risks
 
@@ -1555,7 +1555,7 @@ Design for maintainability through modular architecture and comprehensive test c
 
 **Risk Description**
 
-Bugs in FORGE could create significant problems for users, potentially generating incorrect project structures or governance rules that cause downstream issues.
+Bugs in Clause could create significant problems for users, potentially generating incorrect project structures or governance rules that cause downstream issues.
 
 **Mitigation Strategy**
 
@@ -1567,7 +1567,7 @@ Implement comprehensive automated testing including unit tests, integration test
 
 **Risk Description**
 
-Generated project structures or governance rules could inadvertently incorporate copyrighted material from templates or examples. The risk is IP infringement claims that affect FORGE or its users.
+Generated project structures or governance rules could inadvertently incorporate copyrighted material from templates or examples. The risk is IP infringement claims that affect Clause or its users.
 
 **Mitigation Strategy**
 
@@ -1577,7 +1577,7 @@ Ensure all template content is original or properly licensed. Provide clear lice
 
 **Risk Description**
 
-Vulnerabilities in FORGE could be exploited to execute arbitrary code during project generation or self-update. The risk is security incidents that damage trust and create liability.
+Vulnerabilities in Clause could be exploited to execute arbitrary code during project generation or self-update. The risk is security incidents that damage trust and create liability.
 
 **Mitigation Strategy**
 
@@ -1647,7 +1647,7 @@ Implement version checking. Implement binary download and verification. Implemen
 
 ### 11.3.1 Commercial Features
 
-**FORGE Pro (Months 7-8)**
+**Clause Pro (Months 7-8)**
 
 Implement team collaboration features. Implement cloud sync. Implement priority templates.
 
@@ -1657,7 +1657,7 @@ Implement marketplace infrastructure. Implement template submission and review. 
 
 ### 11.3.2 Enterprise Features
 
-**FORGE Enterprise (Months 11-12)**
+**Clause Enterprise (Months 11-12)**
 
 Implement SSO integration. Implement audit logging. Implement on-premise deployment option.
 
@@ -1677,7 +1677,7 @@ Expand template support to additional frameworks: Svelte, Angular, Remix, NestJS
 
 **IDE Integration**
 
-Develop VS Code extension for FORGE integration. Develop JetBrains plugin for FORGE integration. Explore integration with other popular IDEs.
+Develop VS Code extension for Clause integration. Develop JetBrains plugin for Clause integration. Explore integration with other popular IDEs.
 
 **AI Tool Integration**
 
@@ -1689,31 +1689,31 @@ Develop deep integration with Claude Code. Develop deep integration with Cursor.
 
 ## 12.1 Value Proposition Summary
 
-FORGE addresses a fundamental gap in the modern development landscape: the need for structured governance of AI coding assistants. As AI tools become ubiquitous in software development, the question is no longer whether to use AI, but how to use AI effectively and consistently. FORGE provides the governance layer that transforms raw AI capability into disciplined, project-aligned engineering output.
+Clause addresses a fundamental gap in the modern development landscape: the need for structured governance of AI coding assistants. As AI tools become ubiquitous in software development, the question is no longer whether to use AI, but how to use AI effectively and consistently. Clause provides the governance layer that transforms raw AI capability into disciplined, project-aligned engineering output.
 
-The key differentiators position FORGE uniquely in the market: AI-native design that treats governance as a first-class concern, universal applicability that works across all AI tools and development environments, comprehensive scope that addresses frontend, backend, and infrastructure in unified scaffolding, and the novel Brainstorm.md self-reflection mechanism that enables autonomous AI problem-solving within defined constraints.
+The key differentiators position Clause uniquely in the market: AI-native design that treats governance as a first-class concern, universal applicability that works across all AI tools and development environments, comprehensive scope that addresses frontend, backend, and infrastructure in unified scaffolding, and the novel Brainstorm.md self-reflection mechanism that enables autonomous AI problem-solving within defined constraints.
 
 ## 12.2 Market Opportunity Assessment
 
-The AI coding assistant market is experiencing explosive growth, with projections indicating expansion from approximately $4 billion in 2025 to over $20 billion by 2030. This growth represents not just increased usage of AI tools but fundamental transformation in how software is developed. FORGE positions itself as essential infrastructure for this AI-native development future.
+The AI coding assistant market is experiencing explosive growth, with projections indicating expansion from approximately $4 billion in 2025 to over $20 billion by 2030. This growth represents not just increased usage of AI tools but fundamental transformation in how software is developed. Clause positions itself as essential infrastructure for this AI-native development future.
 
-The competitive analysis reveals a clear gap: existing scaffolding tools lack AI governance, existing AI governance tools are platform-specific, and no solution provides comprehensive, cross-platform AI governance for project development. FORGE fills this gap with a unique combination of capabilities.
+The competitive analysis reveals a clear gap: existing scaffolding tools lack AI governance, existing AI governance tools are platform-specific, and no solution provides comprehensive, cross-platform AI governance for project development. Clause fills this gap with a unique combination of capabilities.
 
 ## 12.3 Strategic Positioning
 
-FORGE's strategic positioning emphasizes complementarity rather than competition. FORGE works alongside existing AI tools (Claude Code, Cursor, Copilot), existing IDEs (VS Code, JetBrains, Vim), and existing deployment platforms (Vercel, AWS, GCP). This complementarity enables adoption without requiring displacement of existing tools.
+Clause's strategic positioning emphasizes complementarity rather than competition. Clause works alongside existing AI tools (Claude Code, Cursor, Copilot), existing IDEs (VS Code, JetBrains, Vim), and existing deployment platforms (Vercel, AWS, GCP). This complementarity enables adoption without requiring displacement of existing tools.
 
-The open core model enables broad adoption while creating sustainable commercial opportunities through Pro features, enterprise offerings, and the template marketplace. This model aligns incentives between the FORGE team, the developer community, and commercial customers.
+The open core model enables broad adoption while creating sustainable commercial opportunities through Pro features, enterprise offerings, and the template marketplace. This model aligns incentives between the Clause team, the developer community, and commercial customers.
 
 ## 12.4 Critical Success Factors
 
 **Adoption Velocity**
 
-Success requires rapid adoption that establishes FORGE as the standard for AI project governance. Adoption velocity is driven by exceptional developer experience, clear value demonstration, and community building.
+Success requires rapid adoption that establishes Clause as the standard for AI project governance. Adoption velocity is driven by exceptional developer experience, clear value demonstration, and community building.
 
 **Governance Effectiveness**
 
-Success requires that FORGE's governance mechanisms actually improve AI-generated code quality. Effectiveness is validated through user feedback, compliance metrics, and comparison studies.
+Success requires that Clause's governance mechanisms actually improve AI-generated code quality. Effectiveness is validated through user feedback, compliance metrics, and comparison studies.
 
 **Ecosystem Growth**
 
@@ -1725,9 +1725,9 @@ Success requires sustainable development that maintains quality while evolving f
 
 ## 12.5 Final Recommendation
 
-Proceed with FORGE development following the outlined roadmap. The market opportunity is substantial, the competitive gap is clear, and the technical approach is sound. Focus initial efforts on core infrastructure and initial templates that demonstrate value, then iterate based on user feedback to expand capabilities and ecosystem.
+Proceed with Clause development following the outlined roadmap. The market opportunity is substantial, the competitive gap is clear, and the technical approach is sound. Focus initial efforts on core infrastructure and initial templates that demonstrate value, then iterate based on user feedback to expand capabilities and ecosystem.
 
-The AI-assisted development revolution is inevitable. The question is whether that revolution will be governed or ungoverned. FORGE positions itself as the essential governance layer that ensures AI coding assistants produce consistent, maintainable, architecturally sound code. This positioning is both technically achievable and strategically valuable.
+The AI-assisted development revolution is inevitable. The question is whether that revolution will be governed or ungoverned. Clause positions itself as the essential governance layer that ensures AI coding assistants produce consistent, maintainable, architecturally sound code. This positioning is both technically achievable and strategically valuable.
 
 ---
 

@@ -1683,12 +1683,12 @@ The name must work across multiple contexts:
 
 ### Alternative Options
 
-**Forge AI** (`forge`)
+**Clause AI** (`Clause`)
 - Evokes creation, craftsmanship, transformation
-- Strong verb potential ("forge a new project")
+- Strong verb potential ("Clause a new project")
 - Historic/industrial vibe suggests solidity
 - Slightly more abstract than "scaffold"
-- Risk: "Forge" is used by other dev tools (Forgit, Forge for Minecraft, etc.)
+- Risk: "Clause" is used by other dev tools (Forgit, Clause for Minecraft, etc.)
 
 **Blueprint AI** (`blueprint` or `bp`)
 - Emphasizes planning and architectural guidance
@@ -1709,8 +1709,8 @@ The name must work across multiple contexts:
 - "Seed" has database seeding connotations that could confuse
 
 **Foundry AI** (`foundry`)
-- Similar to Forge—evokes creation and craft
-- Less common than Forge in dev tools space
+- Similar to Clause—evokes creation and craft
+- Less common than Clause in dev tools space
 - Slightly longer command
 - Industrial associations suggest reliability
 

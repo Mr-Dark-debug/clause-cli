@@ -1,13 +1,13 @@
-# 🚀 FORGE CLI - Comprehensive Build Instructions for Claude Code
+# 🚀 Clause CLI - Comprehensive Build Instructions for Claude Code
 
 ---
 
 ## 📋 OVERVIEW
 
-You are tasked with building **FORGE** - a Go-based, cross-platform CLI tool for AI-native project scaffolding. This is a production-grade tool that will be distributed globally via Homebrew, Winget, APT, and direct download.
+You are tasked with building **Clause** - a Go-based, cross-platform CLI tool for AI-native project scaffolding. This is a production-grade tool that will be distributed globally via Homebrew, Winget, APT, and direct download.
 
-**Project Name:** FORGE (Framework for Organized, Reproducible, and Guided Engineering)
-**CLI Command:** `forge`
+**Project Name:** Clause (Framework for Organized, Reproducible, and Guided Engineering)
+**CLI Command:** `Clause`
 **Language:** Go 1.21+
 **Key Libraries:** Cobra (CLI framework), Bubble Tea (TUI), Lip Gloss (styling)
 
@@ -78,9 +78,9 @@ BorderAccent     = "#FF6B35"  // Accent borders
 ## 📁 PROJECT STRUCTURE - CREATE THIS EXACTLY
 
 ```
-forge/
+Clause/
 ├── cmd/
-│   └── forge/
+│   └── Clause/
 │       └── main.go                 # Entry point - minimal, just setup and execute
 │
 ├── internal/
@@ -221,7 +221,7 @@ forge/
 
 ### Step 1: Project Initialization
 
-1. Initialize the Go module: `go mod init github.com/forge-cli/forge`
+1. Initialize the Go module: `go mod init github.com/Clause-cli/Clause`
 2. Create the directory structure as shown above
 3. Add dependencies:
    - `github.com/spf13/cobra` - CLI framework
@@ -376,7 +376,7 @@ Create small, focused utility files:
 
 Build command structure using Cobra:
 
-#### 3.1 cmd/forge/main.go
+#### 3.1 cmd/Clause/main.go
 
 Keep this file MINIMAL - it should only:
 - Import the root command from internal/cmd
@@ -389,7 +389,7 @@ Keep this file MINIMAL - it should only:
 package main
 
 import (
-    "github.com/forge-cli/forge/internal/cmd"
+    "github.com/Clause-cli/Clause/internal/cmd"
     "os"
 )
 
@@ -503,7 +503,7 @@ Define the screen interface:
 Each screen should be its own file, under 200 lines:
 
 **welcome.go:**
-- Display FORGE logo with gradient colors (NOT ASCII art, use styled text/blocks)
+- Display Clause logo with gradient colors (NOT ASCII art, use styled text/blocks)
 - Quick start options as cards/buttons
 - Keyboard shortcuts displayed
 - Smooth entrance animation
@@ -614,9 +614,9 @@ Define the complete configuration structure:
 #### 5.2 internal/config/loader.go
 
 - Load from multiple sources with priority
-- Global config: ~/.forge/config.yaml
-- Project config: .forge/config.yaml
-- Environment variables: FORGE_*
+- Global config: ~/.Clause/config.yaml
+- Project config: .Clause/config.yaml
+- Environment variables: Clause_*
 - Command-line flags (highest priority)
 - Merge configs intelligently
 
@@ -664,7 +664,7 @@ Parse the template DSL:
 - Loops: {{range .Items}}...{{end}}
 - File operations: {{file "path"}}
 - Include other templates: {{template "name" .}}
-- Custom FORGE directives
+- Custom Clause directives
 
 #### 6.3 internal/template/registry.go
 
@@ -1062,13 +1062,13 @@ NOT ASCII art - use Lip Gloss to create:
 │   Next steps:                                                    │
 │                                                                  │
 │   1. cd my-awesome-project                                       │
-│   2. forge validate                                              │
+│   2. Clause validate                                              │
 │   3. Start building with AI assistance!                          │
 │                                                                  │
 │   ─────────────────────────────────────────────────────────────  │
 │                                                                  │
-│   Documentation: https://forge.dev/docs                          │
-│   Community:     https://discord.gg/forge                        │
+│   Documentation: https://Clause.dev/docs                          │
+│   Community:     https://discord.gg/Clause                        │
 │                                                                  │
 └──────────────────────────────────────────────────────────────────┘
 ```
@@ -1081,7 +1081,7 @@ Every package MUST have a doc.go file:
 
 ```go
 // Package wizard provides an interactive configuration wizard
-// for creating new projects with FORGE.
+// for creating new projects with Clause.
 //
 // The wizard uses Bubble Tea for TUI and presents a series of
 // screens for collecting configuration from the user.
@@ -1161,7 +1161,7 @@ import (
     "path/filepath"
     "testing"
     
-    "github.com/forge-cli/forge/internal/cmd"
+    "github.com/Clause-cli/Clause/internal/cmd"
 )
 
 func TestInitCommand(t *testing.T) {
@@ -1204,12 +1204,12 @@ Build in this order:
 
 The tool is complete when:
 
-1. ✅ Running `forge init` launches a beautiful, responsive TUI wizard
+1. ✅ Running `Clause init` launches a beautiful, responsive TUI wizard
 2. ✅ Completing the wizard generates a complete project structure
 3. ✅ The ai_prompt_guidelines directory contains all governance files
 4. ✅ The Brainstorm.md file is created with proper structure
-5. ✅ Running `forge validate` checks governance compliance
-6. ✅ Running `forge update` successfully updates the binary
+5. ✅ Running `Clause validate` checks governance compliance
+6. ✅ Running `Clause update` successfully updates the binary
 7. ✅ The tool works on macOS, Linux, and Windows
 8. ✅ The UI adapts to terminal size changes
 9. ✅ All code is documented with comments
@@ -1307,4 +1307,4 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 ---
 
-**Now, Claude Code: Build FORGE following these specifications. Create beautiful, modular, well-documented code. Make something developers will love to use.** 🚀
+**Now, Claude Code: Build Clause following these specifications. Create beautiful, modular, well-documented code. Make something developers will love to use.** 🚀
