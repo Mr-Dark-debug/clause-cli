@@ -1,530 +1,248 @@
+<p align="center">
+  <img src="website/assets/images/logo/forge-icon.svg" alt="Clause Logo" width="120" />
+</p>
+
 <h1 align="center">Clause CLI</h1>
 
 <p align="center">
-  <strong>Framework for Organized, Reproducible, and Guided Engineering</strong>
+  <strong>Structure Your AI's Intelligence</strong>
 </p>
 
 <p align="center">
-  AI-Native Project Scaffolding for Modern Development Teams
+  The AI-native project scaffolding tool that guides your AI coding assistant
+  to produce consistent, maintainable, architecturally sound code.
 </p>
 
 <p align="center">
-  <a href="https://github.com/clause-cli/clause/releases">
-    <img src="https://img.shields.io/github/v/release/clause-cli/clause?style=flat-square" alt="Release">
+  <a href="#-features">Features</a> •
+  <a href="#-installation">Installation</a> •
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-documentation">Documentation</a> •
+  <a href="#-contributing">Contributing</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Mr-Dark-debug/clause-cli/actions">
+    <img src="https://github.com/Mr-Dark-debug/clause-cli/workflows/CI/badge.svg" alt="CI Status" />
   </a>
-  <a href="https://github.com/clause-cli/clause/actions">
-    <img src="https://img.shields.io/github/actions/workflow/status/clause-cli/clause/release.yml?style=flat-square" alt="Build Status">
+  <a href="https://github.com/Mr-Dark-debug/clause-cli/releases">
+    <img src="https://img.shields.io/github/v/release/Mr-Dark-debug/clause-cli" alt="Release" />
   </a>
-  <a href="https://goreportcard.com/report/github.com/clause-cli/clause">
-    <img src="https://goreportcard.com/badge/github.com/clause-cli/clause?style=flat-square" alt="Go Report Card">
+  <a href="https://github.com/Mr-Dark-debug/clause-cli/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/Mr-Dark-debug/clause-cli" alt="License" />
   </a>
-  <a href="LICENSE">
-    <img src="https://img.shields.io/github/license/clause-cli/clause?style=flat-square" alt="License">
+  <a href="https://goreportcard.com/report/github.com/Mr-Dark-debug/clause-cli">
+    <img src="https://goreportcard.com/badge/github.com/Mr-Dark-debug/clause-cli" alt="Go Report Card" />
   </a>
 </p>
 
 ---
 
-## What is Clause?
+## 🎯 Why Clause?
 
-Clause is a **cross-platform CLI tool** that creates **AI-ready project structures** with built-in governance systems. Unlike traditional scaffolding tools that just create folder structures, Clause generates comprehensive AI context systems that guide AI coding assistants toward consistent, maintainable code.
+Modern AI coding assistants are powerful, but their power is undirected. They can write virtually any code, but without proper guidance, that code may violate project standards, introduce inconsistencies, or create technical debt.
 
-### Why Clause?
+**Clause provides the direction that transforms raw AI capability into disciplined, project-aligned engineering output.**
 
-- **AI-First Design**: Built from the ground up to work seamlessly with AI coding assistants like Claude, GitHub Copilot, and ChatGPT
-- **Governance Built-In**: Every project includes AI context files, component registries, and prompt guidelines
-- **Consistent Patterns**: Enforces consistent coding patterns across your team and AI assistants
-- **Self-Documenting**: Projects document themselves through the governance system
-- **Framework Agnostic**: Supports React, Vue, Svelte, Next.js, FastAPI, Express, Go, and more
+### Key Differentiators
+
+- 🤖 **AI-Native Design** - Built from the ground up for AI-assisted development
+- 📋 **Behavioral Governance** - Rules that guide AI behavior within your project
+- 🧠 **Brainstorm.md** - Novel self-reflection mechanism for autonomous AI problem-solving
+- 📦 **Component Registry** - Living inventory of created components for reusability
+- 🎨 **Beautiful TUI** - Modern terminal interface with responsive design
 
 ---
 
-## Installation
+## ✨ Features
+
+### Interactive Project Wizard
+
+Clause guides you through project configuration with a beautiful terminal UI:
+
+```bash
+$ clause init my-project
+```
+
+- Choose frontend framework (Next.js, React, Vue, Svelte)
+- Choose backend framework (FastAPI, Express, Django)
+- Configure database, authentication, and infrastructure
+- Set AI governance strictness level
+
+### AI Governance System
+
+Every Clause-generated project includes an `ai_prompt_guidelines/` directory that:
+
+- Defines how AI should behave in your project
+- Specifies approved technologies and forbidden patterns
+- Provides architectural constraints
+- Includes documentation standards
+- Offers a Brainstorm.md file for AI self-reflection
+
+### Cross-Platform Support
+
+Works on macOS, Linux, and Windows with native package managers:
+
+- **macOS**: Homebrew
+- **Linux**: APT, Snap, AUR
+- **Windows**: Winget, Scoop
+
+---
+
+## 📦 Installation
 
 ### macOS
 
 ```bash
-# Using Homebrew (recommended)
+# Homebrew (recommended)
 brew install clause-cli/tap/clause
 
-# Using curl
-curl -fsSL https://get.clause.dev | bash
+# Or using curl
+curl -fsSL https://clause.dev/install.sh | bash
 ```
 
 ### Linux
 
 ```bash
-# Using curl
-curl -fsSL https://get.clause.dev | bash
+# curl | bash
+curl -fsSL https://clause.dev/install.sh | bash
 
-# Using AUR (Arch Linux)
-yay -S clause-bin
-
-# Using Snap
-snap install clause
+# APT (Debian/Ubuntu)
+curl -fsSL https://clause.dev/apt/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/clause.gpg
+echo "deb [signed-by=/usr/share/keyrings/clause.gpg] https://clause.dev/apt stable main" | sudo tee /etc/apt/sources.list.d/clause.list
+sudo apt update && sudo apt install clause
 ```
 
 ### Windows
 
 ```powershell
-# Using Winget
+# Winget
 winget install Clause.ClauseCLI
 
-# Using Scoop
-scoop bucket add clause-cli https://github.com/clause-cli/scoop-bucket
+# Scoop
+scoop bucket add clause-cli https://github.com/Mr-Dark-debug/scoop-bucket
 scoop install clause
 
-# Using Chocolatey
-choco install clause-cli
-```
-
-### From Source
-
-```bash
-# Clone the repository
-git clone https://github.com/clause-cli/clause.git
-cd clause
-
-# Build and install
-make install
+# PowerShell
+irm https://clause.dev/install.ps1 | iex
 ```
 
 ### Verify Installation
 
 ```bash
-clause version
+clause --version
+# Output: clause version 1.0.0
 ```
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
 ### Create a New Project
 
 ```bash
-# Launch interactive wizard
-clause init
-
-# Create with a specific name
+# Interactive mode (recommended)
 clause init my-awesome-project
 
-# Use a preset
+# With a preset
 clause init my-saas --preset saas
 
-# Non-interactive mode with defaults
-clause init my-api --non-interactive --preset api-only
+# Non-interactive mode
+clause init my-project --non-interactive \
+  --frontend nextjs \
+  --backend fastapi \
+  --database postgresql
 ```
 
-### Available Presets
-
-| Preset | Description |
-|--------|-------------|
-| `minimal` | Minimal setup with only essentials |
-| `standard` | Standard full-stack configuration (default) |
-| `saas` | SaaS application with auth, payments, multi-tenancy |
-| `api-only` | API-only backend service |
-| `frontend-only` | Frontend-only static site |
-| `enterprise` | Enterprise configuration with full governance |
-
-### Project Structure
-
-After running `clause init`, your project will have:
+### What Clause Creates
 
 ```
-my-project/
-├── .clause/                    # AI Governance
-│   ├── config.yaml            # Project configuration
-│   ├── context.yaml           # AI context file
-│   ├── prompt-guidelines.md   # AI prompt guidelines
-│   └── registry.yaml          # Component registry
-├── src/                       # Frontend source
-│   ├── components/
-│   ├── pages/
-│   ├── hooks/
-│   └── utils/
-├── backend/                   # Backend source
+my-awesome-project/
+├── frontend/                    # Your frontend application
+│   ├── src/
+│   │   ├── app/
+│   │   ├── components/
+│   │   └── lib/
+│   └── package.json
+│
+├── backend/                     # Your backend application
 │   ├── app/
-│   ├── main.py
+│   │   ├── api/
+│   │   ├── models/
+│   │   └── services/
 │   └── requirements.txt
-├── infrastructure/            # Infrastructure configs
-│   ├── docker-compose.yml
-│   └── .github/workflows/
-├── Brainstorm.md             # AI brainstorming workspace
-├── README.md
-└── package.json
+│
+├── ai_prompt_guidelines/        # AI reads this!
+│   ├── system_prompt.md         # Core AI behavior rules
+│   ├── architecture.md          # Architectural constraints
+│   ├── technologies.md          # Approved tech stack
+│   ├── documentation.md         # Documentation standards
+│   ├── brainstorm.md            # AI working memory
+│   ├── registry.json            # Component registry
+│   └── context.yaml             # Structured context
+│
+├── infrastructure/              # Docker, CI/CD configs
+│   ├── docker/
+│   └── .github/
+│
+└── README.md                    # Project documentation
 ```
+
+### Work with AI Assistants
+
+When you open your Clause-generated project in an AI coding assistant (Claude Code, Cursor, Windsurf, etc.), the AI will automatically find the `ai_prompt_guidelines/` directory and follow the rules defined there.
 
 ---
 
-## Features
+## 📚 Documentation
 
-### 1. Interactive Wizard
+Full documentation is available at [clause.dev/docs](https://clause.dev/docs)
 
-The interactive wizard guides you through all configuration options:
+- [Getting Started](https://clause.dev/docs/getting-started)
+- [Installation Guide](https://clause.dev/docs/installation)
+- [CLI Reference](https://clause.dev/docs/cli-reference)
+- [AI Governance](https://clause.dev/docs/governance)
+- [Templates](https://clause.dev/docs/templates)
+- [Contributing](https://clause.dev/pages/contributing)
 
-- **Project Info**: Name, description, author, license
-- **Frontend**: Framework, TypeScript, styling, testing
-- **Backend**: Language, framework, database, auth
-- **Infrastructure**: Docker, CI/CD, hosting, monitoring
-- **Governance**: AI context level, component registry, documentation
+---
 
-### 2. AI Governance System
-
-Every Clause project includes a comprehensive governance system:
-
-#### Context Files
-
-- **`.clause/context.yaml`**: Machine-readable AI context with tech stack, patterns, and conventions
-- **`.clause/prompt-guidelines.md`**: Guidelines for working with AI assistants
-- **`Brainstorm.md`**: Workspace for AI-assisted brainstorming
-
-#### Component Registry
-
-Track and document your project's components:
+## 🛠️ CLI Commands
 
 ```bash
-# Register a new component
-clause add frontend component Button --description "Reusable button component"
+# Initialize a new project
+clause init [project-name]
 
-# Register a backend service
-clause add backend service UserService --description "User management service"
-```
+# Add components to existing project
+clause add [component-type]
 
-### 3. Multi-Framework Support
-
-#### Frontend Frameworks
-
-| Framework | TypeScript | Styling | Testing |
-|-----------|------------|---------|---------|
-| React | ✅ | Tailwind, CSS Modules, Styled Components | Vitest, Jest |
-| Vue | ✅ | Tailwind, CSS Modules | Vitest |
-| Svelte | ✅ | Tailwind | Vitest |
-| Angular | ✅ | Tailwind, SCSS | Jest |
-| Next.js | ✅ | Tailwind, CSS Modules | Vitest, Jest |
-
-#### Backend Frameworks
-
-| Language | Frameworks | Database | ORM |
-|----------|------------|----------|-----|
-| Python | FastAPI, Flask, Django | PostgreSQL, MySQL, MongoDB | SQLAlchemy, Prisma |
-| Node.js | Express, Fastify, NestJS | PostgreSQL, MySQL, MongoDB | Prisma, TypeORM |
-| Go | Gin, Echo, Fiber | PostgreSQL, MySQL | GORM, sqlx |
-
-### 4. Infrastructure Templates
-
-- **Docker & Docker Compose**: Container configuration
-- **CI/CD**: GitHub Actions, GitLab CI, CircleCI
-- **Hosting**: Vercel, Netlify, AWS, GCP, Azure
-- **Monitoring**: Datadog, Sentry, Prometheus
-
-### 5. Project Validation
-
-Validate your project's governance compliance:
-
-```bash
-# Run validation
+# Validate project compliance
 clause validate
 
-# Output as JSON
-clause validate --json
+# Manage configuration
+clause config [command]
 
-# Attempt to fix issues
-clause validate --fix
-```
+# Update Clause CLI
+clause update
 
----
-
-## Usage Examples
-
-### Example 1: Full-Stack SaaS Application
-
-```bash
-# Create SaaS project
-clause init my-saas --preset saas
-
-# Navigate to project
-cd my-saas
-
-# Install dependencies
-npm install
-cd backend && pip install -r requirements.txt
-
-# Start development
-npm run dev  # Frontend
-python main.py  # Backend
-```
-
-### Example 2: API-Only Service
-
-```bash
-# Create API project
-clause init my-api --preset api-only
-
-cd my-api
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Start server
-python main.py
-```
-
-### Example 3: Frontend Application
-
-```bash
-# Create frontend-only project
-clause init my-portfolio --preset frontend-only
-
-cd my-portfolio
-
-# Install and start
-npm install
-npm run dev
-```
-
-### Example 4: Adding Components
-
-```bash
-# Register a new frontend component
-clause add frontend component UserProfile \
-  --description "User profile display component" \
-  --path "src/components/UserProfile" \
-  --tags "user,profile,display"
-
-# Register a backend service
-clause add backend service EmailService \
-  --description "Email sending service" \
-  --deps "UserService,TemplateService" \
-  --tags "email,notification"
-```
-
----
-
-## Configuration
-
-### Project Configuration (`.clause/config.yaml`)
-
-```yaml
-metadata:
-  name: my-project
-  description: My awesome project
-  version: 1.0.0
-  author: Your Name
-
-frontend:
-  enabled: true
-  framework: react
-  typescript: true
-  styling: tailwind
-  package_manager: npm
-  test_framework: vitest
-
-backend:
-  enabled: true
-  language: python
-  framework: fastapi
-  database:
-    primary: postgresql
-    orm: sqlalchemy
-
-governance:
-  enabled: true
-  context_level: comprehensive
-  component_registry: true
-  brainstorm_md: true
-  prompt_guidelines: true
-```
-
-### Global Configuration (`~/.clause/config.yaml`)
-
-```yaml
-# Default settings for new projects
-defaults:
-  frontend: react
-  backend: fastapi
-  styling: tailwind
-  database: postgresql
-
-# Update settings
-updates:
-  check_enabled: true
-  channel: stable
-
-# Template registry
-templates:
-  registry: https://registry.clause.dev
-```
-
----
-
-## CLI Reference
-
-### Global Flags
-
-| Flag | Description |
-|------|-------------|
-| `--config, -c` | Config file path |
-| `--verbose, -v` | Verbose output |
-| `--quiet, -q` | Suppress non-essential output |
-| `--no-color` | Disable colored output |
-
-### Commands
-
-#### `clause init [project-name]`
-
-Initialize a new project.
-
-```bash
-clause init                    # Interactive wizard
-clause init my-project         # With name
-clause init my-project -p saas # With preset
-clause init my-project -n      # Non-interactive
-clause init my-project --dry-run # Preview only
-```
-
-#### `clause add <type> [name]`
-
-Add a component to an existing project.
-
-```bash
-clause add frontend component Button
-clause add backend service UserService
-clause add governance rule no-any-type
-```
-
-#### `clause validate`
-
-Validate project governance compliance.
-
-```bash
-clause validate         # Run validation
-clause validate --fix   # Fix issues
-clause validate --json  # JSON output
-```
-
-#### `clause config`
-
-Manage configuration.
-
-```bash
-clause config list              # Show all config
-clause config get frontend.framework
-clause config set defaults.frontend vue
-clause config init              # Initialize config
-```
-
-#### `clause version`
-
-Display version information.
-
-```bash
+# Show version
 clause version
-clause version --json
 ```
 
-#### `clause update`
-
-Update Clause CLI.
-
-```bash
-clause update           # Update to latest
-clause update --check   # Check only
-clause update --channel beta
-```
+Run `clause --help` for more information.
 
 ---
 
-## Working with AI Assistants
+## 🤝 Contributing
 
-### Using the Context Files
-
-When working with AI assistants, point them to your governance files:
-
-```
-Please read .clause/prompt-guidelines.md and .clause/context.yaml
-to understand this project's conventions before making changes.
-```
-
-### Brainstorm.md
-
-Use the Brainstorm.md file for AI-assisted exploration:
-
-```markdown
-## Ideas
-
-- Add real-time collaboration features
-- Implement dark mode toggle
-
-## Questions
-
-- Should we use WebSockets or Server-Sent Events?
-- What's the best approach for state management?
-```
-
-### Component Registry
-
-Keep your component registry updated so AI assistants understand your architecture:
-
-```yaml
-components:
-  - name: UserProfile
-    type: frontend
-    path: src/components/UserProfile
-    description: Displays user profile information
-    dependencies: [Avatar, UserInfo]
-    tags: [user, profile, display]
-```
-
----
-
-## Documentation
-
-- **[Getting Started Guide](docs/getting-started.md)** - Detailed setup and first project
-- **[Configuration Reference](docs/configuration.md)** - All configuration options
-- **[Governance System](docs/governance.md)** - AI governance in depth
-- **[Templates](docs/templates.md)** - Creating custom templates
-- **[Contributing](CONTRIBUTING.md)** - How to contribute
-
----
-
-## Roadmap
-
-### v1.0 (Current)
-
-- [x] Interactive wizard
-- [x] Multi-framework support
-- [x] AI governance system
-- [x] Component registry
-- [x] Project validation
-
-### v1.1 (Planned)
-
-- [ ] Custom template creation
-- [ ] Plugin system
-- [ ] Team collaboration features
-- [ ] Template marketplace
-
-### v1.2 (Future)
-
-- [ ] AI-powered code generation
-- [ ] Integration with more AI tools
-- [ ] Cloud sync for governance files
-
----
-
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions! Please see our [Contributing Guide](https://clause.dev/pages/contributing) for details.
 
 ### Development Setup
 
 ```bash
 # Clone the repository
-git clone https://github.com/clause-cli/clause.git
-cd clause
-
-# Install dependencies
-make deps
+git clone https://github.com/Mr-Dark-debug/clause-cli.git
+cd clause-cli
 
 # Build
 make build
@@ -532,36 +250,54 @@ make build
 # Run tests
 make test
 
-# Run in development mode
-make dev
+# Run locally
+./bin/clause init test-project
+```
+
+### Project Structure
+
+```
+clause-cli/
+├── cmd/forge/              # Entry point
+├── internal/               # Private packages
+│   ├── cmd/                # CLI commands
+│   ├── wizard/             # Interactive wizard
+│   ├── config/             # Configuration management
+│   ├── template/           # Template engine
+│   ├── generator/          # Project generation
+│   └── governance/         # AI governance system
+├── pkg/                    # Public packages
+│   ├── styles/             # Theme and styling
+│   ├── tui/                # Terminal UI components
+│   └── utils/              # Utilities
+└── templates/              # Project templates
 ```
 
 ---
 
-## License
+## 📝 License
 
 Clause CLI is released under the [MIT License](LICENSE).
 
 ---
 
-## Community
+## 🙏 Acknowledgments
 
-- **GitHub Discussions**: [github.com/clause-cli/clause/discussions](https://github.com/clause-cli/clause/discussions)
-- **Twitter**: [@clausecli](https://twitter.com/clausecli)
-- **Discord**: [Join our server](https://discord.gg/clause)
-
----
-
-## Acknowledgments
-
-Built with ❤️ by the Clause team and contributors.
-
+Built with:
 - [Cobra](https://github.com/spf13/cobra) - CLI framework
 - [Bubble Tea](https://github.com/charmbracelet/bubbletea) - Terminal UI
 - [Lip Gloss](https://github.com/charmbracelet/lipgloss) - Terminal styling
 
 ---
 
+## 📬 Connect
+
+- **GitHub**: [github.com/Mr-Dark-debug/clause-cli](https://github.com/Mr-Dark-debug/clause-cli)
+- **Discord**: [Join our community](https://discord.gg/clause)
+- **Twitter**: [@ClauseCLI](https://twitter.com/ClauseCLI)
+
+---
+
 <p align="center">
-  <a href="https://clause.dev">clause.dev</a>
+  Made with ❤️ for the developer community
 </p>

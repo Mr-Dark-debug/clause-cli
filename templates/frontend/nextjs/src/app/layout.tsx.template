@@ -1,0 +1,30 @@
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
+  title: '{{.ProjectName}}',
+  description: '{{.ProjectDescription}}',
+}
+
+/**
+ * Root Layout Component
+ * 
+ * This is the top-level layout that wraps all pages.
+ * It includes global styles, fonts, and any providers.
+ * 
+ * @param children - Child components to render
+ */
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>{children}</body>
+    </html>
+  )
+}

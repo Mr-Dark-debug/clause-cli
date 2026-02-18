@@ -44,7 +44,7 @@ var governanceFeatureOptions = []struct {
 // NewGovernanceScreen creates a new governance screen.
 func NewGovernanceScreen() *GovernanceScreen {
 	return &GovernanceScreen{
-		BaseScreen:     *NewBaseScreen("AI Governance", "governance"),
+		BaseScreen:      *NewBaseScreen("AI Governance", "governance"),
 		contextLevelIdx: 1, // Default to Standard
 		features: map[string]bool{
 			"brainstorm_md":      true,
@@ -117,14 +117,15 @@ func (s *GovernanceScreen) View() string {
 	b.WriteString("\n\n")
 
 	for i, level := range contextLevels {
-		if i == s.cursor {
+		switch i {
+		case s.cursor:
 			b.WriteString(s.Renderer().ListItem("▸ "+level.name, true))
-		} else if i == s.contextLevelIdx {
+		case s.contextLevelIdx:
 			b.WriteString(s.Renderer().ListItem("● "+level.name, false))
-		} else {
+		default:
 			b.WriteString(s.Renderer().ListItem("○ "+level.name, false))
 		}
-		b.WriteString(s.Renderer().Muted(" - "+level.description))
+		b.WriteString(s.Renderer().Muted(" - " + level.description))
 		b.WriteString("\n")
 	}
 

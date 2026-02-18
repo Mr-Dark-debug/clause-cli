@@ -1,0 +1,29 @@
+/**
+ * Home Page
+ * 
+ * The main landing page for the application.
+ * Modify this to reflect your project's content.
+ */
+
+export default function Home() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold mb-4">
+          Welcome to {{.ProjectName}}
+        </h1>
+        <p className="text-lg text-gray-600">
+          {{.ProjectDescription}}
+        </p>
+        <div className="mt-8">
+          <a
+            href="/docs"
+            className="rounded-md bg-orange-500 px-4 py-2 text-white hover:bg-orange-600"
+          >
+            Get Started
+          </a>
+        </div>
+      </div>
+    </main>
+  )
+}

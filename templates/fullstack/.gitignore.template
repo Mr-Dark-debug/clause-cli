@@ -1,0 +1,23 @@
+# General
+.DS_Store
+.idea
+.vscode
+*.log
+node_modules/
+dist/
+build/
+coverage/
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.env
+
+# Next.js
+.next/
+out/
+
+# Environment variables
+.env*.local
+.env

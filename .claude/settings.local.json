@@ -3,7 +3,9 @@
     "allow": [
       "Bash(go build:*)",
       "Bash(go mod tidy:*)",
-      "Bash(./bin/clause.exe:*)"
+      "Bash(./bin/clause.exe:*)",
+      "Bash(dir:*)",
+      "Bash(../bin/clause.exe:*)"
     ]
   }
 }

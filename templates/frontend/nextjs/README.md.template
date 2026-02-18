@@ -1,0 +1,83 @@
+# {{.ProjectName}} Frontend
+
+A modern web application built with Next.js 14, React 18, and TypeScript.
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 20+ (LTS recommended)
+- npm, yarn, or pnpm
+
+### Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to see the application.
+
+## 📁 Project Structure
+
+```
+frontend/
+├── src/
+│   ├── app/                    # Next.js App Router pages
+│   │   ├── layout.tsx          # Root layout
+│   │   ├── page.tsx            # Home page
+│   │   └── (routes)/           # Route groups
+│   ├── components/
+│   │   ├── ui/                 # Base UI components
+│   │   ├── forms/              # Form components
+│   │   ├── layouts/            # Layout components
+│   │   └── features/           # Feature components
+│   ├── hooks/                  # Custom React hooks
+│   ├── lib/                    # Utilities and helpers
+│   ├── types/                  # TypeScript types
+│   ├── styles/                 # Global styles
+│   └── utils/                  # Utility functions
+├── public/                     # Static assets
+└── tests/                      # Test files
+
+## 🧪 Testing
+
+```bash
+# Run tests
+npm test
+
+# Run tests with coverage
+npm run test:coverage
+```
+
+## 📝 Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
+| `npm run test` | Run tests |
+| `npm run type-check` | Run TypeScript type checking |
+
+## 🔧 Configuration
+
+Environment variables are defined in `.env.local`:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+## 📚 Learn More
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React Documentation](https://react.dev)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs)
+
+## 📄 License
+
+MIT

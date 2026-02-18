@@ -1,0 +1,69 @@
+"""
+Main FastAPI Application
+
+This module initializes the FastAPI application and configures
+middleware, routers, and exception handlers.
+"""
+
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from app.api.routes import health
+from app.core.config import settings
+
+# Create FastAPI application instance
+app = FastAPI(
+    title="{{.ProjectName}} API",
+    description="{{.ProjectDescription}}",
+    version="0.1.0",
+    docs_url="/docs",
+    redoc_url="/redoc",
+)
+
+# Configure CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.CORS_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Include routers
+app.include_router(health.router, prefix="/api", tags=["Health"])
+
+
+@app.on_event("startup")
+async def startup_event():
+    """
+    Application startup event handler.
+    
+    Use this for initializing connections, caches, etc.
+    """
+    # Add startup logic here
+    pass
+
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """
+    Application shutdown event handler.
+    
+    Use this for cleanup, closing connections, etc.
+    """
+    # Add cleanup logic here
+    pass
+
+
+@app.get("/", tags=["Root"])
+async def root():
+    """
+    Root endpoint.
+    
+    Returns basic API information.
+    """
+    return {
+        "name": "{{.ProjectName}} API",
+        "version": "0.1.0",
+        "docs": "/docs",
+    }
