@@ -1,20 +1,19 @@
 <h1 align="center">Clause CLI</h1>
 
 <p align="center">
-  <strong>Structure Your AI's Intelligence</strong>
+  <strong>Structured Intelligence for AI-Driven Development</strong>
 </p>
 
 <p align="center">
-  The AI-native project scaffolding tool that guides your AI coding assistant
-  to produce consistent, maintainable, architecturally sound code.
+  Clause CLI is an AI-native project scaffolding tool designed to guide AI coding assistants 
+  toward generating consistent, maintainable, and architecturally sound codebases. 
+  It establishes clear structural conventions, ensuring your AI outputs align with 
+  best practices and long-term scalability requirements.
 </p>
 
 <p align="center">
-  <a href="https://github.com/Mr-Dark-debug/clause-cli/actions">
-    <img src="https://github.com/Mr-Dark-debug/clause-cli/workflows/CI/badge.svg" alt="CI Status" />
-  </a>
   <a href="https://github.com/Mr-Dark-debug/clause-cli/releases">
-    <img src="https://img.shields.io/github/v/release/Mr-Dark-debug/clause-cli" alt="Release" />
+    <img src="https://img.shields.io/github/v/release/Mr-Dark-debug/clause-cli" alt="Latest Release" />
   </a>
   <a href="https://github.com/Mr-Dark-debug/clause-cli/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/Mr-Dark-debug/clause-cli" alt="License" />

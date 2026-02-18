@@ -12,7 +12,8 @@
       "Bash(clause version)",
       "Bash(clause init:*)",
       "Bash(clause:*)",
-      "Bash(make:*)"
+      "Bash(make:*)",
+      "Bash(go vet:*)"
     ]
   }
 }

@@ -4,6 +4,7 @@
 package styles
 
 import (
+	"fmt"
 	"os"
 	"strings"
 
@@ -13,11 +14,17 @@ import (
 
 // Primary Brand Colors
 const (
-	// PrimaryOrange is the main brand color used for CTAs and highlights.
-	PrimaryOrange = "#FF6B35"
+	// PrimaryPurple is the main brand color for Clause.
+	PrimaryPurple = "#7C3AED"
 
-	// PrimaryOrangeDim is the dimmed version for secondary elements.
-	PrimaryOrangeDim = "#CC5529"
+	// PrimaryPurpleLight is the lighter accent version.
+	PrimaryPurpleLight = "#A78BFA"
+
+	// PrimaryOrange is the secondary brand color.
+	PrimaryOrange = "#F97316"
+
+	// PrimaryOrangeDim is the dimmed version of the secondary brand color.
+	PrimaryOrangeDim = "#C2410C"
 )
 
 // Background Colors
@@ -30,57 +37,60 @@ const (
 
 	// BackgroundHover is used for hover states.
 	BackgroundHover = "#21262D"
+
+	// BackgroundDarker is for deeper UI elements.
+	BackgroundDarker = "#111827"
 )
 
 // Text Colors
 const (
 	// TextPrimary is the primary text color.
-	TextPrimary = "#F0F6FC"
+	TextPrimary = "#F9FAFB"
 
 	// TextSecondary is used for secondary or muted text.
 	TextSecondary = "#8B949E"
 
 	// TextDim is used for very dim text like hints and placeholders.
-	TextDim = "#484F58"
+	TextDim = "#6B7280"
 )
 
 // Semantic Colors
 const (
 	// SuccessGreen is used for success states.
-	SuccessGreen = "#3FB950"
+	SuccessGreen = "#10B981"
 
 	// WarningAmber is used for warnings.
-	WarningAmber = "#D29922"
+	WarningAmber = "#F59E0B"
 
 	// ErrorRed is used for errors.
-	ErrorRed = "#F85149"
+	ErrorRed = "#EF4444"
 
 	// InfoBlue is used for informational states.
-	InfoBlue = "#58A6FF"
+	InfoBlue = "#3B82F6"
 )
 
 // Accent Colors
 const (
 	// AccentPurple is used for special highlights.
-	AccentPurple = "#A371F7"
+	AccentPurple = "#7C3AED"
 
 	// AccentCyan is used for secondary accents.
 	AccentCyan = "#39C5CF"
 
 	// AccentPink is used for tertiary accents.
-	AccentPink = "#DB61A2"
+	AccentPink = "#F472B6"
 )
 
 // Border Colors
 const (
 	// BorderDefault is the default border color.
-	BorderDefault = "#30363D"
+	BorderDefault = "#374151"
 
 	// BorderMuted is used for subtle borders.
-	BorderMuted = "#21262D"
+	BorderMuted = "#1F2937"
 
 	// BorderAccent is used for accent borders.
-	BorderAccent = "#FF6B35"
+	BorderAccent = "#7C3AED"
 )
 
 // Color represents a color that can be used with lipgloss.
@@ -108,23 +118,27 @@ const (
 // colorMap maps hex colors to their 256-color approximations.
 // Note: Colors with same hex values are mapped only once.
 var colorMap = map[string]string{
-	PrimaryOrange:    "208",
-	PrimaryOrangeDim: "166",
-	BackgroundNavy:   "234",
-	BackgroundCard:   "235",
-	BackgroundHover:  "236",
-	TextPrimary:      "255",
-	TextSecondary:    "246",
-	TextDim:          "240",
-	SuccessGreen:     "71",
-	WarningAmber:     "178",
-	ErrorRed:         "203",
-	InfoBlue:         "39",
-	AccentPurple:     "140",
-	AccentCyan:       "44",
-	AccentPink:       "168",
-	BorderDefault:    "238",
-	// BorderMuted and BorderAccent use same colors as BackgroundHover and PrimaryOrange
+	PrimaryPurple:      "93",
+	PrimaryPurpleLight: "141",
+	PrimaryOrange:      "208",
+	PrimaryOrangeDim:   "166",
+	BackgroundNavy:     "234",
+	BackgroundCard:     "235",
+	BackgroundHover:    "236",
+	BackgroundDarker:   "233",
+	TextPrimary:        "255",
+	TextSecondary:      "246",
+	TextDim:            "240",
+	SuccessGreen:       "35",
+	WarningAmber:       "214",
+	ErrorRed:           "196",
+	InfoBlue:           "33",
+	// AccentPurple: "93", // Duplicate of PrimaryPurple
+	AccentCyan:    "44",
+	AccentPink:    "168",
+	BorderDefault: "238",
+	BorderMuted:   "234",
+	// BorderAccent: "93", // Duplicate of PrimaryPurple
 }
 
 // TerminalInfo holds information about terminal capabilities.
@@ -241,10 +255,15 @@ func GetColor(hexColor string) string {
 // get16Color maps hex colors to the closest 16-color ANSI code.
 func get16Color(hexColor string) string {
 	// Map our specific colors to 16-color equivalents
-	// Note: PrimaryOrange and BorderAccent have same hex value
 	switch hexColor {
+	case PrimaryPurple: // PrimaryPurple is #7C3AED, same as AccentPurple and BorderAccent
+		return "5" // Magenta/Purple
+	case PrimaryPurpleLight:
+		return "13" // Light Magenta
 	case PrimaryOrange:
-		return "3" // Yellow (closest to orange in 16-color)
+		return "3" // Yellow/Orange
+	case PrimaryOrangeDim:
+		return "3" // Yellow/Orange
 	case SuccessGreen:
 		return "2" // Green
 	case WarningAmber:
@@ -253,7 +272,7 @@ func get16Color(hexColor string) string {
 		return "1" // Red
 	case InfoBlue, AccentCyan:
 		return "4" // Blue
-	case AccentPurple, AccentPink:
+	case AccentPink:
 		return "5" // Magenta
 	case TextPrimary:
 		return "15" // White
@@ -261,7 +280,7 @@ func get16Color(hexColor string) string {
 		return "7" // Light gray
 	case TextDim:
 		return "8" // Dark gray
-	case BackgroundNavy, BackgroundCard:
+	case BackgroundNavy, BackgroundCard, BackgroundDarker:
 		return "0" // Black
 	default:
 		return "7" // Default to light gray
@@ -297,7 +316,7 @@ func ColorFunc(hexColor string) func(string) string {
 
 // Primary returns a style function for the primary brand color.
 func Primary() func(string) string {
-	return ColorFunc(PrimaryOrange)
+	return ColorFunc(PrimaryPurple)
 }
 
 // Success returns a style function for success states.
@@ -435,13 +454,16 @@ func rgbToHex(r, g, b int) string {
 }
 
 func formatHex(n int) string {
+	if n == 0 {
+		return "00"
+	}
 	hex := ""
 	for n > 0 {
 		rem := n % 16
 		if rem < 10 {
-			hex = string('0'+rem) + hex
+			hex = fmt.Sprintf("%c", '0'+rem) + hex
 		} else {
-			hex = string('a'+rem-10) + hex
+			hex = fmt.Sprintf("%c", 'a'+rem-10) + hex
 		}
 		n /= 16
 	}

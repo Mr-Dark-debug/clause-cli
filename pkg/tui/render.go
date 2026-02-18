@@ -7,6 +7,7 @@ import (
 	"github.com/charmbracelet/lipgloss"
 	"github.com/clause-cli/clause/pkg/styles"
 	"github.com/clause-cli/clause/pkg/utils"
+	"github.com/spf13/cobra"
 )
 
 // Renderer provides common rendering utilities.
@@ -310,6 +311,229 @@ func (r *Renderer) Screen(header, content, footer string) string {
 	}
 
 	return lipgloss.JoinVertical(lipgloss.Left, parts...)
+}
+
+// Banner renders the Clause ASCII art banner.
+func (r *Renderer) Banner(version string) string {
+	logo := `   ██████╗██╗      █████╗ ██╗   ██╗██████╗ ███████╗
+  ██╔════╝██║     ██╔══██╗██║   ██║██╔══██╗██╔════╝
+  ██║     ██║     ███████║██║   ██║██║  ██║█████╗  
+  ██║     ██║     ██╔══██║██║   ██║██║  ██║██╔══╝  
+  ╚██████╗███████╗██║  ██║╚██████╔╝██████╔╝███████╗
+   ╚═════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝`
+
+	// Apply gradient to logo lines
+	lines := strings.Split(logo, "\n")
+	gradient := styles.Gradient(r.theme.Colors.Primary, r.theme.Colors.AccentTertiary, len(lines))
+	var styledLogo []string
+	for i, line := range lines {
+		styledLogo = append(styledLogo, lipgloss.NewStyle().Foreground(lipgloss.Color(gradient[i])).Render(line))
+	}
+	logoStr := strings.Join(styledLogo, "\n")
+
+	tagline := "Framework for Organized, Reproducible, and Guided Engineering"
+	versionStr := fmt.Sprintf("Version %s", version)
+
+	content := lipgloss.JoinVertical(
+		lipgloss.Center,
+		logoStr,
+		"",
+		r.theme.Typography.Body.Copy().Italic(true).Render(tagline),
+		r.theme.Typography.Muted.Render(versionStr),
+	)
+
+	return r.theme.Layout.Card.
+		Border(lipgloss.DoubleBorder()).
+		BorderForeground(lipgloss.Color(r.theme.Colors.Primary)).
+		Padding(1, 4).
+		Render(content)
+}
+
+// CommandsGrid renders the available commands in a structured grid.
+func (r *Renderer) CommandsGrid(cmd *cobra.Command) string {
+	groups := map[string][][2]string{
+		"PROJECT": {
+			{"init", "Initialize a new AI-ready project"},
+			{"add", "Add components to existing project"},
+			{"validate", "Check governance compliance"},
+		},
+		"CONFIGURATION": {
+			{"config", "Manage Clause settings"},
+			{"update", "Update to latest version"},
+		},
+		"UTILITY": {
+			{"version", "Show version info"},
+			{"help", "Get help for any command"},
+			{"completion", "Generate shell completion"},
+		},
+	}
+
+	var sections []string
+	order := []string{"PROJECT", "CONFIGURATION", "UTILITY"}
+
+	for _, name := range order {
+		cmds := groups[name]
+		header := r.theme.Typography.Header.Copy().
+			Foreground(lipgloss.Color(r.theme.Colors.TextMuted)).
+			Render(name)
+		
+		divider := r.theme.Typography.Muted.Render(strings.Repeat("─", r.width-10))
+		
+		var cmdLines []string
+		for _, c := range cmds {
+			cmdName := r.theme.Typography.Body.Copy().Bold(true).Foreground(lipgloss.Color(r.theme.Colors.Primary)).Width(12).Render(c[0])
+			cmdDesc := r.theme.Typography.Muted.Render(c[1])
+			cmdLines = append(cmdLines, cmdName + cmdDesc)
+		}
+
+		sections = append(sections, lipgloss.JoinVertical(lipgloss.Left,
+			header,
+			divider,
+			strings.Join(cmdLines, "\n"),
+		))
+	}
+
+	title := r.theme.Typography.Header.Render("📋 Available Commands")
+	content := lipgloss.JoinVertical(lipgloss.Left, strings.Join(sections, "\n\n"))
+
+	styledContent := r.theme.Layout.Card.
+		Border(lipgloss.RoundedBorder()).
+		BorderForeground(lipgloss.Color(r.theme.Colors.Border)).
+		Padding(1, 2).
+		Render(content)
+
+	return lipgloss.JoinVertical(lipgloss.Left,
+		title,
+		styledContent,
+	)
+}
+
+// FlagsSection renders the global flags.
+func (r *Renderer) FlagsSection(cmd *cobra.Command) string {
+	flags := []struct {
+		name, desc, def string
+	}{
+		{"--config <path>", "Use specific config file", "~/.clause/config.yaml"},
+		{"-h, --help", "Show help information", ""},
+		{"--no-color", "Disable colored output", ""},
+		{"-q, --quiet", "Minimal output mode", ""},
+		{"-v, --verbose", "Detailed output mode", ""},
+	}
+
+	var flagLines []string
+	for _, f := range flags {
+		flagName := r.theme.Typography.Body.Copy().Bold(true).Foreground(lipgloss.Color(r.theme.Colors.Accent)).Width(20).Render(f.name)
+		desc := r.theme.Typography.Body.Render(f.desc)
+		
+		line := flagName + desc
+		if f.def != "" {
+			defLine := "\n" + strings.Repeat(" ", 20) + r.theme.Typography.Muted.Italic(true).Render("Default: "+f.def)
+			line += defLine
+		}
+		flagLines = append(flagLines, line)
+	}
+
+	title := r.theme.Typography.Header.Render("⚙️  Global Flags")
+	content := strings.Join(flagLines, "\n\n")
+
+	styledContent := r.theme.Layout.Card.
+		Border(lipgloss.RoundedBorder()).
+		BorderForeground(lipgloss.Color(r.theme.Colors.Border)).
+		Padding(1, 2).
+		Render(content)
+
+	return lipgloss.JoinVertical(lipgloss.Left,
+		title,
+		styledContent,
+	)
+}
+
+// Footer renders a professional footer with links.
+func (r *Renderer) Footer(version string) string {
+	divider := r.theme.Typography.Muted.Render(strings.Repeat("─", r.width-4))
+	
+	links := []string{
+		"📚 Docs: " + r.theme.Typography.Body.Copy().Underline(true).Foreground(lipgloss.Color(r.theme.Colors.Info)).Render("clause.dev"),
+		"💻 GitHub: " + r.theme.Typography.Body.Copy().Underline(true).Foreground(lipgloss.Color(r.theme.Colors.Info)).Render("clause-cli/clause"),
+		"v" + version,
+	}
+
+	content := lipgloss.JoinHorizontal(lipgloss.Center, strings.Join(links, "  │  "))
+	
+	return lipgloss.JoinVertical(lipgloss.Center,
+		divider,
+		content,
+		divider,
+	)
+}
+
+// WelcomeScreen renders the full welcome screen.
+func (r *Renderer) WelcomeScreen(cmd *cobra.Command, version string) string {
+	banner := r.Banner(version)
+
+	description := `Clause generates complete project scaffolding with built-in AI
+governance, context files, and best practices for AI assistants.`
+
+	features := []string{
+		"Complete project structure generation",
+		"AI governance guidelines included",
+		"Context files for AI assistants",
+		"Support for Next.js, FastAPI, Go, and more",
+	}
+
+	var featureLines []string
+	for _, f := range features {
+		featureLines = append(featureLines, r.theme.Typography.Primary.Render(" • ") + r.theme.Typography.Body.Render(f))
+	}
+
+	titleDesc := r.theme.Typography.Header.Render("✨ Create AI-Ready Projects")
+	descContent := lipgloss.JoinVertical(
+		lipgloss.Left,
+		r.theme.Typography.Body.Render(description),
+		"",
+		strings.Join(featureLines, "\n"),
+	)
+
+	descCard := r.theme.Layout.Card.
+		Border(lipgloss.RoundedBorder()).
+		BorderForeground(lipgloss.Color(r.theme.Colors.Border)).
+		Padding(1, 2).
+		Width(lipgloss.Width(banner)).
+		Render(descContent)
+
+	titleQS := r.theme.Typography.Header.Render("🚀 Quick Start")
+	quickStart := lipgloss.JoinVertical(
+		lipgloss.Left,
+		r.KeyValue("clause init", "Launch interactive wizard", 22),
+		r.KeyValue("clause init --quick", "Skip wizard, use defaults", 22),
+		r.KeyValue("clause init --template nextjs", "Start with specific template", 22),
+	)
+
+	quickStartCard := r.theme.Layout.Card.
+		Border(lipgloss.RoundedBorder()).
+		BorderForeground(lipgloss.Color(r.theme.Colors.Border)).
+		Padding(1, 2).
+		Width(lipgloss.Width(banner)).
+		Render(quickStart)
+
+	commands := r.CommandsGrid(cmd)
+	flags := r.FlagsSection(cmd)
+	footer := r.Footer(version)
+
+	return lipgloss.JoinVertical(
+		lipgloss.Center,
+		banner,
+		"",
+		lipgloss.JoinVertical(lipgloss.Left, titleDesc, descCard),
+		"",
+		lipgloss.JoinVertical(lipgloss.Left, titleQS, quickStartCard),
+		"",
+		commands,
+		"",
+		flags,
+		"",
+		footer,
+	)
 }
 
 // Center centers content in available space.

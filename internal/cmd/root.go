@@ -5,9 +5,11 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/clause-cli/clause/internal/wizard"
+	"github.com/clause-cli/clause/pkg/styles"
+	"github.com/clause-cli/clause/pkg/tui"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"github.com/clause-cli/clause/pkg/output"
 )
 
 // Build information (set via ldflags during build).
@@ -19,10 +21,10 @@ var (
 
 // Global flags.
 var (
-	cfgFile    string
-	verbose    bool
-	quiet      bool
-	noColor    bool
+	cfgFile string
+	verbose bool
+	quiet   bool
+	noColor bool
 )
 
 // rootCmd represents the base command when called without any subcommands.
@@ -30,34 +32,34 @@ var rootCmd = &cobra.Command{
 	Use:   "clause",
 	Short: "AI-native project scaffolding tool",
 	Long: `Clause (Framework for Organized, Reproducible, and Guided Engineering)
-is a cross-platform CLI tool for creating AI-ready project structures.
-
-It generates not just folder structures, but comprehensive AI context systems
-that guide AI coding assistants toward consistent, maintainable code.
-
-Run 'clause init' to create a new project with an interactive wizard.`,
+is a cross-platform CLI tool for creating AI-ready project structures.`,
 	SilenceUsage:      true,
 	SilenceErrors:     true,
 	PersistentPreRunE: preRun,
-}
-
-// Execute runs the root command.
-func Execute() error {
-	return rootCmd.Execute()
-}
-
-// ExecuteWithError is like Execute but handles errors with styled output.
-func ExecuteWithError() int {
-	if err := Execute(); err != nil {
-		printer := output.NewPrinter(nil, os.Stderr)
-		printer.PrintError("%v", err)
-		return 1
-	}
-	return 0
+	Run: func(cmd *cobra.Command, args []string) {
+		// If no arguments, launch interactive dashboard
+		if len(args) == 0 {
+			if err := wizard.StartDashboard(cmd, version); err != nil {
+				fmt.Fprintf(os.Stderr, "Error launching dashboard: %v\n", err)
+				os.Exit(1)
+			}
+			return
+		}
+	},
 }
 
 func init() {
 	cobra.OnInitialize(initConfig)
+
+	// Set custom help function
+	rootCmd.SetHelpFunc(func(cmd *cobra.Command, args []string) {
+		renderer := tui.NewRenderer(nil, 0, 0)
+		if width, _, err := styles.GetTerminalSize(); err == nil {
+			renderer.SetSize(width, 0)
+		}
+
+		fmt.Println(renderer.WelcomeScreen(cmd, version))
+	})
 
 	// Persistent flags (available to all subcommands)
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.clause/config.yaml)")
@@ -132,4 +134,15 @@ func IsVerbose() bool {
 // IsQuiet returns true if quiet mode is enabled.
 func IsQuiet() bool {
 	return quiet || viper.GetBool("quiet")
+}
+
+// ExecuteWithError adds all child commands to the root command and sets flags appropriately.
+// This is called by main.main(). It only needs to happen once to the rootCmd.
+// Returns the exit code (0 for success, non-zero for error).
+func ExecuteWithError() int {
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+		return 1
+	}
+	return 0
 }

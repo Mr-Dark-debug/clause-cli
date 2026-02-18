@@ -34,14 +34,14 @@ type Theme struct {
 // ColorPalette contains all color definitions.
 type ColorPalette struct {
 	// Primary colors
-	Primary       string
-	PrimaryDim    string
-	PrimaryLight  string
+	Primary      string
+	PrimaryDim   string
+	PrimaryLight string
 
 	// Background colors
-	Background    string
-	BackgroundAlt string
-	BackgroundCard string
+	Background      string
+	BackgroundAlt   string
+	BackgroundCard  string
 	BackgroundHover string
 
 	// Text colors
@@ -57,18 +57,20 @@ type ColorPalette struct {
 	Info    string
 
 	// Accent colors
-	Accent      string
-	AccentAlt   string
+	Accent         string
+	AccentAlt      string
 	AccentTertiary string
 
 	// Border colors
-	Border      string
-	BorderMuted string
+	Border       string
+	BorderMuted  string
 	BorderAccent string
 }
 
 // TypographyStyles contains text-related style definitions.
 type TypographyStyles struct {
+	// Primary is for primary text.
+	Primary lipgloss.Style
 	// Title is for main headings.
 	Title lipgloss.Style
 	// Subtitle is for secondary headings.
@@ -165,11 +167,11 @@ func createDarkTheme() *Theme {
 	t := &Theme{
 		Mode: ModeDark,
 		Colors: ColorPalette{
-			Primary:         PrimaryOrange,
-			PrimaryDim:      PrimaryOrangeDim,
-			PrimaryLight:    "#FF8C5A",
+			Primary:         PrimaryPurple,
+			PrimaryDim:      PrimaryPurple, // Using PrimaryPurple for consistency
+			PrimaryLight:    PrimaryPurpleLight,
 			Background:      BackgroundNavy,
-			BackgroundAlt:   BackgroundCard,
+			BackgroundAlt:   BackgroundDarker,
 			BackgroundCard:  BackgroundCard,
 			BackgroundHover: BackgroundHover,
 			Text:            TextPrimary,
@@ -198,9 +200,9 @@ func createLightTheme() *Theme {
 	t := &Theme{
 		Mode: ModeLight,
 		Colors: ColorPalette{
-			Primary:         PrimaryOrange,
-			PrimaryDim:      PrimaryOrangeDim,
-			PrimaryLight:    "#FF8C5A",
+			Primary:         PrimaryPurple,
+			PrimaryDim:      PrimaryPurple,
+			PrimaryLight:    PrimaryPurpleLight,
 			Background:      "#FFFFFF",
 			BackgroundAlt:   "#F6F8FA",
 			BackgroundCard:  "#F6F8FA",
@@ -209,16 +211,16 @@ func createLightTheme() *Theme {
 			TextMuted:       "#656D76",
 			TextDim:         "#8C959F",
 			TextInverted:    "#FFFFFF",
-			Success:         "#1A7F37",
-			Warning:         "#9A6700",
-			Error:           "#CF222E",
-			Info:            "#0550AE",
-			Accent:          "#8250DF",
-			AccentAlt:       "#0550AE",
-			AccentTertiary:  "#BF3989",
+			Success:         "#059669",
+			Warning:         "#D97706",
+			Error:           "#DC2626",
+			Info:            "#2563EB",
+			Accent:          "#7C3AED",
+			AccentAlt:       "#2563EB",
+			AccentTertiary:  "#DB2777",
 			Border:          "#D0D7DE",
 			BorderMuted:     "#E8ECF0",
-			BorderAccent:    PrimaryOrange,
+			BorderAccent:    PrimaryPurple,
 		},
 	}
 
@@ -230,6 +232,9 @@ func createLightTheme() *Theme {
 func (t *Theme) initStyles() {
 	// Typography styles
 	t.Typography = TypographyStyles{
+		Primary: lipgloss.NewStyle().
+			Foreground(lipgloss.Color(t.Colors.Primary)),
+
 		Title: lipgloss.NewStyle().
 			Bold(true).
 			Foreground(lipgloss.Color(t.Colors.Primary)).
@@ -421,8 +426,8 @@ func SetThemeMode(mode ThemeMode) {
 // ApplyTheme returns a copy of the theme with custom colors applied.
 func ApplyTheme(base *Theme, overrides ColorPalette) *Theme {
 	t := &Theme{
-		Mode:    base.Mode,
-		Colors:  base.Colors,
+		Mode:   base.Mode,
+		Colors: base.Colors,
 	}
 
 	// Apply overrides
