@@ -136,12 +136,12 @@ func (d *Dashboard) View() string {
 func (d *Dashboard) renderBanner() string {
 	theme := d.renderer.Theme()
 
-	logo := `   ██████╗██╗      █████╗ ██╗   ██╗██████╗ ███████╗
-  ██╔════╝██║     ██╔══██╗██║   ██║██╔══██╗██╔════╝
-  ██║     ██║     ███████║██║   ██║██║  ██║█████╗
-  ██║     ██║     ██╔══██║██║   ██║██║  ██║██╔══╝
-  ╚██████╗███████╗██║  ██║╚██████╔╝██████╔╝███████╗
-   ╚═════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝`
+	logo := `   ██████╗██╗      █████╗ ██╗   ██╗███████╗███████╗
+  ██╔════╝██║     ██╔══██╗██║   ██║██╔════╝██╔════╝
+  ██║     ██║     ███████║██║   ██║███████╗█████╗  
+  ██║     ██║     ██╔══██║██║   ██║╚════██║██╔══╝  
+  ╚██████╗███████╗██║  ██║╚██████╔╝███████║███████╗
+   ╚═════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝`
 
 	// Apply gradient to logo lines
 	lines := strings.Split(logo, "\n")
@@ -155,7 +155,7 @@ func (d *Dashboard) renderBanner() string {
 	logoStr := strings.Join(styledLogo, "\n")
 
 	tagline := "Framework for Organized, Reproducible, and Guided Engineering"
-	versionStr := fmt.Sprintf("v%s", d.version)
+	versionStr := fmt.Sprintf("Version %s", d.version)
 
 	content := lipgloss.JoinVertical(
 		lipgloss.Center,

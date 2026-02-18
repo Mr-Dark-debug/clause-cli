@@ -315,12 +315,12 @@ func (r *Renderer) Screen(header, content, footer string) string {
 
 // Banner renders the Clause ASCII art banner.
 func (r *Renderer) Banner(version string) string {
-	logo := `   ██████╗██╗      █████╗ ██╗   ██╗██████╗ ███████╗
-  ██╔════╝██║     ██╔══██╗██║   ██║██╔══██╗██╔════╝
-  ██║     ██║     ███████║██║   ██║██║  ██║█████╗  
-  ██║     ██║     ██╔══██║██║   ██║██║  ██║██╔══╝  
-  ╚██████╗███████╗██║  ██║╚██████╔╝██████╔╝███████╗
-   ╚═════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝`
+	logo := `   ██████╗██╗      █████╗ ██╗   ██╗███████╗███████╗
+  ██╔════╝██║     ██╔══██╗██║   ██║██╔════╝██╔════╝
+  ██║     ██║     ███████║██║   ██║███████╗█████╗  
+  ██║     ██║     ██╔══██║██║   ██║╚════██║██╔══╝  
+  ╚██████╗███████╗██║  ██║╚██████╔╝███████║███████╗
+   ╚═════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝`
 
 	// Apply gradient to logo lines
 	lines := strings.Split(logo, "\n")
@@ -371,36 +371,39 @@ func (r *Renderer) CommandsGrid(cmd *cobra.Command) string {
 	var sections []string
 	order := []string{"PROJECT", "CONFIGURATION", "UTILITY"}
 
-	// Calculate divider width with bounds checking
-	dividerWidth := r.width - 10
-	if dividerWidth <= 0 {
-		dividerWidth = 60 // Default width
-	}
-
 	for _, name := range order {
 		cmds := groups[name]
-		header := r.theme.Typography.Header.Copy().
+		header := lipgloss.NewStyle().
+			Bold(true).
 			Foreground(lipgloss.Color(r.theme.Colors.TextMuted)).
 			Render(name)
 
-		divider := r.theme.Typography.Muted.Render(strings.Repeat("─", dividerWidth))
-		
 		var cmdLines []string
 		for _, c := range cmds {
-			cmdName := r.theme.Typography.Body.Copy().Bold(true).Foreground(lipgloss.Color(r.theme.Colors.Primary)).Width(12).Render(c[0])
-			cmdDesc := r.theme.Typography.Muted.Render(c[1])
-			cmdLines = append(cmdLines, cmdName + cmdDesc)
+			cmdName := lipgloss.NewStyle().
+				Bold(true).
+				Foreground(lipgloss.Color(r.theme.Colors.Primary)).
+				Width(14).
+				Render(c[0])
+			cmdDesc := lipgloss.NewStyle().
+				Foreground(lipgloss.Color(r.theme.Colors.TextMuted)).
+				Render(c[1])
+			cmdLines = append(cmdLines, cmdName+cmdDesc)
 		}
 
-		sections = append(sections, lipgloss.JoinVertical(lipgloss.Left,
+		section := lipgloss.JoinVertical(lipgloss.Left,
 			header,
-			divider,
 			strings.Join(cmdLines, "\n"),
-		))
+		)
+		sections = append(sections, section)
 	}
 
-	title := r.theme.Typography.Header.Render("📋 Available Commands")
-	content := lipgloss.JoinVertical(lipgloss.Left, strings.Join(sections, "\n\n"))
+	title := lipgloss.NewStyle().
+		Bold(true).
+		Foreground(lipgloss.Color(r.theme.Colors.Primary)).
+		Render("📋 Available Commands")
+
+	content := strings.Join(sections, "\n\n")
 
 	styledContent := r.theme.Layout.Card.
 		Border(lipgloss.RoundedBorder()).
@@ -428,18 +431,31 @@ func (r *Renderer) FlagsSection(cmd *cobra.Command) string {
 
 	var flagLines []string
 	for _, f := range flags {
-		flagName := r.theme.Typography.Body.Copy().Bold(true).Foreground(lipgloss.Color(r.theme.Colors.Accent)).Width(20).Render(f.name)
-		desc := r.theme.Typography.Body.Render(f.desc)
-		
+		flagName := lipgloss.NewStyle().
+			Bold(true).
+			Foreground(lipgloss.Color(r.theme.Colors.Accent)).
+			Width(20).
+			Render(f.name)
+		desc := lipgloss.NewStyle().
+			Foreground(lipgloss.Color(r.theme.Colors.Text)).
+			Render(f.desc)
+
 		line := flagName + desc
 		if f.def != "" {
-			defLine := "\n" + strings.Repeat(" ", 20) + r.theme.Typography.Muted.Italic(true).Render("Default: "+f.def)
-			line += defLine
+			defText := lipgloss.NewStyle().
+				Foreground(lipgloss.Color(r.theme.Colors.TextMuted)).
+				Italic(true).
+				Render("Default: " + f.def)
+			line += "\n" + strings.Repeat(" ", 20) + defText
 		}
 		flagLines = append(flagLines, line)
 	}
 
-	title := r.theme.Typography.Header.Render("⚙️  Global Flags")
+	title := lipgloss.NewStyle().
+		Bold(true).
+		Foreground(lipgloss.Color(r.theme.Colors.Primary)).
+		Render("⚙️  Global Flags")
+
 	content := strings.Join(flagLines, "\n\n")
 
 	styledContent := r.theme.Layout.Card.
@@ -456,76 +472,72 @@ func (r *Renderer) FlagsSection(cmd *cobra.Command) string {
 
 // Footer renders a professional footer with links.
 func (r *Renderer) Footer(version string) string {
-	// Calculate divider width with bounds checking
-	dividerWidth := r.width - 4
-	if dividerWidth <= 0 {
-		dividerWidth = 76 // Default width
-	}
-	divider := r.theme.Typography.Muted.Render(strings.Repeat("─", dividerWidth))
-	
+	linkStyle := lipgloss.NewStyle().
+		Foreground(lipgloss.Color(r.theme.Colors.Info)).
+		Underline(true)
+
 	links := []string{
-		"📚 Docs: " + r.theme.Typography.Body.Copy().Underline(true).Foreground(lipgloss.Color(r.theme.Colors.Info)).Render("clause.dev"),
-		"💻 GitHub: " + r.theme.Typography.Body.Copy().Underline(true).Foreground(lipgloss.Color(r.theme.Colors.Info)).Render("clause-cli/clause"),
+		"📚 Docs: " + linkStyle.Render("docs.clause.dev"),
+		"💻 GitHub: " + linkStyle.Render("github.com/clause-cli/clause"),
 		"v" + version,
 	}
 
-	content := lipgloss.JoinHorizontal(lipgloss.Center, strings.Join(links, "  │  "))
-	
-	return lipgloss.JoinVertical(lipgloss.Center,
-		divider,
-		content,
-		divider,
-	)
+	content := strings.Join(links, "  │  ")
+	return lipgloss.NewStyle().
+		Foreground(lipgloss.Color(r.theme.Colors.TextMuted)).
+		Padding(1, 0).
+		Render(content)
 }
 
 // WelcomeScreen renders the full welcome screen.
 func (r *Renderer) WelcomeScreen(cmd *cobra.Command, version string) string {
 	banner := r.Banner(version)
 
-	description := `Clause generates complete project scaffolding with built-in AI
-governance, context files, and best practices for AI assistants.`
+	description := "Clause generates complete project scaffolding with built-in AI governance, context files, and best practices for AI assistants."
 
 	features := []string{
-		"Complete project structure generation",
-		"AI governance guidelines included",
-		"Context files for AI assistants",
-		"Support for Next.js, FastAPI, Go, and more",
+		"📁 Complete project structure generation",
+		"🤖 AI governance guidelines included",
+		"📝 Context files for AI assistants",
+		"⚡ Support for Next.js, FastAPI, Go, and more",
 	}
 
-	var featureLines []string
-	for _, f := range features {
-		featureLines = append(featureLines, r.theme.Typography.Primary.Render(" • ") + r.theme.Typography.Body.Render(f))
-	}
+	// Description section
+	titleDesc := lipgloss.NewStyle().
+		Bold(true).
+		Foreground(lipgloss.Color(r.theme.Colors.Primary)).
+		Render("✨ Create AI-Ready Projects")
 
-	titleDesc := r.theme.Typography.Header.Render("✨ Create AI-Ready Projects")
 	descContent := lipgloss.JoinVertical(
 		lipgloss.Left,
-		r.theme.Typography.Body.Render(description),
+		lipgloss.NewStyle().Foreground(lipgloss.Color(r.theme.Colors.Text)).Render(description),
 		"",
-		strings.Join(featureLines, "\n"),
+		strings.Join(features, "\n"),
 	)
 
-	descCard := r.theme.Layout.Card.
+	descCard := lipgloss.NewStyle().
 		Border(lipgloss.RoundedBorder()).
 		BorderForeground(lipgloss.Color(r.theme.Colors.Border)).
 		Padding(1, 2).
-		Width(lipgloss.Width(banner)).
 		Render(descContent)
 
-	titleQS := r.theme.Typography.Header.Render("🚀 Quick Start")
-	quickStart := lipgloss.JoinVertical(
-		lipgloss.Left,
-		r.KeyValue("clause init", "Launch interactive wizard", 22),
-		r.KeyValue("clause init --quick", "Skip wizard, use defaults", 22),
-		r.KeyValue("clause init --template nextjs", "Start with specific template", 22),
-	)
+	// Quick Start section
+	titleQS := lipgloss.NewStyle().
+		Bold(true).
+		Foreground(lipgloss.Color(r.theme.Colors.Primary)).
+		Render("🚀 Quick Start")
 
-	quickStartCard := r.theme.Layout.Card.
+	quickStartItems := []string{
+		"  clause init              Launch interactive wizard",
+		"  clause init --quick      Skip wizard, use defaults",
+		"  clause init --template   Start with specific template",
+	}
+
+	quickStartCard := lipgloss.NewStyle().
 		Border(lipgloss.RoundedBorder()).
 		BorderForeground(lipgloss.Color(r.theme.Colors.Border)).
 		Padding(1, 2).
-		Width(lipgloss.Width(banner)).
-		Render(quickStart)
+		Render(strings.Join(quickStartItems, "\n"))
 
 	commands := r.CommandsGrid(cmd)
 	flags := r.FlagsSection(cmd)
