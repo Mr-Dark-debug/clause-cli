@@ -724,3 +724,10 @@ func LoadPreset(name string) (*ProjectConfig, error) {
 
 	return config, nil
 }
+
+// DefaultConfig creates a new ProjectConfig with all default values applied.
+func DefaultConfig() *ProjectConfig {
+	cfg := NewProjectConfig()
+	ApplyDefaults(cfg)
+	return cfg
+}

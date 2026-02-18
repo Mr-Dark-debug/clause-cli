@@ -33,8 +33,51 @@ type Wizard struct {
 	fadeAlpha float64
 }
 
+// WizardOption is a functional option for configuring the wizard.
+type WizardOption func(*Wizard)
+
+// WithProjectName sets the initial project name.
+func WithProjectName(name string) WizardOption {
+	return func(w *Wizard) {
+		if name != "" && w.config != nil {
+			w.config.Metadata.Name = name
+		}
+	}
+}
+
+// WithTheme sets the theme.
+func WithTheme(theme *styles.Theme) WizardOption {
+	return func(w *Wizard) {
+		if theme != nil {
+			w.theme = theme
+			w.renderer = tui.NewRenderer(theme, 80, 24)
+		}
+	}
+}
+
+// WithPreset sets a preset configuration.
+func WithPreset(preset string) WizardOption {
+	return func(w *Wizard) {
+		if preset != "" {
+			if cfg, err := config.LoadPreset(preset); err == nil {
+				w.config = cfg
+				w.preset = preset
+			}
+		}
+	}
+}
+
+// WithConfig sets the initial configuration.
+func WithConfig(cfg *config.ProjectConfig) WizardOption {
+	return func(w *Wizard) {
+		if cfg != nil {
+			w.config = cfg
+		}
+	}
+}
+
 // New creates a new wizard.
-func New() *Wizard {
+func New(opts ...WizardOption) *Wizard {
 	theme := styles.GetTheme()
 
 	w := &Wizard{
@@ -43,6 +86,11 @@ func New() *Wizard {
 		renderer: tui.NewRenderer(theme, 80, 24),
 		current:  0,
 		fadeIn:   true,
+	}
+
+	// Apply options
+	for _, opt := range opts {
+		opt(w)
 	}
 
 	// Add screens in order

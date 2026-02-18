@@ -189,9 +189,9 @@ func runConfigInit(cmd *cobra.Command, args []string) {
 }
 
 func homeDir() (string, error) {
-	home, err := viper.GetString("home"), error(nil)
+	home := viper.GetString("home")
 	if home == "" {
-		home, err = os.UserHomeDir()
+		return os.UserHomeDir()
 	}
-	return home, err
+	return home, nil
 }
