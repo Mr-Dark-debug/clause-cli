@@ -87,7 +87,7 @@ func (s *InfrastructureScreen) Init() tea.Cmd {
 }
 
 // Update handles updates.
-func (s *InfrastructureScreen) Update(msg tea.Msg) (Screen, tea.Cmd) {
+func (s *InfrastructureScreen) Update(msg tea.Msg) tea.Cmd {
 	switch m := msg.(type) {
 	case tea.KeyMsg:
 		switch m.String() {
@@ -121,7 +121,7 @@ func (s *InfrastructureScreen) Update(msg tea.Msg) (Screen, tea.Cmd) {
 	}
 
 	s.complete = true
-	return s, nil
+	return nil
 }
 
 func (s *InfrastructureScreen) getMaxItems() int {

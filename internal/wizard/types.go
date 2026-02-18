@@ -4,23 +4,12 @@ package wizard
 import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/clause-cli/clause/internal/config"
+	"github.com/clause-cli/clause/internal/wizard/screens"
 	"github.com/clause-cli/clause/pkg/styles"
 )
 
-// Re-export Screen type from screens package for convenience
-type Screen = interface {
-	Name() string
-	ID() string
-	Init() tea.Cmd
-	Update(tea.Msg) (Screen, tea.Cmd)
-	View() string
-	SetSize(width, height int)
-	SetTheme(theme *styles.Theme)
-	SetConfig(config *config.ProjectConfig)
-	CanGoBack() bool
-	CanGoNext() bool
-	IsComplete() bool
-}
+// Screen is an alias to screens.Screen for convenience
+type Screen = screens.Screen
 
 // WizardState represents the current state of the wizard.
 type WizardState struct {

@@ -63,7 +63,7 @@ func (s *GovernanceScreen) Init() tea.Cmd {
 }
 
 // Update handles updates.
-func (s *GovernanceScreen) Update(msg tea.Msg) (Screen, tea.Cmd) {
+func (s *GovernanceScreen) Update(msg tea.Msg) tea.Cmd {
 	switch m := msg.(type) {
 	case tea.KeyMsg:
 		switch m.String() {
@@ -82,7 +82,7 @@ func (s *GovernanceScreen) Update(msg tea.Msg) (Screen, tea.Cmd) {
 	}
 
 	s.complete = true
-	return s, nil
+	return nil
 }
 
 func (s *GovernanceScreen) toggle() {

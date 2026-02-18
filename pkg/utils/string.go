@@ -612,3 +612,13 @@ func FormatNumber(n int64) string {
 	}
 	return result
 }
+
+// MatchesRegex checks if a string matches a regex pattern.
+// Returns true if the string matches, false otherwise.
+func MatchesRegex(s, pattern string) bool {
+	re, err := regexp.Compile(pattern)
+	if err != nil {
+		return false
+	}
+	return re.MatchString(s)
+}

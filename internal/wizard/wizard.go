@@ -157,9 +157,10 @@ func (w *Wizard) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 	// Update current screen
 	if len(w.screenInstances) > 0 {
-		newScreen, cmd := w.screenInstances[w.current].Update(msg)
-		w.screenInstances[w.current] = newScreen
-		cmds = append(cmds, cmd)
+		cmd := w.screenInstances[w.current].Update(msg)
+		if cmd != nil {
+			cmds = append(cmds, cmd)
+		}
 	}
 
 	return w, tea.Batch(cmds...)

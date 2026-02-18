@@ -34,7 +34,7 @@ func (s *SummaryScreen) Init() tea.Cmd {
 }
 
 // Update handles updates.
-func (s *SummaryScreen) Update(msg tea.Msg) (Screen, tea.Cmd) {
+func (s *SummaryScreen) Update(msg tea.Msg) tea.Cmd {
 	switch m := msg.(type) {
 	case tea.KeyMsg:
 		switch m.String() {
@@ -56,7 +56,7 @@ func (s *SummaryScreen) Update(msg tea.Msg) (Screen, tea.Cmd) {
 		}
 	}
 
-	return s, nil
+	return nil
 }
 
 // View renders the screen.
