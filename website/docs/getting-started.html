@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started – Clause CLI</title>
+    <meta name="description"
+        content="Create your first AI-governed project with Clause CLI. Step-by-step tutorial from installation to first commit.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="../website/assets/js/theme.js"></script>
+    <link rel="stylesheet" href="../website/assets/css/main.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="../index.html" class="logo"><span class="logo-icon">C</span><span>Clause</span></a>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html">Docs</a>
+                <a href="installation.html">Installation</a>
+                <a href="getting-started.html" class="active">Get Started</a>
+                <a href="../website/pages/changelog.html">Changelog</a>
+                <a href="../website/pages/community.html">Community</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" aria-label="Toggle dark mode"><span class="icon-sun">☀️</span><span
+                        class="icon-moon">🌙</span></button>
+                <a href="https://github.com/Mr-Dark-debug/clause-cli" target="_blank" rel="noopener"
+                    class="btn btn-secondary btn-sm"><svg width="18" height="18" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M12 .3a12 12 0 00-3.8 23.38c.6.12.82-.26.82-.58v-2.16c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.08-.73.08-.73 1.2.08 1.84 1.23 1.84 1.23 1.07 1.84 2.8 1.31 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016.02 0c2.28-1.55 3.28-1.23 3.28-1.23.66 1.66.26 2.88.12 3.18a4.65 4.65 0 011.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12 12 0 0012 .3" />
+                    </svg> GitHub</a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+        <a href="index.html">Documentation</a><a href="installation.html">Installation</a><a
+            href="getting-started.html">Get Started</a><a href="governance.html">AI Governance</a>
+        <hr><a href="https://github.com/Mr-Dark-debug/clause-cli" target="_blank" rel="noopener">GitHub →</a>
+    </nav>
+
+    <main id="main-content">
+        <div class="container">
+            <div class="doc-layout">
+                <aside class="doc-sidebar" aria-label="Documentation navigation">
+                    <div class="doc-sidebar-section">
+                        <h3 class="doc-sidebar-title">Getting Started</h3>
+                        <ul class="doc-sidebar-links">
+                            <li><a href="installation.html">Installation</a></li>
+                            <li><a href="getting-started.html" class="active">Quick Start</a></li>
+                            <li><a href="configuration.html">Configuration</a></li>
+                        </ul>
+                    </div>
+                    <div class="doc-sidebar-section">
+                        <h3 class="doc-sidebar-title">Core Concepts</h3>
+                        <ul class="doc-sidebar-links">
+                            <li><a href="governance.html">AI Governance</a></li>
+                            <li><a href="templates.html">Templates</a></li>
+                        </ul>
+                    </div>
+                    <div class="doc-sidebar-section">
+                        <h3 class="doc-sidebar-title">Reference</h3>
+                        <ul class="doc-sidebar-links">
+                            <li><a href="cli-reference.html">CLI Reference</a></li>
+                            <li><a href="api.html">API Docs</a></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <article class="doc-content">
+                    <h1>Getting Started</h1>
+                    <p class="doc-subtitle">Create your first AI-governed project in under a minute.</p>
+
+                    <h2 id="intro">What is Clause?</h2>
+                    <p>Clause is an <strong>AI-native project scaffolding tool</strong>. It generates a project
+                        structure that includes a special <code>ai_prompt_guidelines/</code> directory — a set of
+                        governance files that teach AI coding assistants how to behave in your codebase.</p>
+                    <p>Think of it as a <strong>constitution for your AI</strong>: coding standards, architecture
+                        decisions, and reflection checkpoints — all in one place.</p>
+
+                    <h3>Who should use Clause?</h3>
+                    <ul>
+                        <li>Developers using AI coding assistants (Copilot, Cursor, Claude, etc.)</li>
+                        <li>Teams that want consistent, governed AI output</li>
+                        <li>Open-source maintainers who want AI-friendly repos</li>
+                    </ul>
+
+                    <h2 id="first-project">Your First Project</h2>
+
+                    <h3>Step 1 — Install Clause</h3>
+                    <p>If you haven't already, install Clause using your preferred method:</p>
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-language">bash</span><button class="copy-button">📋
+                                Copy</button></div>
+                        <pre><code># macOS / Linux
+curl -fsSL https://clause.dev/install.sh | bash
+
+# Windows
+winget install Clause.ClauseCLI</code></pre>
+                    </div>
+
+                    <h3>Step 2 — Initialize a project</h3>
+                    <p>Run the interactive wizard:</p>
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-language">bash</span><button class="copy-button">📋
+                                Copy</button></div>
+                        <pre><code>clause init my-awesome-project</code></pre>
+                    </div>
+                    <p>You'll be guided through an interactive TUI that asks about:</p>
+                    <ul>
+                        <li>Project type (web app, API, CLI, library, etc.)</li>
+                        <li>Tech stack (React, Go, Python, etc.)</li>
+                        <li>AI governance preferences</li>
+                        <li>Git initialization and README generation</li>
+                    </ul>
+
+                    <h3>Step 3 — Explore the output</h3>
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-language">bash</span><button class="copy-button">📋
+                                Copy</button></div>
+                        <pre><code>cd my-awesome-project
+tree -L 2</code></pre>
+                    </div>
+                    <p>Your project now contains an <code>ai_prompt_guidelines/</code> directory that any compatible AI
+                        assistant can read to understand your project's rules, architecture, and conventions.</p>
+
+                    <h2 id="understanding">Understanding the Output</h2>
+
+                    <h3>Key Files</h3>
+                    <ul>
+                        <li><strong><code>ai_prompt_guidelines/system_prompt.md</code></strong> — The main governance
+                            file that tells AI how to behave in your project</li>
+                        <li><strong><code>ai_prompt_guidelines/architecture.md</code></strong> — Documents your
+                            project's architecture decisions</li>
+                        <li><strong><code>ai_prompt_guidelines/brainstorm.md</code></strong> — A self-reflection
+                            scratchpad the AI uses before writing code</li>
+                        <li><strong><code>ai_prompt_guidelines/component_registry.json</code></strong> — Registry of all
+                            known components and their relationships</li>
+                    </ul>
+
+                    <h3>How AI Uses These Files</h3>
+                    <p>When you open your project in an AI-assisted editor, the assistant reads the governance files
+                        and:</p>
+                    <ol>
+                        <li>Understands your coding standards and conventions</li>
+                        <li>Follows the architecture patterns you've defined</li>
+                        <li>Uses the brainstorm system to reason before generating code</li>
+                        <li>Checks the component registry to avoid duplicating work</li>
+                    </ol>
+
+                    <h2 id="next">Next Steps</h2>
+                    <ul>
+                        <li><a href="governance.html">Learn about AI Governance</a> — Deep-dive into governance rules
+                        </li>
+                        <li><a href="templates.html">Explore Templates</a> — See available project templates</li>
+                        <li><a href="cli-reference.html">CLI Reference</a> — Full command documentation</li>
+                        <li><a href="configuration.html">Configuration</a> — Customize Clause for your workflow</li>
+                    </ul>
+
+                    <hr>
+                    <p><strong>Next:</strong> <a href="governance.html">AI Governance →</a></p>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand"><a href="../index.html" class="logo"
+                        style="margin-bottom:var(--space-4);"><span class="logo-icon">C</span><span>Clause</span></a>
+                    <p>Structure Your AI's Intelligence</p>
+                    <p class="text-xs">&copy; 2025 Clause CLI. MIT License.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Documentation</h4>
+                    <ul>
+                        <li><a href="getting-started.html">Getting Started</a></li>
+                        <li><a href="installation.html">Installation</a></li>
+                        <li><a href="cli-reference.html">CLI Reference</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://github.com/Mr-Dark-debug/clause-cli" target="_blank"
+                                rel="noopener">GitHub</a></li>
+                        <li><a href="../website/pages/contributing.html">Contributing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="../website/pages/changelog.html">Changelog</a></li>
+                        <li><a href="../website/pages/roadmap.html">Roadmap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom"><span>Built with ❤️ for the developer community</span></div>
+        </div>
+    </footer>
+
+    <script src="../website/assets/js/navigation.js" defer></script>
+    <script src="../website/assets/js/tabs.js" defer></script>
+    <script src="../website/assets/js/copy-code.js" defer></script>
+    <script src="../website/assets/js/animations.js" defer></script>
+</body>
+
+</html>

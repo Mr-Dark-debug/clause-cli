@@ -1,0 +1,60 @@
+// Package wizard provides the interactive project creation wizard.
+package wizard
+
+import (
+	tea "github.com/charmbracelet/bubbletea"
+	"github.com/clause-cli/clause/internal/config"
+	"github.com/clause-cli/clause/pkg/styles"
+)
+
+// Re-export Screen type from screens package for convenience
+type Screen = interface {
+	Name() string
+	ID() string
+	Init() tea.Cmd
+	Update(tea.Msg) (Screen, tea.Cmd)
+	View() string
+	SetSize(width, height int)
+	SetTheme(theme *styles.Theme)
+	SetConfig(config *config.ProjectConfig)
+	CanGoBack() bool
+	CanGoNext() bool
+	IsComplete() bool
+}
+
+// WizardState represents the current state of the wizard.
+type WizardState struct {
+	CurrentScreen int
+	TotalScreens  int
+	Config        *config.ProjectConfig
+	Preset        string
+}
+
+// Messages for wizard events
+type (
+	// NextScreenMsg signals to move to the next screen
+	NextScreenMsg struct{}
+
+	// PrevScreenMsg signals to move to the previous screen
+	PrevScreenMsg struct{}
+
+	// FinishMsg signals that the wizard is complete
+	FinishMsg struct{}
+
+	// QuitMsg signals to quit the wizard
+	QuitMsg struct{}
+
+	// ErrorMsg contains an error
+	ErrorMsg struct {
+		Error error
+	}
+
+	// FadeInMsg signals a fade-in animation tick
+	FadeInMsg struct{}
+)
+
+// Animation constants
+const (
+	FadeInterval = 16 // milliseconds (60fps)
+	FadeStep     = 0.1
+)
