@@ -1,0 +1,7 @@
+exclude:
+  - blue_prints/
+  - DEVELOPMENT.md
+  - templates/
+  - internal/wizard/screens/
+  - internal/template/
+  - .goreleaser.yaml
