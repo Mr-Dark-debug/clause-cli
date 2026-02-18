@@ -92,6 +92,18 @@ func (p *Printer) PrintDim(format string, args ...interface{}) {
 	fmt.Fprintln(p.writer, style.Render(msg))
 }
 
+// PrintMuted prints muted (dimmed) text - alias for PrintDim.
+func (p *Printer) PrintMuted(format string, args ...interface{}) {
+	p.PrintDim(format, args...)
+}
+
+// PrintPrimary prints text in the primary color.
+func (p *Printer) PrintPrimary(format string, args ...interface{}) {
+	style := lipgloss.NewStyle().Foreground(lipgloss.Color(p.theme.Colors.Primary))
+	msg := fmt.Sprintf(format, args...)
+	fmt.Fprint(p.writer, style.Render(msg))
+}
+
 // PrintHeader prints a header.
 func (p *Printer) PrintHeader(text string) {
 	style := lipgloss.NewStyle().

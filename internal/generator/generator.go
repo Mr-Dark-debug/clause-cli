@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/clause-cli/clause/internal/config"
 	"github.com/clause-cli/clause/internal/template"
@@ -305,6 +306,3 @@ indent_style = space
 indent_size = 2
 `
 }
-
-// Import strings package for builder
-import "strings"
